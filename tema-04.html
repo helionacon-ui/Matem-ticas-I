@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4 Aplicaciones lineales · Matemáticas I · Guía para aprobar</title>
+<meta name="description" content="Matemáticas I (UPCT, GIEyA): tema 4, Aplicaciones lineales">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Proyecto iniciado el <time datetime="2026-11-14">14 de noviembre de 2026</time></p></div>
+<div class="crumb"><a href="index.html">Matemáticas I</a><span class="sep">›</span><span>UD1 Álgebra</span><span class="sep">›</span><span>T4 · Aplicaciones lineales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 Álgebra</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Conceptos básicos y números complejos</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Matrices, determinantes y sistemas</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Espacios vectoriales</a><a href="tema-04.html" style="--tc:var(--c5)" class="on" aria-current="page">T4 Aplicaciones lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Diagonalización de matrices</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Espacio vectorial euclídeo</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Programación lineal</a><div class="grp">UD2 Cálculo de una variable</div><a href="tema-08.html" style="--tc:var(--c1)">T8 Cálculo diferencial de una variable</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Integral de Riemann</a><div class="grp">UD3 Varias variables</div><a href="tema-10.html" style="--tc:var(--c3)">T10 Topología en ℝⁿ y continuidad de varias variables</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Cálculo diferencial de varias variables</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Integral múltiple</a><div class="grp">UD4 Ecuaciones diferenciales</div><a href="tema-13.html" style="--tc:var(--c6)">T13 Ecuaciones diferenciales</a><div class="grp">Practicar</div><a href="examenes.html" style="--tc:var(--c8)">Exámenes oficiales resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Hojas de problemas con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas con Maxima</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 4</p><h2 id="t4">Aplicaciones lineales</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Determinar aplicaciones lineales, su matriz en distintas bases, núcleo e imagen, clasificarlas y cambiar de base con el esquema de composición.</p><p>f: V → W es lineal si \(f(\alpha u+\beta v)=\alpha f(u)+\beta f(v)\). Queda determinada por las imágenes de una base (<b>teorema de existencia y unicidad</b>). Su <b>matriz</b> \(M_{BB'}(f)\) tiene por columnas las coordenadas en B' de las imágenes de los vectores de B; entonces \(f(v)_{B'}=M_{BB'}(f)\,v_B\).</p>
+<p><b>Núcleo</b> \(\ker f=\{v:f(v)=0\}\) (resolver \(M\vec x=0\)); <b>imagen</b> generada por las columnas de M. \(\dim\ker f+\dim\mathrm{Im}f=\dim V\). Inyectiva (monomorfismo) ⇔ ker = {0}; sobreyectiva (epimorfismo) ⇔ rango = dim W; endomorfismo si V = W; automorfismo si biyectivo.</p>
+<p><b>Cambio de base</b>, el esquema que usan todas las soluciones oficiales: \(V_B\xrightarrow{M_{BC}}V_C\xrightarrow{M_{CC}(f)}W_C\xrightarrow{M_{CB'}}W_{B'}\), es decir \(M_{BB'}(f)=M_{CB'}\,M_{CC}(f)\,M_{BC}=(M_{B'C})^{-1}M_{CC}(f)M_{BC}\). Dos matrices del mismo endomorfismo en bases distintas son <b>semejantes</b>: \(P^{-1}AP\).</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(M_{BB\'}(f)\)</td><td>Matriz de f en bases B (salida) y B' (llegada)</td><td class="u">columnas: imágenes de B en B'</td></tr><tr><td class="sym">\(\ker f\)</td><td>Núcleo</td><td class="u">\(f(v)=0\)</td></tr><tr><td class="sym">\(\mathrm{Im}\,f\)</td><td>Imagen</td><td class="u">columnas de M</td></tr><tr><td class="sym">\(f\circ g\)</td><td>Composición</td><td class="u">\(M(f)M(g)\)</td></tr><tr><td class="sym">\(\mathrm{End}(V)\)</td><td>Endomorfismos</td><td class="u">\(V\to V\)</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva · qué hace una aplicación lineal con el plano: imagen, núcleo y determinante</p><div data-sim="aplicacion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
+<h3 id="t4-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>\(M_{CC}(f)\) se lee directamente de la expresión analítica: fila i = coeficientes de la componente i.</li>
+<li>Si te dan f en vectores que no son la base canónica: \(M_{CC}(f)=\big(f(v_1)|f(v_2)|f(v_3)\big)\big(v_1|v_2|v_3\big)^{-1}\).</li>
+<li>Ecuaciones cartesianas de Im f: imponer que \((x,y,z)\) sea combinación de las columnas (rango de la ampliada no sube).</li>
+<li>Composición: \(M(g\circ f)=M(g)M(f)\). Inversa: \(M(f^{-1})=M(f)^{-1}\).</li>
+<li>\(f(W)\) para un subespacio W: imágenes de una base de W.</li></ul></div>
+<h3 id="t4-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Escribe siempre el esquema de bases antes de multiplicar matrices; el orden es de derecha a izquierda.</li><li>Núcleo: sistema homogéneo con la matriz; imagen: columnas (escalonar para la base).</li><li>Clasifica con las dimensiones y la fórmula dim ker + dim Im = dim V.</li><li>Si piden coordenadas de \(f(v_B)\) en B': o bien aplicas \(M_{BB'}\) directamente, o pasas v a canónica, aplicas f y cambias a B'.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Multiplicar las matrices de cambio en el orden equivocado.</li><li>Poner las imágenes por filas.</li><li>Decir que f es sobreyectiva porque las columnas «parecen» independientes sin calcular el rango.</li></ul></div>
+<h3 id="t4-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Enero 2016, problema 1)</b> \(f:\mathbb R^3\to\mathbb R^2\) con \(f(1,-1,3)=(3,-1)\), \(f(0,3,4)\in\ker f\), \(f(0,0,1)=(1,0)\). a) \(M_{C_3C_2}(f)\). b) Ker f y \((\ker f)^\perp\). c) \(M_{BC_2}(f)\) con \(B=\{(-1,1,0),(0,-1,1),(0,0,1)\}\).</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) \(M=\begin{pmatrix}3&0&1\\-1&0&0\end{pmatrix}\begin{pmatrix}1&0&0\\-1&3&0\\3&4&1\end{pmatrix}^{-1}=\begin{pmatrix}-4/3&-4/3&1\\-1&0&0\end{pmatrix}\). Comprobación: \(f(0,3,4)=(-4+4,0)=0\) ✓.</p>
+<p>b) \(\ker f\): \(-\tfrac43x-\tfrac43y+z=0\), \(x=0\) ⇒ \(\ker f=\langle(0,3,4)\rangle\). \((\ker f)^\perp=\{3y+4z=0\}=\langle(1,0,0),(0,4,-3)\rangle\) (también lo generan las filas de M).</p>
+<p>c) \(M_{BC_2}=M\cdot M_{BC_3}=M\begin{pmatrix}-1&0&0\\1&-1&0\\0&1&1\end{pmatrix}=\begin{pmatrix}0&7/3&1\\1&0&0\end{pmatrix}\).</p></div></details></div>
+<h3 id="t4-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Parcial 21-22 bonus: ¿existe f lineal con \(f(e_1)=(1,1)\), \(f(e_2)=(2,-3)\), \(f(e_3)=(-1,2)\) y \(f(3,0,1)=(2,5)\)?</summary><div class="inner"><p>Con las tres primeras, \(f(x,y,z)=(x+2y-z,\ x-3y+2z)\) y \(f(3,0,1)=(2,5)\): sí existe, \(M_{CC}=\begin{pmatrix}1&2&-1\\1&-3&2\end{pmatrix}\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Junio 2015: \(M_C(f)=\begin{pmatrix}3&1&-3\\0&2&0\\1&1&-1\end{pmatrix}\). Ker, Im y tipo.</summary><div class="inner"><p>Rango 2: \(\ker f=\langle(1,0,1)\rangle\), \(\mathrm{Im}f=\langle(3,0,1),(1,2,1)\rangle\); ni inyectiva ni sobreyectiva.</p></div></details><details class="paso"><summary><span class="pn">3</span>Septiembre 2013: \(f(x,y,z)=(z,x+y,-z,y-x)\). ¿Mono o epimorfismo?</summary><div class="inner"><p>\(\ker f=\{0\}\) (monomorfismo); \(\dim\mathrm{Im}=3<4\): no epimorfismo; \(\mathrm{Im}f=\{x+z=0\}\) (solución oficial).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · Espacios vectoriales</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · Diagonalización de matrices</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Proyecto iniciado el <time datetime="2026-11-14">14 de noviembre de 2026</time></p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T7 Programación lineal · Matemáticas I · Guía para aprobar</title>
+<meta name="description" content="Matemáticas I (UPCT, GIEyA): tema 7, Programación lineal">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Proyecto iniciado el <time datetime="2026-11-14">14 de noviembre de 2026</time></p></div>
+<div class="crumb"><a href="index.html">Matemáticas I</a><span class="sep">›</span><span>UD1 Álgebra</span><span class="sep">›</span><span>T7 · Programación lineal</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 Álgebra</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Conceptos básicos y números complejos</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Matrices, determinantes y sistemas</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Espacios vectoriales</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Diagonalización de matrices</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Espacio vectorial euclídeo</a><a href="tema-07.html" style="--tc:var(--c8)" class="on" aria-current="page">T7 Programación lineal</a><div class="grp">UD2 Cálculo de una variable</div><a href="tema-08.html" style="--tc:var(--c1)">T8 Cálculo diferencial de una variable</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Integral de Riemann</a><div class="grp">UD3 Varias variables</div><a href="tema-10.html" style="--tc:var(--c3)">T10 Topología en ℝⁿ y continuidad de varias variables</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Cálculo diferencial de varias variables</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Integral múltiple</a><div class="grp">UD4 Ecuaciones diferenciales</div><a href="tema-13.html" style="--tc:var(--c6)">T13 Ecuaciones diferenciales</a><div class="grp">Practicar</div><a href="examenes.html" style="--tc:var(--c8)">Exámenes oficiales resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Hojas de problemas con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas con Maxima</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 7</p><h2 id="t7">Programación lineal</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Plantear problemas de optimización lineal, dibujar la región factible y resolverlos por el método gráfico y el de los vértices.</p><p>Un problema de <b>programación lineal</b> maximiza o minimiza una función objetivo lineal \(z=c_1x+c_2y\) sujeta a restricciones lineales (desigualdades) y a \(x,y\ge0\). El conjunto de soluciones de las restricciones es la <b>región factible</b>, un polígono convexo (acotado o no).</p>
+<p><b>Teorema fundamental</b>: si el problema tiene óptimo, se alcanza en un vértice de la región factible (si se alcanza en dos vértices, en todo el lado que los une: infinitas soluciones). Método gráfico: desplaza la recta de nivel \(z=\)cte en la dirección del vector \((c_1,c_2)\) hasta el último vértice que toca.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">4 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(z=c_1x+c_2y\)</td><td>Función objetivo</td><td class="u"></td></tr><tr><td class="sym">\(a_ix+b_iy\le d_i\)</td><td>Restricciones</td><td class="u"></td></tr><tr><td class="sym">Región factible</td><td>Conjunto de soluciones de las restricciones</td><td class="u">polígono convexo</td></tr><tr><td class="sym">Vértice</td><td>Intersección de dos restricciones</td><td class="u">candidato a óptimo</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva · región factible y vértice óptimo</p><div data-sim="pl"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
+<h3 id="t7-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Pasos: variables → función objetivo → restricciones (tabla de recursos) → región → vértices (intersecciones de rectas) → evaluar z en cada vértice.</li>
+<li>Región no acotada: puede no existir máximo (z crece sin límite) aunque sí mínimo.</li>
+<li>Restricciones redundantes no cambian la región; una restricción de igualdad reduce la región a un segmento.</li></ul></div>
+<h3 id="t7-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Define bien las variables con sus unidades.</li><li>Escribe cada restricción como desigualdad y dibújala (recta + semiplano de prueba con el origen).</li><li>Halla los vértices resolviendo sistemas 2×2.</li><li>Evalúa la función objetivo y escoge; interpreta el resultado con las unidades.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Olvidar \(x,y\ge0\).</li><li>Tomar como vértice un corte de rectas que está fuera de la región.</li><li>No comprobar que la región está acotada antes de afirmar que hay máximo.</li></ul></div>
+<h3 id="t7-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>(Tipo del tema 7 de las diapositivas) Una fábrica produce dos piezas. Cada unidad de A necesita 1 h de corte y 1 h de montaje; cada unidad de B, 1 h de corte y 3 h de montaje. Hay 4 h de corte y 6 h de montaje, y como máximo se pueden vender 3 unidades de A. Beneficios: 3 € por A y 2 € por B. ¿Cuántas de cada maximizan el beneficio?</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>Maximizar \(z=3x+2y\) con \(x+y\le4\), \(x+3y\le6\), \(x\le3\), \(x,y\ge0\). Vértices: (0,0), (3,0), (3,1) (corte de \(x+y=4\) con \(x+3y=6\)) y (0,2) (corte de \(x+3y=6\) con \(x=0\)). Valores: z(0,0)=0, z(3,0)=9, z(3,1)=11, z(0,2)=4. Óptimo: 3 unidades de A y 1 de B, 11 €. (Juega con el simulador: cambia los beneficios y verás saltar el vértice.)</p></div></details></div>
+<h3 id="t7-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Dónde se alcanza el óptimo de un problema de programación lineal con región acotada?</summary><div class="inner"><p>En un vértice (o en todo un lado si la función objetivo es paralela a él).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Puede una región factible no acotada tener máximo?</summary><div class="inner"><p>Sí, depende de la dirección de crecimiento de z; hay que comprobarlo con las rectas de nivel.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-06.html"><small>← Anterior</small>T6 · Espacio vectorial euclídeo</a><a class="nx" href="tema-08.html"><small>Siguiente →</small>T8 · Cálculo diferencial de una variable</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Proyecto iniciado el <time datetime="2026-11-14">14 de noviembre de 2026</time></p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

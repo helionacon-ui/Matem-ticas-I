@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T5 Diagonalización de matrices · Matemáticas I · Guía para aprobar</title>
+<meta name="description" content="Matemáticas I (UPCT, GIEyA): tema 5, Diagonalización de matrices">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Proyecto iniciado el <time datetime="2026-11-14">14 de noviembre de 2026</time></p></div>
+<div class="crumb"><a href="index.html">Matemáticas I</a><span class="sep">›</span><span>UD1 Álgebra</span><span class="sep">›</span><span>T5 · Diagonalización de matrices</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 Álgebra</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Conceptos básicos y números complejos</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Matrices, determinantes y sistemas</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Espacios vectoriales</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones lineales</a><a href="tema-05.html" style="--tc:var(--c6)" class="on" aria-current="page">T5 Diagonalización de matrices</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Espacio vectorial euclídeo</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Programación lineal</a><div class="grp">UD2 Cálculo de una variable</div><a href="tema-08.html" style="--tc:var(--c1)">T8 Cálculo diferencial de una variable</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Integral de Riemann</a><div class="grp">UD3 Varias variables</div><a href="tema-10.html" style="--tc:var(--c3)">T10 Topología en ℝⁿ y continuidad de varias variables</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Cálculo diferencial de varias variables</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Integral múltiple</a><div class="grp">UD4 Ecuaciones diferenciales</div><a href="tema-13.html" style="--tc:var(--c6)">T13 Ecuaciones diferenciales</a><div class="grp">Practicar</div><a href="examenes.html" style="--tc:var(--c8)">Exámenes oficiales resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Hojas de problemas con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas con Maxima</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 5</p><h2 id="t5">Diagonalización de matrices</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular valores y vectores propios, decidir si una matriz (o endomorfismo) es diagonalizable, hallar P y D, y usar \(A^n=PD^nP^{-1}\).</p><p>Esquema del curso: polinomio característico \(p(\lambda)=|A-\lambda I|\); valores propios = raíces; multiplicidad algebraica \(m(\lambda_i)\); subespacio propio \(V_{\lambda_i}=\ker(A-\lambda_iI)\) con \(\dim V_{\lambda_i}=n-rg(A-\lambda_iI)\) y siempre \(1\le\dim V_{\lambda_i}\le m(\lambda_i)\).</p>
+<p><b>Caracterización</b>: A es diagonalizable ⇔ todos los valores propios son reales y \(\dim V_{\lambda_i}=m(\lambda_i)\) para cada uno. En particular, n valores propios distintos ⇒ diagonalizable. Entonces \(D=P^{-1}AP\) con D los valores propios (repetidos según multiplicidad) y P las bases de los \(V_{\lambda_i}\) por columnas, <b>en el mismo orden</b>.</p>
+<p>Un endomorfismo es diagonalizable si en alguna base su matriz es diagonal: esa base es la de vectores propios y \(P=M_{B'B}\). Aplicación estrella: \(A^n=PD^nP^{-1}\).</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(p(\lambda)=|A-\lambda I|\)</td><td>Polinomio característico</td><td class="u"></td></tr><tr><td class="sym">\(\lambda_i,\ m(\lambda_i)\)</td><td>Valor propio y multiplicidad algebraica</td><td class="u"></td></tr><tr><td class="sym">\(V_{\lambda}\)</td><td>Subespacio propio</td><td class="u">\(\ker(A-\lambda I)\)</td></tr><tr><td class="sym">\(D=P^{-1}AP\)</td><td>Forma diagonal y matriz de paso</td><td class="u"></td></tr><tr><td class="sym">\(\mathrm{tr}\,A\)</td><td>Traza</td><td class="u">suma de valores propios</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva · busca los vectores propios girando v</p><div data-sim="autovectores"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
+<h3 id="t5-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Traza = suma de valores propios; determinante = producto. Matriz triangular: valores propios en la diagonal.</li>
+<li>Con un parámetro: factoriza \(p(\lambda)\); los casos conflictivos son los valores del parámetro que hacen coincidir raíces; ahí calcula \(rg(A-\lambda I)\).</li>
+<li>Simétrica real ⇒ siempre diagonalizable, con P ortogonal (tema 6).</li>
+<li>Potencias: \(A^k=PD^kP^{-1}\); si \(D^k\) es periódica (permutaciones), también \(A^k\).</li></ul></div>
+<h3 id="t5-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Calcula \(|A-\lambda I|\) desarrollando por la fila o columna con más ceros; no expandas si puedes factorizar.</li><li>Para cada λ resuelve \((A-\lambda I)x=0\) y escribe una base.</li><li>Compara dimensiones y multiplicidades; escribe P y D en el mismo orden y comprueba \(AP=PD\).</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Olvidar el caso del valor propio doble: hay que calcular la dimensión del subespacio.</li><li>Cambiar el orden entre las columnas de P y la diagonal de D.</li><li>Decir «diagonalizable» con raíces complejas en ℝ.</li></ul></div>
+<h3 id="t5-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Parcial 21-22, problema 3)</b> \(A=\begin{pmatrix}2&0&12\\3&k&6\\0&0&4\end{pmatrix}\). a) ¿Para qué k es diagonalizable? b) Para k=1, D y P. c) \(A^{10}\).</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) \(|A-\lambda I|=(2-\lambda)(k-\lambda)(4-\lambda)\): si \(k\ne2,4\) hay tres valores distintos y es diagonalizable. k=2: \(V_2=\langle(0,1,0)\rangle\), dimensión 1 < 2: no diagonalizable. k=4: \(V_4=\langle(-2,0,1),(0,1,0)\rangle\), dimensión 2: sí.</p>
+<p>b) k=1: \(V_2=\langle(1,3,0)\rangle\), \(V_4=\langle(-2,0,1)\rangle\), \(V_1=\langle(0,1,0)\rangle\); \(P=\begin{pmatrix}1&-2&0\\3&0&1\\0&1&0\end{pmatrix}\), \(D=\mathrm{diag}(2,4,1)\). c) \(A^{10}=P\,\mathrm{diag}(2^{10},4^{10},1)\,P^{-1}\). <span class="src">Solución oficial.</span></p></div></details></div>
+<h3 id="t5-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Enero 2016: \(A=\begin{pmatrix}-2m&0&0&0\\0&-2&0&0\\0&0&4&0\\n&1&3&-6\end{pmatrix}\). ¿Cuándo es diagonalizable?</summary><div class="inner"><p>Valores propios \(-2m,-2,4,-6\). Si \(-2m\) no coincide con ninguno, sí. Si m=1 o m=−2 el valor doble tiene subespacio de dimensión 2: sí. Si m=3 (doble −6): \(rg(A+6I)=3\) si \(n\ne0\) (no diagonalizable) y 2 si n=0 (sí). Para m=2, n=0: \(D=\mathrm{diag}(-6,-4,-2,4)\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Hoja 5: potencia k-ésima de la matriz antidiagonal de unos 4×4.</summary><div class="inner"><p>\(A^2=I\), luego \(A^k=I\) si k par y \(A\) si k impar.</p></div></details><details class="paso"><summary><span class="pn">3</span>Hoja 5 V/F: «si A es diagonalizable, entonces es invertible».</summary><div class="inner"><p>Falso: \(D=\mathrm{diag}(0,1)\) es diagonalizable y no invertible. Tampoco hace falta que tenga n valores distintos (la identidad).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-04.html"><small>← Anterior</small>T4 · Aplicaciones lineales</a><a class="nx" href="tema-06.html"><small>Siguiente →</small>T6 · Espacio vectorial euclídeo</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Proyecto iniciado el <time datetime="2026-11-14">14 de noviembre de 2026</time></p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
