@@ -226,5 +226,25 @@ SIMS.gaussPaso=el=>build(el,{w:640,h:370,
   a.html(`<div>${T[p]}</div>`);
  }});
 
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 diagPaso ---- */
+SIMS.diagPaso=el=>SIMS.__paso(el,{"w":640,"h":290,"q":"Diagonaliza la matriz A = [[2,1],[1,2]] y úsalo para calcular Aⁿ. Sube el paso.","base":[["t","A = [[2, 1], [1, 2]]",30,26,14,"left"]],"steps":[{"text":"Diagonalizar <b>A = [[2,1],[1,2]]</b> es encontrar una base de vectores propios y escribir A = P·D·P⁻¹ con D diagonal. Sirve, por ejemplo, para calcular Aⁿ con facilidad.","add":[["l",360,170,580,170,1],["l",470,60,470,280,1]]},{"text":"Ecuación característica: <b>det(A − λI) = (2−λ)² − 1 = λ² − 4λ + 3 = (λ−1)(λ−3) = 0</b>, luego los valores propios son <b>λ₁ = 1</b> y <b>λ₂ = 3</b> (distintos ⇒ A es diagonalizable).","add":[["t","(2−λ)² − 1 = (λ−1)(λ−3) = 0",30,64,14,"left"],["t","λ₁ = 1 ,  λ₂ = 3",30,92,15,"left"]]},{"text":"Para <b>λ₁ = 1</b>: (A − I)v = 0 ⇒ x + y = 0 ⇒ vector propio <b>v₁ = (1, −1)</b>.","add":[["t","λ=1:  v₁ = (1, −1)",30,126,15,"left"],["a",470,170,530,230,3]]},{"text":"Para <b>λ₂ = 3</b>: (A − 3I)v = 0 ⇒ −x + y = 0 ⇒ vector propio <b>v₂ = (1, 1)</b>. Son perpendiculares porque A es simétrica.","add":[["t","λ=3:  v₂ = (1, 1)",30,158,15,"left"],["a",470,170,530,110,3]]},{"text":"Se forman <b>P = [v₁ v₂] = [[1,1],[−1,1]]</b> y <b>D = diag(1, 3)</b>. Se comprueba que AP = PD columna a columna: A·v₂ = (3,3) = 3·v₂ ✓.","add":[["t","P = [[1,1],[−1,1]] ,  D = diag(1, 3)",30,192,14,"left"],["t","A·v₂ = (3,3) = 3 v₂  ✓",30,220,14,"left"]]},{"text":"Aplicación: <b>Aⁿ = P·Dⁿ·P⁻¹ = ½·[[1+3ⁿ, 3ⁿ−1],[3ⁿ−1, 1+3ⁿ]]</b>. Para n = 2: ½·[[10,8],[8,10]] = [[5,4],[4,5]] = A² ✓. Solo se eleva a n la diagonal.","add":[["t","Aⁿ = ½ [[1+3ⁿ, 3ⁿ−1],[3ⁿ−1, 1+3ⁿ]]",30,254,14,"left"]]}]});
+/* ---- fin paso2 diagPaso ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
