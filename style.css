@@ -485,6 +485,10 @@ details.paso .inner p{margin:6px 0}
 .gs-out a:hover,.gs-out a:focus-visible{border-color:var(--line);background:var(--surface)}
 .gs-out small{color:var(--muted)}
 
+/* Segunda pasada: fórmulas largas dentro de los desplegables no desbordan en móvil */
+details.paso>summary{overflow-x:auto;overflow-y:hidden}
+details.paso>summary::-webkit-scrollbar{height:4px}
+.prob .enun mjx-container[display="true"],.inner mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}
 /* Matemáticas I: rojo como color principal (fondos sin cambiar) */
 :root{--accent:#b4232f;--accent-soft:#f8e4e4;--c0:#b4232f;--c0s:#f8e4e4;--warn:#b8730c;--warn-soft:#f7ecda}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--accent:#ff7b86;--accent-soft:#3a1a1e;--c0:#ff7b86;--c0s:#3a1a1e;--warn:#f0b252;--warn-soft:#3a2b12}}

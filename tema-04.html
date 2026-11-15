@@ -24,6 +24,41 @@
 <div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Determinar aplicaciones lineales, su matriz en distintas bases, núcleo e imagen, clasificarlas y cambiar de base con el esquema de composición.</p><p>f: V → W es lineal si \(f(\alpha u+\beta v)=\alpha f(u)+\beta f(v)\). Queda determinada por las imágenes de una base (<b>teorema de existencia y unicidad</b>). Su <b>matriz</b> \(M_{BB'}(f)\) tiene por columnas las coordenadas en B' de las imágenes de los vectores de B; entonces \(f(v)_{B'}=M_{BB'}(f)\,v_B\).</p>
 <p><b>Núcleo</b> \(\ker f=\{v:f(v)=0\}\) (resolver \(M\vec x=0\)); <b>imagen</b> generada por las columnas de M. \(\dim\ker f+\dim\mathrm{Im}f=\dim V\). Inyectiva (monomorfismo) ⇔ ker = {0}; sobreyectiva (epimorfismo) ⇔ rango = dim W; endomorfismo si V = W; automorfismo si biyectivo.</p>
 <p><b>Cambio de base</b>, el esquema que usan todas las soluciones oficiales: \(V_B\xrightarrow{M_{BC}}V_C\xrightarrow{M_{CC}(f)}W_C\xrightarrow{M_{CB'}}W_{B'}\), es decir \(M_{BB'}(f)=M_{CB'}\,M_{CC}(f)\,M_{BC}=(M_{B'C})^{-1}M_{CC}(f)M_{BC}\). Dos matrices del mismo endomorfismo en bases distintas son <b>semejantes</b>: \(P^{-1}AP\).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Una aplicación lineal es una matriz disfrazada</p><p>La idea central del tema, y la que hay que llevarse: <b>toda aplicación lineal entre espacios de dimensión finita es, en el fondo, multiplicar por una matriz</b>. Lo único que hay que decidir es en qué bases.</p>
+<p>¿Por qué? Porque una aplicación lineal queda <b>completamente determinada por lo que hace a los vectores de una base</b>. Si sabes dónde van \(e_1,e_2,e_3\), ya sabes dónde va cualquier otro vector, porque</p>
+\[f(x,y,z)=f(xe_1+ye_2+ze_3)=x\,f(e_1)+y\,f(e_2)+z\,f(e_3)\]
+<p>Y eso es exactamente multiplicar por la matriz que tiene a \(f(e_1),f(e_2),f(e_3)\) <b>por columnas</b>. De ahí la regla que resuelve la mitad de los ejercicios:</p>
+<div class="box key"><p><b>Las columnas de la matriz son las imágenes de los vectores de la base de partida, escritas en la base de llegada.</b></p></div>
+<p>Si el enunciado te da las imágenes de la base canónica, la matriz está escrita y no hay nada que calcular. Si te da las imágenes de <b>otra</b> base, tienes dos opciones: montar un sistema, o escribir la matriz en esa base y cambiarla después. La segunda suele ser más corta.</p><p class="ft">Núcleo e imagen: qué se pierde y qué se alcanza</p><p>Dos subespacios acompañan a toda aplicación lineal, y conviene tener la imagen mental correcta.</p>
+<p>El <b>núcleo</b> \(\ker f\) son los vectores que se aplastan al cero. Es lo que la aplicación <b>destruye</b>. Vive en el espacio de partida.</p>
+<p>La <b>imagen</b> \(\operatorname{Im}f\) son los vectores a los que de verdad se llega. Es lo que la aplicación <b>alcanza</b>. Vive en el espacio de llegada.</p>
+<p>La relación entre ambos es el <b>teorema de la dimensión</b>, que es pura contabilidad:</p>
+\[\dim\ker f+\dim\operatorname{Im}f=\dim V\]
+<p>Léelo así: las dimensiones del espacio de partida o se destruyen (van al núcleo) o sobreviven (van a la imagen). No hay tercera opción. Por eso, si una aplicación de ℝ³ en ℝ³ tiene núcleo de dimensión 1, su imagen es un plano, y viceversa.</p>
+<p><b>Cómo se calculan.</b> Con la matriz \(M\) delante:</p>
+<ul>
+<li>\(\ker f\): resolver el sistema homogéneo \(M\vec x=\vec 0\).</li>
+<li>\(\operatorname{Im}f\): está generada por <b>las columnas</b> de M; se escalonan para quedarse con una base.</li>
+</ul>
+<p>Y una comprobación que no cuesta nada: \(\dim\operatorname{Im}f=rg(M)\), siempre.</p><p class="ft">Clasificar: inyectiva, sobreyectiva, biyectiva</p><p>Los tres nombres se reducen a comparar números, y se contestan mirando el rango:</p>
+<div class="tw"><table><tr><th>Nombre</th><th>Condición conceptual</th><th>Condición práctica</th></tr>
+<tr><td><b>Inyectiva</b> (monomorfismo)</td><td>no aplasta nada</td><td>\(\ker f=\{0\}\), o sea \(rg(M)=\dim V\)</td></tr>
+<tr><td><b>Sobreyectiva</b> (epimorfismo)</td><td>alcanza todo el destino</td><td>\(rg(M)=\dim W\)</td></tr>
+<tr><td><b>Biyectiva</b> (isomorfismo)</td><td>ambas</td><td>\(rg(M)=\dim V=\dim W\): M cuadrada e invertible</td></tr>
+</table></div>
+<p>De aquí salen dos consecuencias que conviene razonar una vez y no olvidar:</p>
+<ul>
+<li>Si \(\dim V>\dim W\), <b>no puede ser inyectiva</b>: hay más dimensiones de partida que de llegada, y algo tiene que aplastarse. Por eso una aplicación de ℝ⁴ en ℝ³ nunca es inyectiva.</li>
+<li>Si \(\dim V<\dim W\), <b>no puede ser sobreyectiva</b>: la imagen tiene como mucho la dimensión de partida.</li>
+</ul>
+<p>Para un <b>endomorfismo</b> (de V en V), inyectiva ⇔ sobreyectiva ⇔ biyectiva: con las dimensiones iguales, las tres condiciones colapsan en una. Ésa es la razón de que en ℝⁿ baste comprobar \(|M|\ne0\).</p><p class="ft">El esquema del cambio de base</p><p>La misma aplicación tiene matrices distintas en bases distintas, y los exámenes piden pasar de una a otra. El esquema que usan las soluciones oficiales se lee como un recorrido:</p>
+\[V_B\ \xrightarrow{\ M_{BC}\ }\ V_C\ \xrightarrow{\ M_{CC'}(f)\ }\ W_{C'}\ \xrightarrow{\ M_{C'B'}\ }\ W_{B'}\]
+<p>y por tanto</p>
+\[M_{BB'}(f)=M_{C'B'}\cdot M_{CC'}(f)\cdot M_{BC}\]
+<p>La forma de no perderse es leerlo <b>de derecha a izquierda</b>, como se aplican las matrices: primero llevo las coordenadas de B a C, luego aplico f, luego paso de C′ a B′.</p>
+<p><b>El caso particular que más cae</b> es el de un endomorfismo con la misma base a ambos lados:</p>
+\[A'=P^{-1}AP\]
+<p>donde P es la matriz de cambio de base. Dos matrices relacionadas así se llaman <b>semejantes</b> y representan la misma aplicación vista desde dos sitios. Comparten determinante, traza, rango y valores propios: todo lo que no depende del observador. Eso enlaza directamente con el tema siguiente, donde se busca la base en la que la matriz es lo más simple posible.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(M_{BB\'}(f)\)</td><td>Matriz de f en bases B (salida) y B' (llegada)</td><td class="u">columnas: imágenes de B en B'</td></tr><tr><td class="sym">\(\ker f\)</td><td>Núcleo</td><td class="u">\(f(v)=0\)</td></tr><tr><td class="sym">\(\mathrm{Im}\,f\)</td><td>Imagen</td><td class="u">columnas de M</td></tr><tr><td class="sym">\(f\circ g\)</td><td>Composición</td><td class="u">\(M(f)M(g)\)</td></tr><tr><td class="sym">\(\mathrm{End}(V)\)</td><td>Endomorfismos</td><td class="u">\(V\to V\)</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · qué hace una aplicación lineal con el plano: imagen, núcleo y determinante</p><div data-sim="aplicacion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
@@ -42,8 +77,52 @@
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) \(M=\begin{pmatrix}3&0&1\\-1&0&0\end{pmatrix}\begin{pmatrix}1&0&0\\-1&3&0\\3&4&1\end{pmatrix}^{-1}=\begin{pmatrix}-4/3&-4/3&1\\-1&0&0\end{pmatrix}\). Comprobación: \(f(0,3,4)=(-4+4,0)=0\) ✓.</p>
 <p>b) \(\ker f\): \(-\tfrac43x-\tfrac43y+z=0\), \(x=0\) ⇒ \(\ker f=\langle(0,3,4)\rangle\). \((\ker f)^\perp=\{3y+4z=0\}=\langle(1,0,0),(0,4,-3)\rangle\) (también lo generan las filas de M).</p>
 <p>c) \(M_{BC_2}=M\cdot M_{BC_3}=M\begin{pmatrix}-1&0&0\\1&-1&0\\0&1&1\end{pmatrix}=\begin{pmatrix}0&7/3&1\\1&0&0\end{pmatrix}\).</p></div></details></div>
+<h3 id="t4-ejercicios">Ejercicios resueltos</h3><p class="muted">Intenta cada uno antes de desplegar la solución.</p><div class="prob"><div class="enun"><p class="et">Ejercicio 1 · Matriz, núcleo e imagen</p><p>Sea \(f:\mathbb R^3\to\mathbb R^3\) dada por \(f(x,y,z)=(x+y,\;y+z,\;x+2y+z)\). Halla su matriz en la base canónica, el núcleo, la imagen y clasifícala.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) La matriz.</b> Las columnas son las imágenes de la base canónica:</p>
+\[f(1,0,0)=(1,0,1),\quad f(0,1,0)=(1,1,2),\quad f(0,0,1)=(0,1,1)\]
+\[M=\begin{pmatrix}1&1&0\\0&1&1\\1&2&1\end{pmatrix}\]
+<p><b>2) El rango.</b> Se ve que \(F_3=F_1+F_2\), así que el determinante es cero y \(rg(M)=2\).</p>
+<p><b>3) Núcleo.</b> Resolvemos \(M\vec x=\vec0\), que con la tercera ecuación redundante queda</p>
+\[\begin{cases}x+y=0\\ y+z=0\end{cases}\Rightarrow\ y=-x,\ z=-y=x\]
+\[\ker f=\langle(1,-1,1)\rangle,\qquad \dim\ker f=1\]
+<p>Comprobación: \(f(1,-1,1)=(1-1,\,-1+1,\,1-2+1)=(0,0,0)\) ✓</p>
+<p><b>4) Imagen.</b> Generada por las columnas:</p>
+\[\operatorname{Im}f=\langle(1,0,1),(1,1,2),(0,1,1)\rangle\]
+<p>La tercera es la segunda menos la primera, así que sobra:</p>
+\[\operatorname{Im}f=\langle(1,0,1),(1,1,2)\rangle,\qquad \dim\operatorname{Im}f=2\]
+<p>Su ecuación cartesiana (una sola, porque \(3-2=1\)) sale del producto vectorial de los dos generadores, \((1,0,1)\times(1,1,2)=(-1,-1,1)\):</p>
+\[\operatorname{Im}f=\{x+y-z=0\}\]
+<p>Comprobación: \((1,0,1)\): \(1+0-1=0\) ✓; \((1,1,2)\): \(1+1-2=0\) ✓</p>
+<p><b>5) Teorema de la dimensión.</b> \(1+2=3=\dim\mathbb R^3\) ✓</p>
+<p><b>6) Clasificación.</b> No es inyectiva (el núcleo no es nulo) ni sobreyectiva (la imagen es un plano, no todo ℝ³). Es un <b>endomorfismo</b>, pero no un automorfismo.</p>
+<div class="box key"><p>Fíjate en la coherencia: en un endomorfismo, o es las tres cosas o no es ninguna. En cuanto \(|M|=0\), ya sabías que fallarían las tres.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 2 · Aplicación definida sobre una base no canónica</p><p>Sea \(f:\mathbb R^3\to\mathbb R^2\) lineal con \(f(1,0,0)=(2,1)\), \(f(1,1,0)=(3,0)\) y \(f(1,1,1)=(1,1)\). Halla su matriz respecto de las bases canónicas.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) El problema.</b> Nos dan las imágenes de la base \(B=\{(1,0,0),(1,1,0),(1,1,1)\}\), no de la canónica. La matriz en la canónica necesita \(f(e_1),f(e_2),f(e_3)\).</p>
+<p><b>2) El truco: la linealidad.</b> Los vectores canónicos se escriben como <b>restas</b> de los dados:</p>
+\[e_1=(1,0,0)\qquad e_2=(1,1,0)-(1,0,0)\qquad e_3=(1,1,1)-(1,1,0)\]
+<p>Y como f es lineal, las imágenes se restan igual:</p>
+\[f(e_1)=(2,1)\]
+\[f(e_2)=f(1,1,0)-f(1,0,0)=(3,0)-(2,1)=(1,-1)\]
+\[f(e_3)=f(1,1,1)-f(1,1,0)=(1,1)-(3,0)=(-2,1)\]
+<p><b>3) La matriz.</b></p>
+\[M_{C_3C_2}(f)=\begin{pmatrix}2&1&-2\\1&-1&1\end{pmatrix}\]
+<p><b>4) Comprobación con uno de los datos.</b> \(f(1,1,1)\) debería dar \((1,1)\):</p>
+\[\begin{pmatrix}2&1&-2\\1&-1&1\end{pmatrix}\begin{pmatrix}1\\1\\1\end{pmatrix}=\begin{pmatrix}2+1-2\\1-1+1\end{pmatrix}=\begin{pmatrix}1\\1\end{pmatrix}\ \checkmark\]
+<p><b>5) Expresión analítica y clasificación.</b></p>
+\[f(x,y,z)=(2x+y-2z,\;x-y+z)\]
+<p>El rango es 2 (las dos filas son independientes), igual que \(\dim\mathbb R^2\): es <b>sobreyectiva</b>. Y como \(\dim\ker f=3-2=1\ne0\), <b>no es inyectiva</b> — cosa que ya sabíamos sin calcular nada, porque va de un espacio de dimensión 3 a uno de dimensión 2.</p>
+<div class="box trap"><h4>El método largo, por si lo prefieres</h4><p>También se puede plantear \(M\cdot(1,1,0)^t=(3,0)^t\) y resolver los seis coeficientes con un sistema. Funciona, pero son tres sistemas de dos ecuaciones. El truco de restar vectores de la base lo resuelve en tres líneas, y además demuestra que has entendido qué significa «lineal».</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 3 · Cambio de base de la matriz</p><p>Del ejercicio anterior, halla \(M_{BC_2}(f)\) con \(B=\{(1,1,0),(0,1,1),(1,0,1)\}\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Qué se pide.</b> La misma aplicación, pero con las coordenadas de partida expresadas en B en vez de en la canónica. La base de llegada sigue siendo la canónica de ℝ².</p>
+<p><b>2) La vía directa: calcular las imágenes de B.</b> Es más rápido que montar el producto de matrices. Con \(f(x,y,z)=(2x+y-2z,\;x-y+z)\):</p>
+\[f(1,1,0)=(2+1-0,\;1-1+0)=(3,0)\]
+\[f(0,1,1)=(0+1-2,\;0-1+1)=(-1,0)\]
+\[f(1,0,1)=(2+0-2,\;1-0+1)=(0,2)\]
+<p>Y esas imágenes, por columnas, son la matriz buscada:</p>
+\[M_{BC_2}(f)=\begin{pmatrix}3&-1&0\\0&0&2\end{pmatrix}\]
+<p><b>3) La vía del esquema,</b> para comprobar. Según la fórmula general,</p>
+\[M_{BC_2}(f)=M_{C_3C_2}(f)\cdot M_{BC_3}\]
+<p>donde \(M_{BC_3}\) tiene por columnas los vectores de B en la canónica:</p>
+\[\begin{pmatrix}2&1&-2\\1&-1&1\end{pmatrix}\begin{pmatrix}1&0&1\\1&1&0\\0&1&1\end{pmatrix}=\begin{pmatrix}2+1+0&0+1-2&2+0-2\\1-1+0&0-1+1&1+0+1\end{pmatrix}=\begin{pmatrix}3&-1&0\\0&0&2\end{pmatrix}\ \checkmark\]
+<p>Las dos vías coinciden.</p>
+<div class="box key"><p><b>Cuál usar en el examen.</b> Si te piden la matriz respecto de una base nueva <b>de partida</b>, calcular directamente las imágenes de esa base es casi siempre más rápido y tiene menos riesgo de error. El producto de matrices es imprescindible cuando cambia la base <b>de llegada</b>, porque entonces hay que invertir una matriz.</p></div></div></details></div>
 <h3 id="t4-auto">Autoevaluación</h3>
-<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Parcial 21-22 bonus: ¿existe f lineal con \(f(e_1)=(1,1)\), \(f(e_2)=(2,-3)\), \(f(e_3)=(-1,2)\) y \(f(3,0,1)=(2,5)\)?</summary><div class="inner"><p>Con las tres primeras, \(f(x,y,z)=(x+2y-z,\ x-3y+2z)\) y \(f(3,0,1)=(2,5)\): sí existe, \(M_{CC}=\begin{pmatrix}1&2&-1\\1&-3&2\end{pmatrix}\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Junio 2015: \(M_C(f)=\begin{pmatrix}3&1&-3\\0&2&0\\1&1&-1\end{pmatrix}\). Ker, Im y tipo.</summary><div class="inner"><p>Rango 2: \(\ker f=\langle(1,0,1)\rangle\), \(\mathrm{Im}f=\langle(3,0,1),(1,2,1)\rangle\); ni inyectiva ni sobreyectiva.</p></div></details><details class="paso"><summary><span class="pn">3</span>Septiembre 2013: \(f(x,y,z)=(z,x+y,-z,y-x)\). ¿Mono o epimorfismo?</summary><div class="inner"><p>\(\ker f=\{0\}\) (monomorfismo); \(\dim\mathrm{Im}=3<4\): no epimorfismo; \(\mathrm{Im}f=\{x+z=0\}\) (solución oficial).</p></div></details>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Parcial 21-22 bonus: ¿existe f lineal con \(f(e_1)=(1,1)\), \(f(e_2)=(2,-3)\), \(f(e_3)=(-1,2)\) y \(f(3,0,1)=(2,5)\)?</summary><div class="inner"><p>Con las tres primeras, \(f(x,y,z)=(x+2y-z,\ x-3y+2z)\) y \(f(3,0,1)=(2,5)\): sí existe, \(M_{CC}=\begin{pmatrix}1&2&-1\\1&-3&2\end{pmatrix}\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Junio 2015: \(M_C(f)=\begin{pmatrix}3&1&-3\\0&2&0\\1&1&-1\end{pmatrix}\). Ker, Im y tipo.</summary><div class="inner"><p>Rango 2: \(\ker f=\langle(1,0,1)\rangle\), \(\mathrm{Im}f=\langle(3,0,1),(1,2,1)\rangle\); ni inyectiva ni sobreyectiva.</p></div></details><details class="paso"><summary><span class="pn">3</span>Septiembre 2013: \(f(x,y,z)=(z,x+y,-z,y-x)\). ¿Mono o epimorfismo?</summary><div class="inner"><p>\(\ker f=\{0\}\) (monomorfismo); \(\dim\mathrm{Im}=3<4\): no epimorfismo; \(\mathrm{Im}f=\{x+z=0\}\) (solución oficial).</p></div></details><details class="paso"><summary><span class="pn">4</span>Una aplicación lineal de ℝ⁵ en ℝ³, ¿puede ser inyectiva?</summary><div class="inner"><p>No. Su imagen tiene como mucho dimensión 3, así que el núcleo tiene dimensión al menos 2 y no es nulo.</p></div></details><details class="paso"><summary><span class="pn">5</span>Si \(\dim\ker f=0\) para \(f:\mathbb R^4\to\mathbb R^4\), ¿qué se puede afirmar?</summary><div class="inner"><p>Que es biyectiva: en un endomorfismo, inyectiva, sobreyectiva y biyectiva son equivalentes.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué comparten dos matrices semejantes?</summary><div class="inner"><p>Determinante, traza, rango y valores propios: representan la misma aplicación en bases distintas.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · Espacios vectoriales</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · Diagonalización de matrices</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>

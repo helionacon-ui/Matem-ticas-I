@@ -24,6 +24,39 @@
 <div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Reconocer subespacios, pasar entre generadores, base, ecuaciones paramétricas y cartesianas, calcular dimensión, coordenadas, cambios de base, suma e intersección.</p><p>Un <b>subespacio</b> es un subconjunto cerrado para la suma y el producto por escalares (contiene al 0). En ℝ³ los subespacios son {0}, rectas y planos por el origen, y ℝ³. Un conjunto es <b>linealmente independiente</b> si la única combinación nula es la trivial; es <b>base</b> si es LI y generador; todas las bases tienen el mismo número de vectores: la <b>dimensión</b>.</p>
 <p>El apunte del curso «Formas de dar un subespacio» es la receta de todos los exámenes: <b>generadores → base</b> (escalonar por filas o menores), <b>base → paramétricas → cartesianas</b> (eliminar parámetros o imponer rango) y <b>cartesianas → base</b> (resolver el sistema homogéneo). Número de ecuaciones cartesianas = dim V − dim W.</p>
 <p><b>Fórmula de Grassmann</b>: \(\dim(U+V)=\dim U+\dim V-\dim(U\cap V)\). U+V se genera con la unión de bases; U∩V se obtiene imponiendo las ecuaciones de uno a los vectores genéricos del otro. Suma directa si \(U\cap V=\{0\}\).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es un espacio vectorial, en cristiano</p><p>Un espacio vectorial es, simplemente, <b>un sitio donde se puede sumar y multiplicar por números</b> sin salirse. Nada más. Los vectores de ℝ³ cumplen eso, pero también los polinomios de grado ≤ 3, las matrices 2×2 o las funciones continuas: todos son espacios vectoriales, y por eso lo que aprendes aquí sirve para todos ellos a la vez.</p>
+<p>Un <b>subespacio</b> es un trozo del espacio que sigue siendo un espacio por sí mismo. Para comprobarlo no hace falta repasar los ocho axiomas: basta con tres cosas, y la primera descarta la mitad de los casos.</p>
+<ol>
+<li>¿Contiene al vector <b>cero</b>? Si no, ya no es subespacio y has terminado.</li>
+<li>Si sumas dos elementos, ¿sigues dentro?</li>
+<li>Si multiplicas uno por un número, ¿sigues dentro?</li>
+</ol>
+<p>Ejemplo: en ℝ³, el plano \(x+y+z=0\) <b>sí</b> es subespacio (el origen lo cumple, y sumando dos soluciones sale otra). El plano \(x+y+z=1\) <b>no</b> lo es: no pasa por el origen. Esa es la diferencia entre un plano vectorial y un plano afín, y es la razón de que los subespacios de ℝ³ sean sólo cuatro cosas: el origen, las rectas por el origen, los planos por el origen y todo ℝ³.</p><p class="ft">Las cuatro formas de dar un subespacio</p><p>Éste es <b>el</b> tema del examen, y lo que se evalúa es saber pasar de cualquiera de estas formas a cualquier otra.</p>
+<div class="tw"><table><tr><th>Forma</th><th>Aspecto</th><th>Qué dice</th></tr>
+<tr><td><b>Generadores</b></td><td>\(W=\langle v_1,v_2,v_3\rangle\)</td><td>«todas las combinaciones de estos»; pueden sobrar</td></tr>
+<tr><td><b>Base</b></td><td>\(B=\{v_1,v_2\}\)</td><td>generadores sin que sobre ninguno</td></tr>
+<tr><td><b>Paramétricas</b></td><td>\(x=\lambda,\ y=\lambda+\mu,\ z=\mu\)</td><td>fábrica de vectores: das parámetros, salen puntos</td></tr>
+<tr><td><b>Cartesianas</b></td><td>\(x-y+z=0\)</td><td>filtro: le das un vector y dice si está o no</td></tr>
+</table></div>
+<p>Las dos últimas son opuestas en su utilidad: con las <b>paramétricas</b> es fácil <i>generar</i> elementos pero costoso comprobar si uno pertenece; con las <b>cartesianas</b> es inmediato <i>comprobar</i> pero costoso generar. Por eso un ejercicio de intersección se resuelve siempre pasando uno de los dos subespacios a cartesianas.</p>
+<p><b>Los caminos entre ellas:</b></p>
+<ul>
+<li><b>Generadores → base</b>: escalonar por filas; las filas no nulas son la base.</li>
+<li><b>Base → paramétricas</b>: escribir el vector genérico \(\lambda v_1+\mu v_2\) componente a componente.</li>
+<li><b>Paramétricas → cartesianas</b>: eliminar los parámetros entre las ecuaciones.</li>
+<li><b>Cartesianas → base</b>: resolver el sistema homogéneo; las soluciones básicas forman la base.</li>
+</ul>
+<p>Y el <b>contador</b> que evita errores: el número de ecuaciones cartesianas independientes es \(\dim V-\dim W\). En ℝ⁴, un subespacio de dimensión 2 necesita exactamente 2 ecuaciones. Si te salen 3, alguna es combinación de las otras.</p><p class="ft">Suma, intersección y la fórmula de Grassmann</p><p>Dados dos subespacios U y V:</p>
+<ul>
+<li><b>U + V</b> es el conjunto de todas las sumas \(u+v\). Se genera <b>juntando las bases</b> de ambos (y después escalonando, porque casi siempre sobra algo).</li>
+<li><b>U ∩ V</b> son los vectores que están en los dos a la vez. Se obtiene <b>imponiendo las cartesianas de uno</b> al vector genérico del otro.</li>
+</ul>
+<p>Cuidado con un error conceptual frecuente: <b>U ∪ V no es un subespacio</b>. Dos rectas distintas por el origen: si sumas un vector de una con uno de la otra, el resultado no está en ninguna de las dos. Por eso se define U + V y no la unión.</p>
+<p>La <b>fórmula de Grassmann</b> relaciona las cuatro dimensiones:</p>
+\[\dim(U+V)=\dim U+\dim V-\dim(U\cap V)\]
+<p>Es la misma idea que el principio de inclusión-exclusión con conjuntos: al juntar las dos bases, lo que está en la intersección se cuenta dos veces y hay que restarlo una.</p>
+<p><b>Su uso práctico es como comprobación.</b> Calculas tres de las cuatro dimensiones (las fáciles: dim U, dim V y dim(U+V) escalonando) y la fórmula te da la cuarta. Si luego calculas la intersección a mano y no coincide, hay un error en algún sitio. En los exámenes se usa casi siempre así.</p>
+<p>Cuando \(U\cap V=\{0\}\), la suma se llama <b>directa</b> y se escribe \(U\oplus V\): entonces cada vector de la suma se descompone de <b>una única manera</b>.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\langle u_1,\dots,u_k\rangle\)</td><td>Subespacio generado</td><td class="u"></td></tr><tr><td class="sym">\(\dim V\)</td><td>Dimensión</td><td class="u">n.º de vectores de una base</td></tr><tr><td class="sym">\(v_B=(\alpha_i)_B\)</td><td>Coordenadas en la base B</td><td class="u"></td></tr><tr><td class="sym">\(M_{BC}\)</td><td>Matriz de cambio de B a C</td><td class="u">columnas: B en C</td></tr><tr><td class="sym">\(U+V,\ U\cap V\)</td><td>Suma e intersección</td><td class="u">Grassmann</td></tr><tr><td class="sym">\(U\oplus V\)</td><td>Suma directa</td><td class="u">\(U\cap V=\{0\}\)</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · una base distinta de la canónica y las coordenadas de un vector</p><div data-sim="bases"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
@@ -39,8 +72,54 @@
 <h3 id="t3-problema">Problema tipo</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Parcial 21-22, problema 1)</b> En ℝ⁴, \(U=\langle(1,0,1,0),(1,1,0,1),(1,2,2,1)\rangle\) y \(V=\{x-y-z+t=0\}\). Base de U+V y de U∩V.</p></div>
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>Base de V: \((1,1,0,0),(1,0,1,0),(-1,0,0,1)\) (dim 3). U tiene dim 3 (rango 3). Escalonando los seis generadores de U+V sale rango 4: \(U+V=\mathbb R^4\). Grassmann: \(\dim(U\cap V)=3+3-4=2\). Vector genérico de U: \(\alpha(1,0,1,0)+\beta(1,1,0,1)+\gamma(1,2,2,1)=(\alpha+\beta+\gamma,\ \beta+2\gamma,\ \alpha+2\gamma,\ \beta+\gamma)\); impón \(x-y-z+t=0\): \(\beta=2\gamma\). Queda \((\alpha+3\gamma,\,4\gamma,\,\alpha+2\gamma,\,3\gamma)\): base \(\{(1,0,1,0),(3,4,2,3)\}\). <span class="src">Coincide con la solución oficial.</span></p></div></details></div>
+<h3 id="t3-ejercicios">Ejercicios resueltos</h3><p class="muted">Intenta cada uno antes de desplegar la solución.</p><div class="prob"><div class="enun"><p class="et">Ejercicio 1 · De generadores a cartesianas</p><p>En ℝ⁴ se da \(U=\langle(1,2,0,1),(2,1,3,0),(0,3,-3,2)\rangle\). Halla una base, la dimensión y unas ecuaciones cartesianas.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Base y dimensión.</b> Escalonamos por filas:</p>
+<div class="code">( 1  2  0  1 )        ( 1  2  0  1 )        ( 1  2  0  1 )
+( 2  1  3  0 )  F2−2F1 ( 0 −3  3 −2 )  F3+F2 ( 0 −3  3 −2 )
+( 0  3 −3  2 )        ( 0  3 −3  2 )        ( 0  0  0  0 )</div>
+<p>La tercera fila se anula: era combinación de las otras dos. Por tanto</p>
+\[B_U=\{(1,2,0,1),(2,1,3,0)\},\qquad \dim U=2\]
+<p><b>2) Cuántas ecuaciones hacen falta.</b> El contador: \(\dim\mathbb R^4-\dim U=4-2=\boxed{2}\) ecuaciones. Saberlo de antemano evita quedarse corto o escribir ecuaciones redundantes.</p>
+<p><b>3) Las ecuaciones, por rango.</b> Un vector \((x,y,z,t)\) está en U si no aumenta el rango, es decir, si</p>
+\[rg\begin{pmatrix}1&2&0&1\\2&1&3&0\\x&y&z&t\end{pmatrix}=2\]
+<p>Escalonamos con el vector genérico incluido:</p>
+<div class="code">( 1  2  0  1 )
+( 0 −3  3 −2 )              ← F2 − 2F1
+( 0  y−2x  z  t−x )         ← F3 − xF1</div>
+<p>Para que la tercera fila sea combinación de la segunda hace falta que sea proporcional a \((-3,3,-2)\). Llamando \(k\) a la razón: \(y-2x=-3k\), \(z=3k\), \(t-x=-2k\). Despejando \(k=z/3\) de la segunda y sustituyendo:</p>
+\[y-2x=-z\ \Rightarrow\ \boxed{2x-y-z=0}\qquad t-x=-\tfrac{2z}{3}\ \Rightarrow\ \boxed{3x-2z-3t=0}\]
+<p><b>4) Comprobación.</b> Los dos generadores deben cumplir ambas:</p>
+\[(1,2,0,1):\ 2-2-0=0\ \checkmark\quad 3-0-3=0\ \checkmark\]
+\[(2,1,3,0):\ 4-1-3=0\ \checkmark\quad 6-6-0=0\ \checkmark\]
+<p>Y el tercer generador, que debería estar también: \((0,3,-3,2)\): \(0-3+3=0\) ✓, \(0+6-6=0\) ✓</p></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 2 · Suma, intersección y Grassmann</p><p>Con el U del ejercicio anterior y \(V=\{(x,y,z,t)\in\mathbb R^4 : x-y+z=0\}\), halla \(\dim(U+V)\), \(\dim(U\cap V)\) y una base de la intersección.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Dimensión de V.</b> Es una sola ecuación en ℝ⁴, así que \(\dim V=4-1=3\). Una base: resolviendo \(x=y-z\),</p>
+\[B_V=\{(1,1,0,0),(-1,0,1,0),(0,0,0,1)\}\]
+<p><b>2) Dimensión de U+V.</b> Juntamos las dos bases (2 + 3 = 5 vectores en ℝ⁴, así que seguro que sobran) y escalonamos. El rango resulta ser <b>4</b>, luego</p>
+\[U+V=\mathbb R^4,\qquad \dim(U+V)=4\]
+<p>Tiene sentido: U no está contenido en V (el vector \((1,2,0,1)\) da \(1-2+0=-1\ne0\)), así que U aporta una dirección nueva a las tres de V.</p>
+<p><b>3) Grassmann da la intersección sin calcularla.</b></p>
+\[\dim(U\cap V)=\dim U+\dim V-\dim(U+V)=2+3-4=\boxed{1}\]
+<p><b>4) La base de la intersección.</b> Un vector genérico de U es \(a(1,2,0,1)+b(2,1,3,0)=(a+2b,\;2a+b,\;3b,\;a)\). Le imponemos la ecuación de V:</p>
+\[x-y+z=(a+2b)-(2a+b)+3b=-a+4b=0\ \Longrightarrow\ a=4b\]
+<p>Con \(b=1\) (y por tanto \(a=4\)):</p>
+\[4(1,2,0,1)+1(2,1,3,0)=\boxed{(6,9,3,4)}\]
+<p>Así que \(U\cap V=\langle(6,9,3,4)\rangle\), de dimensión 1, <b>igual que predecía Grassmann</b> ✓</p>
+<p><b>5) Doble comprobación.</b> El vector debe estar en los dos:</p>
+<ul><li>En V: \(6-9+3=0\) ✓</li>
+<li>En U: cumple las cartesianas del ejercicio anterior, \(2(6)-9-3=0\) ✓ y \(3(6)-2(3)-3(4)=18-6-12=0\) ✓</li></ul>
+<div class="box key"><p><b>El orden que ahorra tiempo.</b> Calcula siempre dim(U+V) escalonando, porque es mecánico, y <b>deduce</b> dim(U∩V) por Grassmann antes de ponerte a calcularla. Así sabes cuántos vectores tienes que encontrar y, si te sale otro número, detectas el error inmediatamente.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 3 · Coordenadas y cambio de base</p><p>En ℝ³ se consideran las bases \(C=\{e_1,e_2,e_3\}\) (la canónica) y \(B=\{(1,1,0),(0,1,1),(1,0,1)\}\). Halla las coordenadas de \(v=(3,4,5)\) en la base B.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Qué se está preguntando.</b> Las coordenadas en B son los números \(\alpha,\beta,\gamma\) tales que</p>
+\[v=\alpha(1,1,0)+\beta(0,1,1)+\gamma(1,0,1)\]
+<p>Es decir, se trata de resolver un sistema. Escribiéndolo componente a componente:</p>
+\[\begin{cases}\alpha+\gamma=3\\ \alpha+\beta=4\\ \beta+\gamma=5\end{cases}\]
+<p><b>2) Resolución.</b> Sumando las tres ecuaciones: \(2(\alpha+\beta+\gamma)=12\), luego \(\alpha+\beta+\gamma=6\). Restando cada ecuación de este total:</p>
+\[\beta=6-3=3,\qquad \gamma=6-4=2,\qquad \alpha=6-5=1\]
+\[\boxed{v_B=(1,3,2)}\]
+<p><b>3) Comprobación.</b> \(1(1,1,0)+3(0,1,1)+2(1,0,1)=(1+2,\,1+3,\,3+2)=(3,4,5)\) ✓</p>
+<p><b>4) La versión matricial</b>, que es la que hay que saber porque generaliza a cualquier par de bases. La <b>matriz de cambio de base</b> \(M_{BC}\) tiene por columnas los vectores de B expresados en C:</p>
+\[M_{BC}=\begin{pmatrix}1&0&1\\1&1&0\\0&1&1\end{pmatrix},\qquad v_C=M_{BC}\,v_B\ \Longrightarrow\ v_B=M_{BC}^{-1}\,v_C\]
+<p>Con \(|M_{BC}|=2\) y calculando la inversa:</p>
+\[M_{BC}^{-1}=\frac12\begin{pmatrix}1&1&-1\\-1&1&1\\1&-1&1\end{pmatrix},\qquad v_B=\frac12\begin{pmatrix}1&1&-1\\-1&1&1\\1&-1&1\end{pmatrix}\begin{pmatrix}3\\4\\5\end{pmatrix}=\begin{pmatrix}1\\3\\2\end{pmatrix}\ \checkmark\]
+<div class="box trap"><h4>El lío de los subíndices</h4><p>\(M_{BC}\) lleva coordenadas <b>de B a C</b> y sus columnas son los vectores <b>de B</b> escritos en C. Mucha gente lo monta al revés. La forma de no equivocarse: comprueba con un vector de la propia base B. Las coordenadas de \((1,1,0)\) en B son \((1,0,0)\), y multiplicando \(M_{BC}(1,0,0)^t\) debe salir \((1,1,0)^t\): sale la primera columna. Correcto.</p></div></div></details></div>
 <h3 id="t3-auto">Autoevaluación</h3>
-<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Enero 2014: \(V=\{x=y=z\}\), \(W=\{(0,y,z)\}\). Demuestra que \(\mathbb R^3=V\oplus W\).</summary><div class="inner"><p>\(\dim V=1\) (base (1,1,1)), \(\dim W=2\); \(V\cap W\): \(x=y=z\) y \(x=0\) ⇒ sólo el 0. Por Grassmann \(\dim(V+W)=3\): suma directa y todo ℝ³.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuántas ecuaciones cartesianas tiene un plano de ℝ⁴?</summary><div class="inner"><p>\(4-2=2\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Enero 2013: ¿es \(B=\{(1,0,1),(0,1,1),(4,2,1)\}\) base de ℝ³? Coordenadas de (1,2,1) en B.</summary><div class="inner"><p>det = −5 ≠ 0: sí. \(M_{CB}=M_{BC}^{-1}\) y \((1,2,1)=(-\tfrac35,\tfrac65,\tfrac25)_B\).</p></div></details>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Enero 2014: \(V=\{x=y=z\}\), \(W=\{(0,y,z)\}\). Demuestra que \(\mathbb R^3=V\oplus W\).</summary><div class="inner"><p>\(\dim V=1\) (base (1,1,1)), \(\dim W=2\); \(V\cap W\): \(x=y=z\) y \(x=0\) ⇒ sólo el 0. Por Grassmann \(\dim(V+W)=3\): suma directa y todo ℝ³.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuántas ecuaciones cartesianas tiene un plano de ℝ⁴?</summary><div class="inner"><p>\(4-2=2\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Enero 2013: ¿es \(B=\{(1,0,1),(0,1,1),(4,2,1)\}\) base de ℝ³? Coordenadas de (1,2,1) en B.</summary><div class="inner"><p>det = −5 ≠ 0: sí. \(M_{CB}=M_{BC}^{-1}\) y \((1,2,1)=(-\tfrac35,\tfrac65,\tfrac25)_B\).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Por qué el conjunto \(\{(x,y,z):x+y+z=1\}\) no es un subespacio de ℝ³?</summary><div class="inner"><p>Porque no contiene al vector cero: \(0+0+0=0\ne1\). Es un plano afín, no vectorial.</p></div></details><details class="paso"><summary><span class="pn">5</span>Un subespacio de ℝ⁵ tiene dimensión 3. ¿Cuántas ecuaciones cartesianas independientes lo definen?</summary><div class="inner"><p>Dos: \(\dim V-\dim W=5-3=2\).</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Es \(U\cup V\) un subespacio?</summary><div class="inner"><p>En general no. La suma de un vector de U y otro de V no tiene por qué estar en ninguno de los dos. Por eso se define \(U+V\).</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · Matrices, determinantes y sistemas</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Aplicaciones lineales</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>

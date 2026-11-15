@@ -24,6 +24,28 @@
 <div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular límites (incluidos los del tipo \(1^\infty\) y con L'Hôpital), estudiar continuidad y derivabilidad, aplicar Bolzano, Rolle y el valor medio, representar funciones y usar Taylor y Newton.</p><p><b>Límites</b>: indeterminaciones \(0/0\), \(\infty/\infty\), \(\infty-\infty\), \(0\cdot\infty\), \(1^\infty\), \(0^0\), \(\infty^0\). Para \(1^\infty\): \(\lim f^g=e^{\lim g(f-1)}\) (sale en el examen de enero 2016 y mayo 2014). Infinitésimos equivalentes: \(\sin x\sim x\), \(1-\cos x\sim x^2/2\), \(\ln(1+x)\sim x\), \(e^x-1\sim x\), \(a^x-1\sim x\ln a\), \((1+x)^n-1\sim nx\).</p>
 <p><b>Continuidad</b>: límite = valor. Teoremas: <b>Bolzano</b> (cambio de signo ⇒ raíz), <b>Weierstrass</b> (continua en [a,b] alcanza máximo y mínimo), valores intermedios. <b>Derivabilidad</b> ⇒ continuidad (no al revés: |x|). Derivadas laterales para funciones a trozos.</p>
 <p><b>Rolle</b> y <b>valor medio de Lagrange</b> (\(f(b)-f(a)=f'(c)(b-a)\)); <b>L'Hôpital</b> para 0/0 e ∞/∞. <b>Representación</b>: dominio, simetrías, asíntotas, monotonía y extremos (f'), curvatura e inflexión (f''). <b>Taylor</b>: \(P_n(x)=\sum\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k\) con resto de Lagrange \(\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}\). <b>Newton</b>: \(x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}\) (práctica 5 con Maxima).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La derivada, dos lecturas</p><p>La derivada tiene dos interpretaciones y conviene tener las dos a mano porque los problemas usan una u otra:</p>
+<ul>
+<li><b>Geométrica</b>: \(f'(a)\) es la pendiente de la recta tangente en \(x=a\). De ahí salen crecimiento, máximos y mínimos.</li>
+<li><b>Física</b>: es la <b>tasa de variación instantánea</b>. Si \(f\) es la posición, \(f'\) es la velocidad; si es el coste, \(f'\) es el coste marginal.</li>
+</ul>
+<p>Y la segunda derivada mide cómo cambia la primera: la <b>concavidad</b>. Si \(f''>0\) la curva se abre hacia arriba y la tangente queda por debajo; si \(f''<0\), al revés. Donde \(f''\) cambia de signo hay un <b>punto de inflexión</b>.</p>
+<p><b>El criterio de extremos</b> combina las dos: en un punto con \(f'(a)=0\),</p>
+\[f''(a)>0\Rightarrow\text{mínimo},\qquad f''(a)<0\Rightarrow\text{máximo},\qquad f''(a)=0\Rightarrow\text{hay que mirar más derivadas}\]<p class="ft">Taylor: sustituir una función por un polinomio</p><p>La idea de Taylor es la más rentable del cálculo: <b>cerca de un punto, casi cualquier función se parece a un polinomio</b>, y los polinomios se manejan fácilmente.</p>
+\[f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\dots+\frac{f^{(n)}(a)}{n!}(x-a)^n\]
+<p>El primer término es el valor; con el segundo ya tienes la recta tangente; con el tercero, una parábola que además acierta la curvatura. Cada término nuevo mejora la aproximación <b>cerca de a</b>, y sólo cerca: lejos del punto la aproximación se degrada, a veces catastróficamente.</p>
+<p><b>Los desarrollos que hay que llevar sabidos</b>, porque con ellos y un poco de álgebra se obtienen casi todos los demás:</p>
+\[e^x=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\dots\qquad \sin x=x-\frac{x^3}{6}+\dots\qquad \cos x=1-\frac{x^2}{2}+\frac{x^4}{24}-\dots\]
+\[\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\dots\qquad \frac{1}{1-x}=1+x+x^2+x^3+\dots\]
+<p><b>El truco que ahorra todas las derivadas:</b> para desarrollar \(e^x\sin x\) no hay que derivar tres veces el producto. Se multiplican las series y se truncan:</p>
+\[\left(1+x+\tfrac{x^2}{2}+\dots\right)\left(x-\tfrac{x^3}{6}+\dots\right)=x+x^2+\tfrac{x^3}{3}+\dots\]<p class="ft">Para qué sirve Taylor en un examen: los límites</p><p>La aplicación más rentable es resolver <b>indeterminaciones</b> sin L'Hôpital. Un límite del tipo 0/0 se resuelve sustituyendo numerador y denominador por sus desarrollos y simplificando.</p>
+<p>Ejemplo clásico:</p>
+\[\lim_{x\to0}\frac{\sin x-x}{x^3}=\lim_{x\to0}\frac{\left(x-\frac{x^3}{6}+\dots\right)-x}{x^3}=\lim_{x\to0}\frac{-\frac{x^3}{6}+\dots}{x^3}=-\frac16\]
+<p>Con L'Hôpital harían falta tres derivaciones sucesivas y es fácil equivocarse; con Taylor se ve de un vistazo.</p>
+<div class="box key"><p><b>La regla práctica para no truncar mal:</b> desarrolla hasta el orden del denominador. Si el denominador es \(x^3\), necesitas el numerador hasta \(x^3\). Truncar antes hace que el límite salga mal; desarrollar de más sólo es perder tiempo.</p></div>
+<p>El <b>resto de Lagrange</b> cuantifica el error cometido:</p>
+\[R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}\]
+<p>con \(\xi\) entre a y x. No se conoce \(\xi\), pero sí se puede <b>acotar</b> \(|f^{(n+1)}|\) en el intervalo, y eso basta para garantizar una precisión.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\lim_{x\to a}f\)</td><td>Límite</td><td class="u"></td></tr><tr><td class="sym">\(f\sim g\)</td><td>Infinitésimos equivalentes</td><td class="u"></td></tr><tr><td class="sym">\(f\'(a)\)</td><td>Derivada</td><td class="u">pendiente de la tangente</td></tr><tr><td class="sym">\(P_n(x)\)</td><td>Polinomio de Taylor</td><td class="u"></td></tr><tr><td class="sym">\(R_n(x)\)</td><td>Resto de Lagrange</td><td class="u"></td></tr><tr><td class="sym">\(x_{k+1}\)</td><td>Iteración de Newton</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · polinomio de Taylor y error</p><div data-sim="taylor"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
@@ -42,8 +64,49 @@
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>1) Es \(1^\infty\): \(L=e^{\lim\tan\frac{\pi x}{2a}\left(1-\frac xa\right)}\). Con \(x=a+h\): \(\tan\left(\frac\pi2+\frac{\pi h}{2a}\right)=-\cot\frac{\pi h}{2a}\sim-\frac{2a}{\pi h}\) y \(1-\frac xa=-\frac ha\); producto → \(\frac2\pi\). \(L=e^{2/\pi}\).</p>
 <p>2) \(\sqrt{\frac{x(x-1)}{(x-1)(x+1)}}=\left(\frac{x}{x+1}\right)^{1/2}\): \(L=e^{\lim\frac{x+1}{6}\left(\frac{x}{x+1}-1\right)}=e^{\lim\frac{x+1}6\cdot\frac{-1}{x+1}}=e^{-1/6}\).</p>
 <p>3) Término cúbico \(\frac{a^3}{3!}x^3=36x^3\Rightarrow a^3=216\Rightarrow a=6\).</p></div></details></div>
+<h3 id="t8-ejercicios">Ejercicios resueltos</h3><p class="muted">Intenta cada uno antes de desplegar la solución.</p><div class="prob"><div class="enun"><p class="et">Ejercicio 1 · Desarrollo de Taylor de un producto</p><p>Halla el polinomio de Taylor de orden 3 en \(x=0\) de \(f(x)=e^x\sin x\) y estima \(f(0{,}1)\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Vía 1 · Multiplicando series (la rápida).</b></p>
+\[e^x=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\dots\qquad \sin x=x-\frac{x^3}{6}+\dots\]
+<p>Multiplicamos quedándonos sólo con términos hasta \(x^3\):</p>
+\[\left(1+x+\tfrac{x^2}{2}\right)\left(x-\tfrac{x^3}{6}\right)=x+x^2+\tfrac{x^3}{2}-\tfrac{x^3}{6}+\dots=x+x^2+\tfrac{x^3}{3}\]
+\[\boxed{T_3(x)=x+x^2+\frac{x^3}{3}}\]
+<p><b>Vía 2 · Derivando (para comprobar).</b></p>
+\[f(0)=0;\quad f'=e^x(\sin x+\cos x)\Rightarrow f'(0)=1;\quad f''=2e^x\cos x\Rightarrow f''(0)=2;\]
+\[f'''=2e^x(\cos x-\sin x)\Rightarrow f'''(0)=2\]
+\[T_3(x)=0+1\cdot x+\frac{2}{2}x^2+\frac{2}{6}x^3=x+x^2+\frac{x^3}{3}\ \checkmark\]
+<p>Fíjate en la simplificación que aparece al derivar: \(f''=2e^x\cos x\) es mucho más limpio de lo que cabría esperar, porque los términos de seno se cancelan.</p>
+<p><b>Estimación.</b></p>
+\[f(0{,}1)\approx0{,}1+0{,}01+\frac{0{,}001}{3}=0{,}110333\]
+<p><b>El valor exacto</b> es \(e^{0,1}\sin(0{,}1)=0{,}1103329\dots\): el error es de \(3\cdot10^{-7}\), seis cifras correctas con un polinomio de grado 3.</p>
+<p><b>Cómo se degrada al alejarse:</b> en \(x=0{,}3\) el polinomio da 0,399 frente al valor real 0,398911, con un error de \(9\cdot10^{-5}\), trescientas veces mayor. Es lo esperable: el error va como \(x^4\), y \(3^4=81\).</p></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 2 · Límite con Taylor</p><p>Calcula \(\displaystyle\lim_{x\to0}\frac{e^x-1-x-\frac{x^2}{2}}{x^3}\) y \(\displaystyle\lim_{x\to0}\frac{x-\sin x}{x-\tan x}\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Primer límite.</b> Es una indeterminación 0/0. El denominador es \(x^3\), así que desarrollamos el numerador hasta ese orden:</p>
+\[e^x=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\dots\]
+\[e^x-1-x-\frac{x^2}{2}=\frac{x^3}{6}+\frac{x^4}{24}+\dots\]
+<p>Y dividiendo:</p>
+\[\lim_{x\to0}\frac{\frac{x^3}{6}+\frac{x^4}{24}+\dots}{x^3}=\lim_{x\to0}\left(\frac16+\frac{x}{24}+\dots\right)=\boxed{\frac16}\]
+<p>Por L'Hôpital harían falta <b>tres</b> derivaciones; aquí se ve directamente. Y de paso se aprende algo: el numerador <b>era</b> el resto del desarrollo de orden 2, así que el límite no podía ser otra cosa que el coeficiente del término siguiente.</p>
+<p><b>Segundo límite.</b> Ahora hay que desarrollar las dos funciones:</p>
+\[\sin x=x-\frac{x^3}{6}+O(x^5)\quad\Rightarrow\quad x-\sin x=\frac{x^3}{6}+O(x^5)\]
+\[\tan x=x+\frac{x^3}{3}+O(x^5)\quad\Rightarrow\quad x-\tan x=-\frac{x^3}{3}+O(x^5)\]
+<p>El cociente queda</p>
+\[\lim_{x\to0}\frac{\frac{x^3}{6}}{-\frac{x^3}{3}}=\boxed{-\frac12}\]
+<div class="box key"><p><b>La regla que evita los dos errores típicos.</b> Primero: desarrolla <b>los dos</b> miembros al mismo orden, y hasta que aparezca el primer término no nulo de cada uno. Segundo: el desarrollo de la tangente, \(x+\frac{x^3}{3}\), lleva <b>signo más</b> y denominador 3, a diferencia del seno. Confundirlos cambia el resultado de signo y de valor.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 3 · Optimización con una variable</p><p>Se quiere construir un depósito cilíndrico sin tapa de 1 m³ de capacidad usando la mínima cantidad de chapa. Halla el radio y la altura.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Variables y relación entre ellas.</b> Con radio \(r\) y altura \(h\):</p>
+\[V=\pi r^2h=1\ \Longrightarrow\ h=\frac{1}{\pi r^2}\]
+<p><b>2) Función a minimizar.</b> Superficie de un cilindro sin tapa: la base más el lateral.</p>
+\[S=\pi r^2+2\pi rh\]
+<p><b>3) Dejarla en una sola variable</b>, sustituyendo la restricción. Éste es el paso que organiza todo problema de optimización:</p>
+\[S(r)=\pi r^2+2\pi r\cdot\frac{1}{\pi r^2}=\pi r^2+\frac{2}{r},\qquad r>0\]
+<p><b>4) Derivar e igualar a cero.</b></p>
+\[S'(r)=2\pi r-\frac{2}{r^2}=0\ \Longrightarrow\ 2\pi r^3=2\ \Longrightarrow\ r^3=\frac{1}{\pi}\ \Longrightarrow\ r=\frac{1}{\sqrt[3]{\pi}}\approx0{,}683\ \text{m}\]
+<p><b>5) Comprobar que es mínimo.</b></p>
+\[S''(r)=2\pi+\frac{4}{r^3}>0\quad\text{para todo }r>0\]
+<p>Siempre positiva, luego la función es convexa y el punto crítico es un <b>mínimo global</b>. No hace falta discutir nada más.</p>
+<p><b>6) La altura.</b></p>
+\[h=\frac{1}{\pi r^2}=\frac{1}{\pi}\cdot\pi^{2/3}=\pi^{-1/3}=r\approx0{,}683\ \text{m}\]
+<p><b>El resultado elegante:</b> \(\boxed{h=r}\). El depósito óptimo sin tapa tiene la altura igual al radio, es decir, su sección vertical es un <b>cuadrado</b>. Y la superficie mínima resulta ser</p>
+\[S=\pi r^2+\frac2r=\pi^{1/3}+2\pi^{1/3}=3\pi^{1/3}\approx4{,}39\ \text{m}^2\]
+<div class="box trap"><h4>Con tapa cambia la respuesta</h4><p>Si el depósito fuera cerrado, \(S=2\pi r^2+2\pi rh\) y saldría \(h=2r\): la altura igual al diámetro. Es un buen control de que no has copiado el resultado de memoria: la geometría óptima depende de si hay tapa o no.</p></div>
+<p><b>Los cuatro pasos que vale cualquier problema de optimización:</b> escribir la magnitud a optimizar, escribir la restricción, sustituir para quedarse con una variable, y derivar comprobando la segunda derivada. Todos los problemas de este tipo son el mismo problema.</p></div></details></div>
 <h3 id="t8-auto">Autoevaluación</h3>
-<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Hoja 8: ¿para qué k se anula \(p(x)=x^3-3x+k\) en \([-1,1]\)?</summary><div class="inner"><p>Bolzano: \(p(-1)=2+k\), \(p(1)=k-2\); cambio de signo si \(-2\le k\le2\) (en los extremos la raíz es ±1).</p></div></details><details class="paso"><summary><span class="pn">2</span>Septiembre 2013: extremos y asíntotas de \(f(x)=\frac{x^2-3}{x^3}\).</summary><div class="inner"><p>\(f'=\frac{9-x^2}{x^4}\): mínimo en x=−3, máximo en x=3. Asíntota vertical x=0, horizontal y=0. \(f''=\frac{2(x^2-18)}{x^5}\): inflexión en \(\pm3\sqrt2\) (solución oficial).</p></div></details><details class="paso"><summary><span class="pn">3</span>Enero 2015: deriva \(F(x)=\int_{x^3}^{x^2}\frac{t}{1+t}dt\).</summary><div class="inner"><p>\(F'(x)=\frac{x^2}{1+x^2}\,2x-\frac{x^3}{1+x^3}\,3x^2\).</p></div></details>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Hoja 8: ¿para qué k se anula \(p(x)=x^3-3x+k\) en \([-1,1]\)?</summary><div class="inner"><p>Bolzano: \(p(-1)=2+k\), \(p(1)=k-2\); cambio de signo si \(-2\le k\le2\) (en los extremos la raíz es ±1).</p></div></details><details class="paso"><summary><span class="pn">2</span>Septiembre 2013: extremos y asíntotas de \(f(x)=\frac{x^2-3}{x^3}\).</summary><div class="inner"><p>\(f'=\frac{9-x^2}{x^4}\): mínimo en x=−3, máximo en x=3. Asíntota vertical x=0, horizontal y=0. \(f''=\frac{2(x^2-18)}{x^5}\): inflexión en \(\pm3\sqrt2\) (solución oficial).</p></div></details><details class="paso"><summary><span class="pn">3</span>Enero 2015: deriva \(F(x)=\int_{x^3}^{x^2}\frac{t}{1+t}dt\).</summary><div class="inner"><p>\(F'(x)=\frac{x^2}{1+x^2}\,2x-\frac{x^3}{1+x^3}\,3x^2\).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Hasta qué orden hay que desarrollar el numerador en un límite cuyo denominador es \(x^4\)?</summary><div class="inner"><p>Hasta \(x^4\): el mismo orden que el denominador. Truncar antes da un resultado erróneo.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuál es el desarrollo de \(\tan x\) hasta el tercer orden?</summary><div class="inner"><p>\(x+\dfrac{x^3}{3}\). Lleva signo positivo y denominador 3, al contrario que el del seno.</p></div></details><details class="paso"><summary><span class="pn">6</span>En un problema de optimización, ¿para qué sirve la segunda derivada?</summary><div class="inner"><p>Para confirmar si el punto crítico es máximo o mínimo; si es siempre positiva, el mínimo es además global.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Programación lineal</a><a class="nx" href="tema-09.html"><small>Siguiente →</small>T9 · Integral de Riemann</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>

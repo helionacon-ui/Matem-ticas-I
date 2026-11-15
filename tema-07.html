@@ -23,6 +23,24 @@
 <div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 7</p><h2 id="t7">Programación lineal</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
 <div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Plantear problemas de optimización lineal, dibujar la región factible y resolverlos por el método gráfico y el de los vértices.</p><p>Un problema de <b>programación lineal</b> maximiza o minimiza una función objetivo lineal \(z=c_1x+c_2y\) sujeta a restricciones lineales (desigualdades) y a \(x,y\ge0\). El conjunto de soluciones de las restricciones es la <b>región factible</b>, un polígono convexo (acotado o no).</p>
 <p><b>Teorema fundamental</b>: si el problema tiene óptimo, se alcanza en un vértice de la región factible (si se alcanza en dos vértices, en todo el lado que los une: infinitas soluciones). Método gráfico: desplaza la recta de nivel \(z=\)cte en la dirección del vector \((c_1,c_2)\) hasta el último vértice que toca.</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">De qué va la programación lineal</p><p>El problema es siempre el mismo: <b>repartir recursos limitados para sacar el máximo provecho</b>. Una fábrica con horas de máquina y kilos de material limitados que quiere maximizar el beneficio; una dieta que debe cubrir unos mínimos nutricionales al mínimo coste.</p>
+<p>Todo problema de programación lineal tiene tres piezas:</p>
+<ul>
+<li><b>Variables de decisión</b>: lo que hay que decidir (cuántas unidades de cada producto).</li>
+<li><b>Función objetivo</b>: lo que se quiere maximizar o minimizar, siempre <b>lineal</b>: \(z=c_1x+c_2y\).</li>
+<li><b>Restricciones</b>: las limitaciones, también lineales: \(a_1x+b_1y\le d_1\), y casi siempre \(x,y\ge0\).</li>
+</ul>
+<p>El adjetivo «lineal» no es un detalle: es lo que hace que el problema sea resoluble y que la solución esté siempre en un vértice.</p><p class="ft">Por qué la solución está en un vértice</p><p>Las restricciones definen una <b>región factible</b>: el conjunto de puntos que cumplen todas a la vez. Al ser intersección de semiplanos, es un <b>polígono convexo</b> (o una región no acotada).</p>
+<p>La función objetivo \(z=c_1x+c_2y\) tiene curvas de nivel que son <b>rectas paralelas</b> entre sí. Optimizar consiste en deslizar esa familia de rectas en la dirección en que z crece hasta el último punto que toque la región. Y ese último punto de contacto es, necesariamente, <b>un vértice</b> — salvo que la recta de nivel sea paralela a un lado, en cuyo caso hay infinitas soluciones a lo largo de ese lado, todas con el mismo valor.</p>
+<div class="box key"><p>De ahí el <b>método gráfico</b>, que es el que se pide en el examen: dibujar la región, calcular todos los vértices, evaluar z en cada uno y elegir el mejor. No hay que probar puntos interiores: no pueden ganar.</p></div>
+<p>La dirección en la que z crece es la del <b>vector de coeficientes</b> \((c_1,c_2)\), que es el gradiente de la función objetivo. Dibujarlo ayuda a ver el vértice ganador antes de calcular nada.</p><p class="ft">Los casos raros, que también caen</p><p>No todo problema tiene una solución única, y los exámenes preguntan precisamente por las excepciones:</p>
+<div class="tw"><table><tr><th>Situación</th><th>Cómo se reconoce</th></tr>
+<tr><td><b>Solución única</b></td><td>un solo vértice da el máximo</td></tr>
+<tr><td><b>Infinitas soluciones</b></td><td>dos vértices adyacentes dan el mismo valor: todo el segmento entre ellos es óptimo. Ocurre cuando la función objetivo es paralela a una restricción</td></tr>
+<tr><td><b>No acotado</b></td><td>la región es infinita en la dirección de crecimiento: z puede crecer sin límite</td></tr>
+<tr><td><b>Infactible</b></td><td>las restricciones se contradicen y la región factible es vacía</td></tr>
+</table></div>
+<p>Un detalle que se olvida: en un problema de <b>maximizar</b> con región no acotada puede no haber solución, pero el mismo problema <b>minimizando</b> sí la tiene. La acotación importa sólo en la dirección en la que se optimiza.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">4 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(z=c_1x+c_2y\)</td><td>Función objetivo</td><td class="u"></td></tr><tr><td class="sym">\(a_ix+b_iy\le d_i\)</td><td>Restricciones</td><td class="u"></td></tr><tr><td class="sym">Región factible</td><td>Conjunto de soluciones de las restricciones</td><td class="u">polígono convexo</td></tr><tr><td class="sym">Vértice</td><td>Intersección de dos restricciones</td><td class="u">candidato a óptimo</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · región factible y vértice óptimo</p><div data-sim="pl"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
@@ -37,8 +55,63 @@
 <h3 id="t7-problema">Problema tipo</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p><p>(Tipo del tema 7 de las diapositivas) Una fábrica produce dos piezas. Cada unidad de A necesita 1 h de corte y 1 h de montaje; cada unidad de B, 1 h de corte y 3 h de montaje. Hay 4 h de corte y 6 h de montaje, y como máximo se pueden vender 3 unidades de A. Beneficios: 3 € por A y 2 € por B. ¿Cuántas de cada maximizan el beneficio?</p></div>
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>Maximizar \(z=3x+2y\) con \(x+y\le4\), \(x+3y\le6\), \(x\le3\), \(x,y\ge0\). Vértices: (0,0), (3,0), (3,1) (corte de \(x+y=4\) con \(x+3y=6\)) y (0,2) (corte de \(x+3y=6\) con \(x=0\)). Valores: z(0,0)=0, z(3,0)=9, z(3,1)=11, z(0,2)=4. Óptimo: 3 unidades de A y 1 de B, 11 €. (Juega con el simulador: cambia los beneficios y verás saltar el vértice.)</p></div></details></div>
+<h3 id="t7-ejercicios">Ejercicios resueltos</h3><p class="muted">Intenta cada uno antes de desplegar la solución.</p><div class="prob"><div class="enun"><p class="et">Ejercicio 1 · Problema gráfico completo</p><p>Maximiza \(z=3x+5y\) sujeto a \(x\le4\), \(2y\le12\), \(3x+2y\le18\), con \(x,y\ge0\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Las restricciones, una a una.</b></p>
+<div class="tw"><table><tr><th>Restricción</th><th>Recta frontera</th><th>Semiplano</th></tr>
+<tr><td>\(x\le4\)</td><td>vertical en x = 4</td><td>a la izquierda</td></tr>
+<tr><td>\(2y\le12\)</td><td>horizontal en y = 6</td><td>por debajo</td></tr>
+<tr><td>\(3x+2y\le18\)</td><td>pasa por (6,0) y (0,9)</td><td>por debajo</td></tr>
+</table></div>
+<p><b>2) Los vértices.</b> Se obtienen cortando las rectas dos a dos y quedándose con los puntos que cumplen <b>todas</b> las restricciones:</p>
+<div class="tw"><table><tr><th>Vértice</th><th>De dónde sale</th><th>\(z=3x+5y\)</th></tr>
+<tr><td>(0, 0)</td><td>los dos ejes</td><td>0</td></tr>
+<tr><td>(4, 0)</td><td>eje x con x = 4</td><td>12</td></tr>
+<tr><td>(4, 3)</td><td>x = 4 con 3x+2y = 18</td><td>12 + 15 = 27</td></tr>
+<tr><td><b>(2, 6)</b></td><td>y = 6 con 3x+2y = 18</td><td><b>6 + 30 = 36</b></td></tr>
+<tr><td>(0, 6)</td><td>eje y con y = 6</td><td>30</td></tr>
+</table></div>
+<p><b>3) Solución.</b></p>
+\[\boxed{x=2,\quad y=6,\quad z_{\max}=36}\]
+<p><b>4) Comprobaciones.</b> El punto debe cumplir las tres restricciones:</p>
+\[x=2\le4\ \checkmark\qquad 2(6)=12\le12\ \checkmark\ \text{(activa)}\qquad 3(2)+2(6)=18\le18\ \checkmark\ \text{(activa)}\]
+<p>Dos restricciones están <b>saturadas</b> (se cumplen con igualdad), que es justo lo que define un vértice en un problema de dos variables.</p>
+<p><b>5) Interpretación.</b> Si esto fuera una fábrica con x unidades de un producto e y de otro, la lectura sería: el recurso de la primera restricción (\(x\le4\)) <b>sobra</b>, porque sólo se usan 2 de las 4 unidades disponibles. Los otros dos recursos están agotados. Ampliar la capacidad del primero no serviría de nada; ampliar cualquiera de los otros dos sí aumentaría el beneficio.</p>
+<div class="box key"><p>Esa última observación es lo que distingue una respuesta completa. El valor numérico es media solución; la otra media es decir <b>qué recursos limitan</b> y cuáles sobran.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 2 · Un caso con infinitas soluciones</p><p>Maximiza \(z=3x+2y\) con las mismas restricciones del ejercicio anterior. ¿Qué cambia?</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Evaluar en los mismos vértices.</b></p>
+<div class="tw"><table><tr><th>Vértice</th><th>\(z=3x+2y\)</th></tr>
+<tr><td>(0, 0)</td><td>0</td></tr>
+<tr><td>(4, 0)</td><td>12</td></tr>
+<tr><td><b>(4, 3)</b></td><td>12 + 6 = <b>18</b></td></tr>
+<tr><td><b>(2, 6)</b></td><td>6 + 12 = <b>18</b></td></tr>
+<tr><td>(0, 6)</td><td>12</td></tr>
+</table></div>
+<p><b>2) Dos vértices empatan.</b> Y no por casualidad: la función objetivo \(3x+2y\) es <b>exactamente proporcional</b> a la restricción \(3x+2y\le18\). Las curvas de nivel de z son paralelas a ese lado del polígono.</p>
+<p><b>3) La solución es todo el segmento</b> que une (4,3) con (2,6):</p>
+\[\{(x,y)=\lambda(4,3)+(1-\lambda)(2,6),\ \lambda\in[0,1]\}=\{3x+2y=18,\ 2\le x\le4\}\]
+<p>Todos esos puntos dan \(z=18\). Hay <b>infinitas soluciones óptimas</b>, todas con el mismo valor.</p>
+<p><b>4) Lo que hay que escribir en el examen.</b> No basta con dar un vértice: hay que decir explícitamente que existen infinitas soluciones y describir el segmento. Dar sólo (4,3) se considera respuesta incompleta.</p>
+<div class="box trap"><h4>Cómo detectarlo antes de calcular</h4><p>Compara el vector de la función objetivo con los de las restricciones. Si \((c_1,c_2)\) es <b>proporcional</b> al \((a_i,b_i)\) de alguna restricción que vaya a estar activa, ya sabes que habrá empate. Aquí \((3,2)\) y \((3,2)\): proporcionales con razón 1.</p></div>
+<p><b>Un apunte práctico.</b> En un problema real, tener infinitas soluciones óptimas es una <b>buena noticia</b>: significa que se puede elegir entre ellas usando un criterio secundario que no estaba en el modelo (la que use menos horas extra, la que requiera menos cambios de utillaje) sin perder nada de beneficio.</p></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 3 · Planteamiento desde un enunciado</p><p>Un taller fabrica dos modelos de pieza. La A necesita 2 h de torno y 1 h de fresa; la B, 1 h de torno y 3 h de fresa. Se dispone de 100 h de torno y 150 h de fresa a la semana. El beneficio es 30 € por pieza A y 40 € por pieza B. Plantea y resuelve.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Variables de decisión.</b> Lo primero y lo que más puntúa: decir claramente qué es cada incógnita.</p>
+\[x=\text{piezas del modelo A por semana},\qquad y=\text{piezas del modelo B por semana}\]
+<p><b>2) Función objetivo.</b></p>
+\[\max\ z=30x+40y\quad\text{(euros de beneficio semanal)}\]
+<p><b>3) Restricciones.</b> Una por recurso, cuidando las unidades:</p>
+\[\text{Torno: }2x+y\le100\qquad\text{Fresa: }x+3y\le150\qquad x,y\ge0\]
+<p><b>4) Vértices.</b></p>
+<div class="tw"><table><tr><th>Vértice</th><th>De dónde sale</th><th>\(z=30x+40y\)</th></tr>
+<tr><td>(0, 0)</td><td>origen</td><td>0 €</td></tr>
+<tr><td>(50, 0)</td><td>eje x con la del torno</td><td>1500 €</td></tr>
+<tr><td><b>(30, 40)</b></td><td>las dos restricciones a la vez</td><td><b>900 + 1600 = 2500 €</b></td></tr>
+<tr><td>(0, 50)</td><td>eje y con la de la fresa</td><td>2000 €</td></tr>
+</table></div>
+<p>El vértice interesante sale de resolver el sistema:</p>
+\[\begin{cases}2x+y=100\\ x+3y=150\end{cases}\Rightarrow\ \text{de la primera }y=100-2x;\ x+300-6x=150\Rightarrow x=30,\ y=40\]
+<p><b>5) Solución.</b></p>
+\[\boxed{30\ \text{piezas A y }40\ \text{piezas B, con un beneficio de }2500\ \text{€/semana}}\]
+<p><b>6) Comprobación de recursos.</b></p>
+\[\text{Torno: }2(30)+40=100\ \text{h de 100}\ \checkmark\qquad\text{Fresa: }30+3(40)=150\ \text{h de 150}\ \checkmark\]
+<p><b>Las dos máquinas quedan saturadas</b>, que es la situación ideal de un taller y la señal de que el reparto está bien equilibrado.</p>
+<div class="box key"><p><b>La pregunta de ampliación que suele seguir:</b> ¿cuánto pagarías por una hora más de torno? Resolviendo con 101 h sale \(z=2504\) €, así que una hora extra de torno vale <b>4 €</b>. Ese número se llama <b>precio sombra</b> del recurso, y es lo que de verdad se usa en la práctica: dice hasta cuánto merece la pena pagar por ampliar cada cuello de botella.</p></div></div></details></div>
 <h3 id="t7-auto">Autoevaluación</h3>
-<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Dónde se alcanza el óptimo de un problema de programación lineal con región acotada?</summary><div class="inner"><p>En un vértice (o en todo un lado si la función objetivo es paralela a él).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Puede una región factible no acotada tener máximo?</summary><div class="inner"><p>Sí, depende de la dirección de crecimiento de z; hay que comprobarlo con las rectas de nivel.</p></div></details>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Dónde se alcanza el óptimo de un problema de programación lineal con región acotada?</summary><div class="inner"><p>En un vértice (o en todo un lado si la función objetivo es paralela a él).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Puede una región factible no acotada tener máximo?</summary><div class="inner"><p>Sí, depende de la dirección de crecimiento de z; hay que comprobarlo con las rectas de nivel.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Por qué el óptimo de un problema lineal está siempre en un vértice?</summary><div class="inner"><p>Porque las curvas de nivel de la función objetivo son rectas paralelas, y el último punto de contacto con un polígono convexo al deslizarlas es un vértice (o un lado entero, si son paralelos).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cómo se detecta que hay infinitas soluciones óptimas?</summary><div class="inner"><p>Porque dos vértices adyacentes dan el mismo valor de z, lo que ocurre cuando la función objetivo es paralela a una restricción activa.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué es el precio sombra de un recurso?</summary><div class="inner"><p>Lo que aumenta el óptimo si se dispone de una unidad más de ese recurso; sólo es no nulo para los recursos saturados.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-06.html"><small>← Anterior</small>T6 · Espacio vectorial euclídeo</a><a class="nx" href="tema-08.html"><small>Siguiente →</small>T8 · Cálculo diferencial de una variable</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>

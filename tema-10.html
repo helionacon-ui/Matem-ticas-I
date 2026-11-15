@@ -23,6 +23,29 @@
 <div class="sh"><span aria-hidden="true" class="badge">10</span><div class="shx"><p class="kick">UD3 Varias variables · Tema 10</p><h2 id="t10">Topología en ℝⁿ y continuidad de varias variables</h2><div class="tags"><span class="tag">UD3 Varias variables</span><span class="tag">Segundo parcial</span></div></div></div>
 <div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Manejar bolas, abiertos, cerrados, frontera y compactos; calcular límites dobles (direccionales, polares) y estudiar la continuidad de funciones de varias variables.</p><p>En ℝⁿ la distancia euclídea define <b>bolas</b>; un conjunto es abierto si todo punto tiene una bola dentro, cerrado si contiene su frontera, acotado si cabe en una bola, <b>compacto</b> si es cerrado y acotado (Weierstrass: una función continua en un compacto alcanza máximo y mínimo; es lo que justifica el problema de la placa de temperatura de septiembre 2015).</p>
 <p><b>Límite doble</b>: debe ser el mismo por cualquier camino. Para probar que <em>no</em> existe: dos direcciones (\(y=mx\), parábolas \(y=mx^2\)) con límites distintos. Para probar que existe: coordenadas <b>polares</b> y acotar \(|f(r\cos\theta,r\sin\theta)-L|\le g(r)\to0\) independientemente de θ. Continua en (0,0) si el límite coincide con f(0,0).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué los límites de varias variables son más difíciles</p><p>En una variable, acercarse a un punto se puede hacer sólo de dos maneras: por la izquierda y por la derecha. Si los dos límites laterales coinciden, el límite existe. Se acabó.</p>
+<p>En dos variables hay <b>infinitas formas de acercarse</b> a un punto: por cualquier recta, por cualquier parábola, en espiral. Y para que el límite exista, el valor tiene que ser <b>el mismo por todos los caminos</b>, sin excepción.</p>
+<p>Eso tiene una consecuencia práctica asimétrica que organiza todo el tema:</p>
+<div class="box key"><p><b>Para demostrar que un límite NO existe</b>, basta encontrar dos caminos que den valores distintos. Es fácil.</p>
+<p><b>Para demostrar que SÍ existe</b>, no sirve de nada probar caminos: aunque pruebes mil, siempre queda el millón uno. Hay que usar coordenadas polares o una acotación.</p></div>
+<p>Por eso la estrategia en un examen es siempre la misma: <b>sospecha primero que no existe</b> y prueba dos o tres caminos. Si todos dan lo mismo, cambia de estrategia e intenta demostrarlo con polares.</p><p class="ft">Los caminos que hay que probar, en orden</p><p><b>1) Límites direccionales</b>, sustituyendo \(y=mx\). Si el resultado <b>depende de m</b>, el límite no existe y has terminado.</p>
+\[\lim_{(x,y)\to(0,0)}\frac{xy}{x^2+y^2}\ \to\ \frac{x\cdot mx}{x^2+m^2x^2}=\frac{m}{1+m^2}\]
+<p>Depende de m: con \(m=0\) da 0 y con \(m=1\) da 1/2. <b>No existe.</b></p>
+<p><b>2) Caminos parabólicos</b>, \(y=mx^2\), cuando los direccionales dan todos lo mismo pero el límite sigue siendo sospechoso. El ejemplo canónico:</p>
+\[f(x,y)=\frac{x^2y}{x^4+y^2}\]
+<p>Por cualquier recta \(y=mx\) el límite da 0. Pero por la parábola \(y=x^2\):</p>
+\[\frac{x^2\cdot x^2}{x^4+x^4}=\frac{1}{2}\]
+<p>Distinto de 0: <b>no existe</b>. Esta función es la prueba de que los direccionales no bastan, y por eso aparece en todos los exámenes.</p>
+<p><b>3) Límites iterados</b>, \(\lim_{x\to0}\lim_{y\to0}f\) y al revés. Si existen y son distintos, el límite doble no existe. Pero cuidado con el recíproco: que los iterados coincidan <b>no</b> garantiza nada.</p><p class="ft">Polares y continuidad</p><p>Cuando se sospecha que el límite <b>sí</b> existe, el método es pasar a <b>polares</b>: \(x=r\cos\theta\), \(y=r\sin\theta\). Acercarse al origen es hacer \(r\to0\), sea cual sea θ.</p>
+<p>Si al sustituir queda algo de la forma</p>
+\[f=r^k\cdot g(\theta)\quad\text{con }k>0\text{ y }g\text{ acotada}\]
+<p>entonces el límite es 0, <b>porque el factor \(r^k\) aplasta todo y la dependencia de θ está acotada</b>. Ejemplo:</p>
+\[\frac{x^3}{x^2+y^2}=\frac{r^3\cos^3\theta}{r^2}=r\cos^3\theta\ \xrightarrow{\ r\to0\ }0\]
+<p>La clave es que \(|\cos^3\theta|\le1\) para todo θ, así que \(|f|\le r\to0\) uniformemente.</p>
+<p><b>El error en el que todo el mundo cae:</b> si al pasar a polares queda algo que <b>depende de θ sin factor r</b> delante, el límite <b>no</b> existe. En el primer ejemplo del apartado anterior:</p>
+\[\frac{xy}{x^2+y^2}=\frac{r^2\cos\theta\sin\theta}{r^2}=\cos\theta\sin\theta\]
+<p>La r ha desaparecido: el valor depende sólo de la dirección, que es exactamente el síntoma de no existir.</p>
+<p>Y con eso, la <b>continuidad</b> se define igual que en una variable: \(f\) es continua en \(\vec a\) si \(\lim_{\vec x\to\vec a}f(\vec x)=f(\vec a)\). Las funciones definidas a trozos con un valor especial en el origen son el formato habitual de los ejercicios: todo se reduce a calcular ese límite.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 10 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(B(a,r)\)</td><td>Bola abierta</td><td class="u"></td></tr><tr><td class="sym">\(\partial A,\ \bar A\)</td><td>Frontera y clausura</td><td class="u"></td></tr><tr><td class="sym">Compacto</td><td>Cerrado y acotado</td><td class="u">Weierstrass</td></tr><tr><td class="sym">\(\lim_{(x,y)\to(a,b)}\)</td><td>Límite doble</td><td class="u">mismo valor por todo camino</td></tr><tr><td class="sym">\((r,\theta)\)</td><td>Coordenadas polares</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · curvas de nivel de f(x,y)</p><div data-sim="nivel"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
@@ -36,8 +59,55 @@
 <h3 id="t10-problema">Problema tipo</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Junio 2015 / Mayo 2014)</b> \(f(x,y)=\dfrac{2xy}{\sqrt{x^2+y^2}}\) si \((x,y)\ne(0,0)\), \(f(0,0)=0\). Estudia la continuidad en (0,0).</p></div>
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>En polares \(f=\frac{2r^2\cos\theta\sin\theta}{r}=r\sin2\theta\), y \(|f|\le r\to0=f(0,0)\): es continua en el origen. (Con \(3xy\) en vez de \(2xy\), igual.)</p></div></details></div>
+<h3 id="t10-ejercicios">Ejercicios resueltos</h3><p class="muted">Intenta cada uno antes de desplegar la solución.</p><div class="prob"><div class="enun"><p class="et">Ejercicio 1 · Demostrar que un límite no existe</p><p>Estudia \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2-y^2}{x^2+y^2}\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Límites direccionales.</b> Sustituimos \(y=mx\):</p>
+\[\frac{x^2-m^2x^2}{x^2+m^2x^2}=\frac{x^2(1-m^2)}{x^2(1+m^2)}=\frac{1-m^2}{1+m^2}\]
+<p>El resultado <b>depende de m</b> y ni siquiera hace falta tomar el límite: la función es constante sobre cada recta.</p>
+<div class="tw"><table><tr><th>Camino</th><th>m</th><th>Valor</th></tr>
+<tr><td>eje X (y = 0)</td><td>0</td><td>1</td></tr>
+<tr><td>bisectriz (y = x)</td><td>1</td><td>0</td></tr>
+<tr><td>eje Y (x = 0)</td><td>∞</td><td>−1</td></tr>
+</table></div>
+<p><b>2) Conclusión.</b> Dos caminos distintos dan valores distintos, luego</p>
+\[\boxed{\text{el límite no existe}}\]
+<p><b>3) Confirmación en polares.</b></p>
+\[\frac{r^2\cos^2\theta-r^2\sin^2\theta}{r^2}=\cos^2\theta-\sin^2\theta=\cos2\theta\]
+<p>La r se cancela por completo: el valor depende <b>sólo de la dirección</b>, no de la distancia al origen. Ése es el síntoma inequívoco.</p>
+<p><b>4) La imagen mental.</b> La superficie es como un embudo retorcido: a lo largo de cada recta por el origen la altura es constante, pero distinta en cada dirección. Al acercarte al origen por distintos rumbos llegas a alturas distintas, así que no hay un único valor límite.</p>
+<div class="box key"><p><b>Cómo redactarlo para que puntúe.</b> No basta con decir «depende de m». Hay que <b>exhibir dos caminos concretos</b> con sus dos valores numéricos distintos. Es la única forma de que la demostración sea completa: dos ejemplos explícitos, no una afirmación general.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 2 · El caso que engaña: rectas contra parábolas</p><p>Estudia \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2y}{x^4+y^2}\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Límites direccionales.</b> Con \(y=mx\):</p>
+\[\frac{x^2\cdot mx}{x^4+m^2x^2}=\frac{mx^3}{x^2(x^2+m^2)}=\frac{mx}{x^2+m^2}\ \xrightarrow{\ x\to0\ }\ \frac{0}{m^2}=0\]
+<p>Todas las rectas dan <b>0</b>. También el eje Y (\(x=0\)) da 0. Parece que el límite existe y vale 0.</p>
+<p><b>2) Pero hay que mirar más.</b> El denominador tiene \(x^4\), lo que sugiere probar un camino en el que \(y\) sea del orden de \(x^2\). Con \(y=x^2\):</p>
+\[\frac{x^2\cdot x^2}{x^4+x^4}=\frac{x^4}{2x^4}=\frac12\]
+<p>Constante e igual a <b>1/2</b> a lo largo de toda la parábola, distinto de 0.</p>
+<p><b>3) Conclusión.</b></p>
+\[\boxed{\text{el límite no existe}}\]
+<p><b>4) Generalizando:</b> por \(y=kx^2\),</p>
+\[\frac{x^2\cdot kx^2}{x^4+k^2x^4}=\frac{k}{1+k^2}\]
+<p>que toma cualquier valor entre −1/2 y 1/2 según k. Hay un camino para cada uno de esos valores.</p>
+<div class="box trap"><h4>La lección del ejercicio</h4><p>Este es <b>el</b> contraejemplo de la asignatura, y lo que enseña es que <b>probar rectas no demuestra nada</b> en sentido positivo. Si todas las rectas dan el mismo valor, no has demostrado que el límite exista: sólo que, <b>si</b> existe, vale eso.</p>
+<p><b>Cómo saber qué camino probar.</b> Mira los exponentes del denominador. Si aparece \(x^4\) junto a \(y^2\), el equilibrio está en \(y\sim x^2\). Si aparece \(x^6\) con \(y^2\), prueba \(y=x^3\). La regla es igualar los grados.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 3 · Un límite que sí existe</p><p>Demuestra que \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^3-y^3}{x^2+y^2}=0\) y estudia la continuidad de la función que vale eso fuera del origen y 0 en él.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Sondeo previo.</b> Por rectas \(y=mx\):</p>
+\[\frac{x^3(1-m^3)}{x^2(1+m^2)}=x\cdot\frac{1-m^3}{1+m^2}\ \xrightarrow{\ x\to0\ }0\]
+<p>Todas dan 0. Ahora <b>sí</b> conviene intentar demostrarlo, no buscar más contraejemplos.</p>
+<p><b>2) Polares.</b> Con \(x=r\cos\theta\), \(y=r\sin\theta\):</p>
+\[\frac{r^3\cos^3\theta-r^3\sin^3\theta}{r^2(\cos^2\theta+\sin^2\theta)}=\frac{r^3(\cos^3\theta-\sin^3\theta)}{r^2}=r\left(\cos^3\theta-\sin^3\theta\right)\]
+<p><b>3) La acotación, que es el paso que demuestra.</b> Para todo θ:</p>
+\[\left|\cos^3\theta-\sin^3\theta\right|\le|\cos^3\theta|+|\sin^3\theta|\le1+1=2\]
+<p>Por tanto</p>
+\[\left|f\right|\le 2r\ \xrightarrow{\ r\to0\ }0\]
+<p>y la cota <b>no depende de θ</b>, que es exactamente lo que hacía falta. Luego</p>
+\[\boxed{\lim_{(x,y)\to(0,0)}\frac{x^3-y^3}{x^2+y^2}=0}\]
+<p><b>4) Continuidad.</b> La función</p>
+\[f(x,y)=\begin{cases}\dfrac{x^3-y^3}{x^2+y^2}&(x,y)\ne(0,0)\\ 0&(x,y)=(0,0)\end{cases}\]
+<p>es continua en todo ℝ²: fuera del origen es cociente de polinomios con denominador no nulo, y en el origen el límite coincide con el valor asignado.</p>
+<div class="box key"><p><b>El criterio que resume el tema en polares.</b> Tras sustituir, mira qué queda:</p>
+<div class="tw"><table><tr><th>Resultado</th><th>Conclusión</th></tr>
+<tr><td>\(r^k g(\theta)\) con \(k>0\) y \(g\) acotada</td><td>el límite es <b>0</b></td></tr>
+<tr><td>\(g(\theta)\) sin ninguna r</td><td><b>no existe</b></td></tr>
+<tr><td>\(g(\theta)/r^k\)</td><td>tiende a <b>infinito</b></td></tr>
+</table></div>
+<p>Y no olvides justificar que \(g\) está <b>acotada</b>: sin ese paso la demostración está incompleta, aunque el resultado sea correcto.</p></div></div></details></div>
 <h3 id="t10-auto">Autoevaluación</h3>
-<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Es compacto \(\{x^2+y^2\le1\}\)? ¿Y \(\{x^2+y^2<1\}\)?</summary><div class="inner"><p>El primero sí (cerrado y acotado); el segundo no es cerrado.</p></div></details><details class="paso"><summary><span class="pn">2</span>Estudia \(\lim_{(x,y)\to(0,0)}\frac{x^2-y^2}{x^2+y^2}\).</summary><div class="inner"><p>Por \(y=0\) vale 1, por \(x=0\) vale −1: no existe.</p></div></details>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Es compacto \(\{x^2+y^2\le1\}\)? ¿Y \(\{x^2+y^2<1\}\)?</summary><div class="inner"><p>El primero sí (cerrado y acotado); el segundo no es cerrado.</p></div></details><details class="paso"><summary><span class="pn">2</span>Estudia \(\lim_{(x,y)\to(0,0)}\frac{x^2-y^2}{x^2+y^2}\).</summary><div class="inner"><p>Por \(y=0\) vale 1, por \(x=0\) vale −1: no existe.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Basta con que todos los límites direccionales coincidan para afirmar que el límite existe?</summary><div class="inner"><p>No. El ejemplo \(x^2y/(x^4+y^2)\) da 0 por todas las rectas y 1/2 por la parábola \(y=x^2\).</p></div></details><details class="paso"><summary><span class="pn">4</span>Al pasar a polares queda \(f=\cos2\theta\). ¿Qué se concluye?</summary><div class="inner"><p>Que el límite no existe: el valor depende sólo de la dirección y no de la distancia al origen.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué hay que justificar siempre al demostrar un límite con polares?</summary><div class="inner"><p>Que la parte angular está acotada, para que la cota \(|f|\le r^k M\) sea uniforme en θ.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-09.html"><small>← Anterior</small>T9 · Integral de Riemann</a><a class="nx" href="tema-11.html"><small>Siguiente →</small>T11 · Cálculo diferencial de varias variables</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>

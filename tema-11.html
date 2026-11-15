@@ -23,6 +23,39 @@
 <div class="sh"><span aria-hidden="true" class="badge">11</span><div class="shx"><p class="kick">UD3 Varias variables · Tema 11</p><h2 id="t11">Cálculo diferencial de varias variables</h2><div class="tags"><span class="tag">UD3 Varias variables</span><span class="tag">Segundo parcial</span></div></div></div>
 <div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular derivadas parciales y direccionales, gradiente, jacobiana y diferencial; decidir la diferenciabilidad; derivar funciones implícitas y compuestas; hallar extremos libres y condicionados (Lagrange).</p><p><b>Derivadas parciales</b> por definición en puntos conflictivos: \(f_x(0,0)=\lim\frac{f(h,0)-f(0,0)}{h}\). <b>Derivada direccional</b> \(D_vf(0,0)=\lim\frac{f(tv)-f(0,0)}{t}\) con v unitario. <b>Diferenciable</b> en (a,b) si \(\lim\frac{f(a+h,b+k)-f(a,b)-f_xh-f_yk}{\sqrt{h^2+k^2}}=0\). Cadena: diferenciable ⇒ continua y con todas las direccionales iguales a \(\nabla f\cdot v\); parciales continuas ⇒ diferenciable. Este es el guion del problema que cae casi todos los años (junio 2015, septiembre 2015, mayo 2014).</p>
 <p><b>Jacobiana</b> \(J=(\partial g_i/\partial x_j)\); diferencial \(dg(p)(h)=J(p)h\); \(D_vg=J\,v/\|v\|\). <b>Función implícita</b>: si \(F(x,y,z)=0\) y \(F_z\ne0\), \(z_x=-F_x/F_z\), \(z_y=-F_y/F_z\). <b>Extremos libres</b>: \(\nabla f=0\) y Hessiano. <b>Condicionados</b>: multiplicadores de Lagrange \(\nabla f=\lambda\nabla g\), o parametrizar la frontera; en un compacto, comparar interior y frontera.</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Derivadas parciales y gradiente</p><p>Con varias variables hay <b>una derivada por cada dirección de los ejes</b>. La parcial respecto de x se calcula derivando normalmente y <b>tratando y como si fuera una constante</b>:</p>
+\[f(x,y)=x^2y+3y^2\ \Rightarrow\ \frac{\partial f}{\partial x}=2xy,\qquad \frac{\partial f}{\partial y}=x^2+6y\]
+<p>El <b>gradiente</b> las agrupa en un vector:</p>
+\[\nabla f=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)\]
+<p>Y ese vector tiene dos propiedades geométricas que hay que saber porque son la mitad de las preguntas:</p>
+<ul>
+<li><b>Apunta en la dirección de máximo crecimiento</b>, y su módulo es esa tasa máxima de crecimiento.</li>
+<li><b>Es perpendicular a las curvas de nivel</b>. Si vas por una curva de nivel, no subes ni bajas, y el gradiente apunta «cuesta arriba» cruzándola.</li>
+</ul>
+<p>La imagen de la montaña funciona bien: las curvas de nivel son las del mapa topográfico y el gradiente es la dirección de máxima pendiente, que siempre cruza las curvas en ángulo recto.</p>
+<p>La <b>derivada direccional</b> en una dirección \(\hat u\) (unitaria, siempre) es la proyección del gradiente:</p>
+\[D_{\hat u}f=\nabla f\cdot\hat u\]
+<p>Máxima cuando \(\hat u\) va en el sentido del gradiente, nula cuando es perpendicular (vas por la curva de nivel) y mínima en el sentido contrario.</p><p class="ft">Diferenciabilidad: más que tener parciales</p><p>Aquí hay una diferencia importante respecto a una variable. En una variable, derivable implica continua y punto. En varias variables, <b>que existan las parciales no garantiza nada</b>: hay funciones con las dos parciales en el origen que ni siquiera son continuas allí.</p>
+<p>La propiedad buena es la <b>diferenciabilidad</b>: que la función se parezca a un plano cerca del punto,</p>
+\[f(\vec x)\approx f(\vec a)+\nabla f(\vec a)\cdot(\vec x-\vec a)\]
+<p>con un error que tiende a cero más deprisa que la distancia. De la diferenciabilidad sí se deduce la continuidad.</p>
+<div class="box key"><p><b>La condición suficiente que se usa en la práctica:</b> si las derivadas parciales <b>existen y son continuas</b> en un entorno del punto, la función es diferenciable allí. Como casi todas las funciones de los ejercicios son polinomios, cocientes o composiciones de elementales, basta con comprobar que el denominador no se anula.</p>
+<p>La teoría fina sólo hace falta en los <b>puntos conflictivos</b>: el origen de las funciones definidas a trozos.</p></div>
+<p>El <b>plano tangente</b> a la superficie \(z=f(x,y)\) en \((a,b)\) es, precisamente, esa aproximación lineal:</p>
+\[z=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)\]<p class="ft">Extremos: el criterio del hessiano</p><p>Para buscar máximos y mínimos de \(f(x,y)\):</p>
+<p><b>Paso 1 · Puntos críticos.</b> Resolver el sistema \(\nabla f=\vec 0\), es decir \(f_x=0\) y \(f_y=0\) a la vez. Normalmente es un sistema no lineal y es la parte más laboriosa.</p>
+<p><b>Paso 2 · Clasificarlos</b> con la matriz hessiana de segundas derivadas:</p>
+\[H=\begin{pmatrix}f_{xx}&f_{xy}\\ f_{xy}&f_{yy}\end{pmatrix},\qquad |H|=f_{xx}f_{yy}-f_{xy}^2\]
+<div class="tw"><table><tr><th>Condición</th><th>Tipo de punto</th></tr>
+<tr><td>\(|H|>0\) y \(f_{xx}>0\)</td><td><b>mínimo</b> relativo</td></tr>
+<tr><td>\(|H|>0\) y \(f_{xx}<0\)</td><td><b>máximo</b> relativo</td></tr>
+<tr><td>\(|H|<0\)</td><td><b>punto de silla</b></td></tr>
+<tr><td>\(|H|=0\)</td><td>el criterio no decide</td></tr>
+</table></div>
+<p>El <b>punto de silla</b> es la novedad respecto a una variable: un punto donde la función tiene mínimo en una dirección y máximo en otra, como el centro de una silla de montar. No existe el equivalente en dimensión 1.</p>
+<p><b>Multiplicadores de Lagrange.</b> Cuando hay una restricción \(g(x,y)=0\), el método es imponer que los gradientes sean paralelos:</p>
+\[\nabla f=\lambda\nabla g,\qquad g(x,y)=0\]
+<p>La razón geométrica: en el óptimo restringido, la curva de nivel de f es <b>tangente</b> a la curva de la restricción. Si se cruzaran, se podría avanzar un poco por la restricción y mejorar el valor.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 11 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(f_x,\ \partial f/\partial x\)</td><td>Derivada parcial</td><td class="u"></td></tr><tr><td class="sym">\(\nabla f\)</td><td>Gradiente</td><td class="u">\((f_x,f_y)\)</td></tr><tr><td class="sym">\(D_vf\)</td><td>Derivada direccional (v unitario)</td><td class="u"></td></tr><tr><td class="sym">\(J_g\)</td><td>Matriz jacobiana</td><td class="u"></td></tr><tr><td class="sym">\(H_f\)</td><td>Hessiano</td><td class="u"></td></tr><tr><td class="sym">\(\lambda\)</td><td>Multiplicador de Lagrange</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · gradiente y derivada direccional</p><div data-sim="gradiente"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
@@ -40,8 +73,66 @@
 <p><b>(Mayo 2014)</b> Para \(f=\frac{3xy}{\sqrt{x^2+y^2}}\) (0 en el origen): derivada direccional en (0,0) según \(v=(2,-3)\), parciales y diferenciabilidad.</p></div>
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>Placa: interior \(\nabla T=(4x,2y-1)=0\Rightarrow(0,\tfrac12)\), \(T=-\tfrac14\). Frontera \(x=\cos t,y=\sin t\): \(T=2-\sin^2t-\sin t\), \(T'=-\cos t(2\sin t+1)=0\) ⇒ \(t=\pm\frac\pi2\) o \(\sin t=-\frac12\): puntos (0,1) con T=0, (0,−1) con T=2, \((\pm\frac{\sqrt3}2,-\frac12)\) con \(T=\frac94\). <b>Más frío</b> (0, ½) con −1/4; <b>más calientes</b> \((\pm\frac{\sqrt3}{2},-\frac12)\) con 9/4.</p>
 <p>Direccional: \(v/\|v\|=\frac1{\sqrt{13}}(2,-3)\); \(f(tv)=\frac{3\cdot(-6)t^2/13}{|t|}\) ⇒ \(D_vf=-\frac{18}{13}\). Parciales: \(f(h,0)=0\) ⇒ \(f_x=f_y=0\). Si fuera diferenciable, \(D_vf=\nabla f\cdot v=0\ne-\frac{18}{13}\): <b>no es diferenciable</b> (aunque es continua).</p></div></details></div>
+<h3 id="t11-ejercicios">Ejercicios resueltos</h3><p class="muted">Intenta cada uno antes de desplegar la solución.</p><div class="prob"><div class="enun"><p class="et">Ejercicio 1 · Extremos de una función de dos variables</p><p>Halla y clasifica los extremos relativos de \(f(x,y)=x^3+y^3-3xy\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Puntos críticos.</b></p>
+\[f_x=3x^2-3y=0\ \Rightarrow\ y=x^2\]
+\[f_y=3y^2-3x=0\ \Rightarrow\ x=y^2\]
+<p>Sustituyendo la primera en la segunda: \(x=(x^2)^2=x^4\), es decir \(x^4-x=0\), o sea \(x(x^3-1)=0\). Las soluciones reales son \(x=0\) y \(x=1\):</p>
+\[P_1=(0,0),\qquad P_2=(1,1)\]
+<p><b>2) Las segundas derivadas.</b></p>
+\[f_{xx}=6x,\qquad f_{yy}=6y,\qquad f_{xy}=-3\]
+\[|H|=36xy-9\]
+<p><b>3) Clasificación.</b></p>
+<div class="tw"><table><tr><th>Punto</th><th>\(|H|\)</th><th>\(f_{xx}\)</th><th>Tipo</th></tr>
+<tr><td>(0, 0)</td><td>\(0-9=-9<0\)</td><td>0</td><td><b>punto de silla</b></td></tr>
+<tr><td>(1, 1)</td><td>\(36-9=27>0\)</td><td>\(6>0\)</td><td><b>mínimo relativo</b></td></tr>
+</table></div>
+\[f(1,1)=1+1-3=\boxed{-1}\]
+<p><b>4) Comprobación del punto de silla.</b> Es instructivo verlo directamente. En el origen, \(f(0,0)=0\). Moviéndonos por la bisectriz \(y=x\):</p>
+\[f(x,x)=2x^3-3x^2=x^2(2x-3)\]
+<p>que para \(x\) pequeño y positivo es <b>negativa</b>. Y por la antibisectriz \(y=-x\):</p>
+\[f(x,-x)=x^3-x^3+3x^2=3x^2>0\]
+<p>Positiva. Así que en cualquier entorno del origen hay puntos con \(f>0\) y puntos con \(f<0\): efectivamente, una silla ✓</p>
+<p><b>5) Un comentario sobre los extremos absolutos.</b> La función <b>no tiene máximo ni mínimo absolutos</b> en ℝ²: con \(y=0\), \(f(x,0)=x^3\), que tiende a \(+\infty\) y a \(-\infty\). El mínimo hallado es sólo relativo, y conviene decirlo expresamente.</p>
+<div class="box trap"><h4>El caso \(|H|=0\)</h4><p>Cuando el hessiano se anula, el criterio <b>no decide</b> y hay que estudiar la función directamente por caminos, como se ha hecho arriba con el origen. Es la situación que más se atasca en los exámenes: lo correcto es decir que el criterio no concluye y pasar al estudio directo, no inventarse una respuesta.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 2 · Plano tangente y derivada direccional</p><p>Para \(f(x,y)=x^2y+3y^2\) en el punto \((1,2)\): halla el plano tangente, la dirección de máximo crecimiento y la derivada direccional hacia \((3,4)\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) El valor y el gradiente.</b></p>
+\[f(1,2)=1\cdot2+3\cdot4=14\]
+\[f_x=2xy\Rightarrow f_x(1,2)=4,\qquad f_y=x^2+6y\Rightarrow f_y(1,2)=1+12=13\]
+\[\nabla f(1,2)=(4,13)\]
+<p><b>2) Plano tangente.</b></p>
+\[z=14+4(x-1)+13(y-2)=4x+13y-16\]
+<p>Comprobación: en \((1,2)\) da \(4+26-16=14\) ✓</p>
+<p><b>3) Dirección de máximo crecimiento.</b> Es la del propio gradiente:</p>
+\[\hat u_{\max}=\frac{(4,13)}{\sqrt{16+169}}=\frac{(4,13)}{\sqrt{185}}\approx(0{,}294,\;0{,}956)\]
+<p>y la <b>tasa</b> de crecimiento en esa dirección es el módulo:</p>
+\[\|\nabla f\|=\sqrt{185}\approx13{,}60\]
+<p>Ningún otro rumbo puede superar ese valor: es el máximo posible.</p>
+<p><b>4) Derivada direccional hacia (3,4).</b> Primero el vector dirección, y <b>hay que normalizarlo</b>:</p>
+\[\vec v=(3,4)-(1,2)=(2,2),\qquad \hat u=\frac{(2,2)}{2\sqrt2}=\left(\frac{1}{\sqrt2},\frac{1}{\sqrt2}\right)\]
+\[D_{\hat u}f=\nabla f\cdot\hat u=\frac{4+13}{\sqrt2}=\frac{17}{\sqrt2}\approx\boxed{12{,}02}\]
+<p><b>5) Comprobación de coherencia.</b> El valor obtenido, 12,02, debe estar entre \(-\|\nabla f\|\) y \(+\|\nabla f\|\), es decir entre −13,60 y 13,60 ✓ Y está cerca del máximo, lo que indica que la dirección (1,1) forma un ángulo pequeño con el gradiente: en efecto, \(\cos\theta=12{,}02/13{,}60=0{,}884\), unos 28°.</p>
+<p><b>6) La dirección en la que no se crece.</b> Perpendicular al gradiente: \((13,-4)/\sqrt{185}\). Moviéndose por ahí se recorre la curva de nivel \(f=14\).</p>
+<div class="box key"><p><b>El error número uno de este apartado:</b> no normalizar el vector dirección. Si se usa \((2,2)\) en vez de su unitario, sale 34 en lugar de 12,02, un valor mayor que el máximo teórico — que es la señal de alarma para detectarlo.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 3 · Multiplicadores de Lagrange</p><p>Halla los extremos de \(f(x,y)=xy\) sobre la circunferencia \(x^2+y^2=8\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Planteamiento.</b> La restricción es \(g(x,y)=x^2+y^2-8=0\). El sistema de Lagrange:</p>
+\[\nabla f=\lambda\nabla g:\quad \begin{cases}y=2\lambda x\\ x=2\lambda y\end{cases}\qquad\text{junto con}\quad x^2+y^2=8\]
+<p><b>2) Resolver.</b> Multiplicando las dos primeras: \(xy=4\lambda^2xy\). Hay dos posibilidades:</p>
+<ul>
+<li>Si \(xy\ne0\): \(4\lambda^2=1\), luego \(\lambda=\pm\tfrac12\).</li>
+<li>Si \(xy=0\): de las ecuaciones saldría \(x=y=0\), que no cumple la restricción. Descartado.</li>
+</ul>
+<p>Con \(\lambda=\tfrac12\): \(y=x\), y sustituyendo en la restricción \(2x^2=8\), \(x=\pm2\):</p>
+\[(2,2)\ \text{y}\ (-2,-2)\]
+<p>Con \(\lambda=-\tfrac12\): \(y=-x\), y de igual modo:</p>
+\[(2,-2)\ \text{y}\ (-2,2)\]
+<p><b>3) Evaluar.</b></p>
+<div class="tw"><table><tr><th>Punto</th><th>\(f=xy\)</th><th>Tipo</th></tr>
+<tr><td>(2, 2) y (−2, −2)</td><td><b>4</b></td><td>máximo</td></tr>
+<tr><td>(2, −2) y (−2, 2)</td><td><b>−4</b></td><td>mínimo</td></tr>
+</table></div>
+<p><b>4) Por qué estos extremos son absolutos.</b> La circunferencia es un conjunto <b>cerrado y acotado</b> (compacto) y f es continua, así que por el teorema de Weierstrass alcanza máximo y mínimo absolutos en ella. Como los únicos candidatos son los cuatro puntos hallados, los valores ±4 son los extremos absolutos. <b>Este argumento hay que escribirlo</b>: sin él, sólo has encontrado candidatos.</p>
+<p><b>5) Comprobación por otra vía.</b> En paramétricas, \(x=2\sqrt2\cos t\), \(y=2\sqrt2\sin t\):</p>
+\[f=8\cos t\sin t=4\sin2t\]
+<p>cuyo máximo es 4 y su mínimo −4 ✓, alcanzados en \(2t=\pi/2\), es decir \(t=45°\), que corresponde a \((2,2)\) ✓</p>
+<div class="box key"><p><b>La lectura geométrica.</b> Las curvas de nivel de \(xy\) son hipérbolas. El óptimo está donde una hipérbola es <b>tangente</b> a la circunferencia, y por simetría eso ocurre en las bisectrices. Dibujar las dos familias de curvas permite anticipar la respuesta antes de resolver nada, y es una comprobación excelente.</p></div></div></details></div>
 <h3 id="t11-auto">Autoevaluación</h3>
-<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Septiembre 2013 (oficial): mínimo de \(T=x^2+y^2-y\) sobre la elipse \(\frac{x^2}2+y^2=1\).</summary><div class="inner"><p>Lagrange: \(2x=\lambda x\), \(2y-1=2\lambda y\). Si x≠0, λ=2, y=−½, \(x=\pm\sqrt{3/2}\), T=9/4. Si x=0, y=±1: T(0,1)=0, T(0,−1)=2. Mínimo en (0,1).</p></div></details><details class="paso"><summary><span class="pn">2</span>Enero 2014: \(F=xyz+\sin(z-6)-2(x+y+x^2y^2)=0\) define z(x,y) cerca de (1,1) con z=6. \(z_x(1,1)\).</summary><div class="inner"><p>\(F_z=xy+\cos(z-6)=2\ne0\); \(F_x=yz-2-4xy^2=0\) en el punto ⇒ \(z_x=0\). Además \(z_{xy}=-F_{xy}/F_z=-(z-8xy)/2=1\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Septiembre 2015: jacobiana de \(g=(x^2-2y+x,\ y-\sin3x,\ \frac{\ln y}{x^2+2})\) en (0,1).</summary><div class="inner"><p>\(J(0,1)=\begin{pmatrix}1&-2\\-3&1\\0&1/2\end{pmatrix}\).</p></div></details>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Septiembre 2013 (oficial): mínimo de \(T=x^2+y^2-y\) sobre la elipse \(\frac{x^2}2+y^2=1\).</summary><div class="inner"><p>Lagrange: \(2x=\lambda x\), \(2y-1=2\lambda y\). Si x≠0, λ=2, y=−½, \(x=\pm\sqrt{3/2}\), T=9/4. Si x=0, y=±1: T(0,1)=0, T(0,−1)=2. Mínimo en (0,1).</p></div></details><details class="paso"><summary><span class="pn">2</span>Enero 2014: \(F=xyz+\sin(z-6)-2(x+y+x^2y^2)=0\) define z(x,y) cerca de (1,1) con z=6. \(z_x(1,1)\).</summary><div class="inner"><p>\(F_z=xy+\cos(z-6)=2\ne0\); \(F_x=yz-2-4xy^2=0\) en el punto ⇒ \(z_x=0\). Además \(z_{xy}=-F_{xy}/F_z=-(z-8xy)/2=1\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Septiembre 2015: jacobiana de \(g=(x^2-2y+x,\ y-\sin3x,\ \frac{\ln y}{x^2+2})\) en (0,1).</summary><div class="inner"><p>\(J(0,1)=\begin{pmatrix}1&-2\\-3&1\\0&1/2\end{pmatrix}\).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué indica que el hessiano sea negativo en un punto crítico?</summary><div class="inner"><p>Que es un punto de silla: la función crece en una dirección y decrece en otra.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿En qué dirección crece más deprisa una función y cuánto?</summary><div class="inner"><p>En la del gradiente, y la tasa es su módulo \(\|\nabla f\|\).</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Por qué hay que normalizar el vector en una derivada direccional?</summary><div class="inner"><p>Porque si no, el resultado depende de la longitud del vector y puede superar el máximo teórico \(\|\nabla f\|\).</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-10.html"><small>← Anterior</small>T10 · Topología en ℝⁿ y continuidad de varias variables</a><a class="nx" href="tema-12.html"><small>Siguiente →</small>T12 · Integral múltiple</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>

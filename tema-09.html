@@ -23,6 +23,31 @@
 <div class="sh"><span aria-hidden="true" class="badge">9</span><div class="shx"><p class="kick">UD2 Cálculo de una variable · Tema 9</p><h2 id="t9">Integral de Riemann</h2><div class="tags"><span class="tag">UD2 Cálculo de una variable</span><span class="tag">Segundo parcial</span></div></div></div>
 <div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Entender la integral como límite de sumas, aplicar Barrow, dominar las técnicas de integración (partes, cambio, racionales, trigonométricas, irracionales) y calcular áreas y volúmenes.</p><p>La <b>integral de Riemann</b> es el límite de las sumas \(\sum f(\xi_i)\Delta x_i\) cuando la partición se afina; toda función continua en [a,b] es integrable. <b>Teorema fundamental</b>: \(F(x)=\int_a^xf\) es derivable con \(F'=f\); <b>Barrow</b>: \(\int_a^bf=F(b)-F(a)\).</p>
 <p>Técnicas que salen en los exámenes: por partes (\(\int\cos\sqrt x\,dx\) con cambio previo \(x=t^2\)), <b>racionales</b> por fracciones simples (enero 2015), <b>irracionales</b> completando cuadrados (\(\int\frac{x+3}{\sqrt{x^2+2x+2}}\), junio 2015, con \(\int\frac{du}{\sqrt{u^2+1}}=\operatorname{arcsenh}u\)), <b>trigonométricas</b> (\(\int\sin x\cos^4x\), \(\int\operatorname{cosec}x\)).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es integrar, antes de las técnicas</p><p>Hay dos ideas distintas que llevan el mismo nombre y conviene no mezclarlas:</p>
+<ul>
+<li>La <b>integral indefinida</b> \(\int f(x)\,dx\) es la operación inversa de derivar: busca una función cuya derivada sea \(f\). El resultado es una <b>familia</b> de funciones, de ahí el «+C».</li>
+<li>La <b>integral definida</b> \(\int_a^b f(x)\,dx\) es un <b>número</b>: el área con signo encerrada entre la curva y el eje, entre a y b.</li>
+</ul>
+<p>Que esas dos cosas estén relacionadas no es obvio en absoluto, y es el contenido del <b>teorema fundamental del cálculo</b>: si F es una primitiva de f, entonces</p>
+\[\int_a^b f(x)\,dx=F(b)-F(a)\]
+<p>Ese resultado es el que convierte un problema de áreas (sumar infinitos rectángulos) en un problema algebraico (encontrar una primitiva y restar). Es, probablemente, el teorema más útil de todo el cálculo.</p>
+<p><b>Con signo</b>, insisto: si la curva está por debajo del eje, la integral es negativa. Para calcular el <b>área</b> geométrica hay que partir el intervalo en los cortes con el eje y sumar valores absolutos.</p><p class="ft">Las cuatro técnicas y cuándo usar cada una</p><div class="tw"><table><tr><th>Técnica</th><th>Se reconoce porque…</th><th>Ejemplo típico</th></tr>
+<tr><td><b>Inmediata</b></td><td>aparece una función y su derivada multiplicando</td><td>\(\int \frac{2x}{1+x^2}dx=\ln(1+x^2)\)</td></tr>
+<tr><td><b>Cambio de variable</b></td><td>hay una función compuesta y su derivada anda cerca</td><td>\(\int xe^{x^2}dx\) con \(u=x^2\)</td></tr>
+<tr><td><b>Por partes</b></td><td>producto de dos funciones de tipos distintos</td><td>\(\int xe^x dx\), \(\int \ln x\,dx\)</td></tr>
+<tr><td><b>Fracciones simples</b></td><td>cociente de polinomios</td><td>\(\int\frac{dx}{x^2+x}\)</td></tr>
+</table></div>
+<p><b>Para la integración por partes</b>, \(\int u\,dv=uv-\int v\,du\), la elección de u sigue la regla <b>ALPES</b>, por orden de preferencia:</p>
+<p style="text-align:center"><b>A</b>rcos · <b>L</b>ogaritmos · <b>P</b>otencias · <b>E</b>xponenciales · <b>S</b>enos y cosenos</p>
+<p>Se toma como \(u\) la que aparezca antes en esa lista. En \(\int x e^x dx\): la potencia va antes que la exponencial, luego \(u=x\). En \(\int \ln x\,dx\): sólo hay un logaritmo, luego \(u=\ln x\) y \(dv=dx\), que es el truco para integrar el logaritmo.</p><p class="ft">Las aplicaciones que caen</p><p><b>Área entre dos curvas.</b> Se integra la diferencia «la de arriba menos la de abajo», entre los puntos de corte:</p>
+\[A=\int_a^b\left[f(x)-g(x)\right]dx\]
+<p>Los límites a y b salen de resolver \(f(x)=g(x)\). Y hay que comprobar <b>cuál va arriba</b> en cada tramo: si se cruzan, se parte la integral.</p>
+<p><b>Volumen de revolución.</b> Al girar la región bajo \(y=f(x)\) alrededor del eje OX, cada rebanada es un disco de radio \(f(x)\) y espesor \(dx\):</p>
+\[V=\pi\int_a^b f(x)^2\,dx\]
+<p>El cuadrado se olvida constantemente; es el error número uno de este apartado.</p>
+<p><b>Longitud de arco</b> y <b>área de superficie de revolución</b>, por completar:</p>
+\[L=\int_a^b\sqrt{1+f'(x)^2}\,dx,\qquad S=2\pi\int_a^b f(x)\sqrt{1+f'(x)^2}\,dx\]
+<p>Las dos salen del teorema de Pitágoras aplicado a un trozo infinitesimal de curva: \(ds=\sqrt{dx^2+dy^2}\).</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 9 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\int_a^bf\)</td><td>Integral definida (Riemann)</td><td class="u">área con signo</td></tr><tr><td class="sym">\(F(x)\)</td><td>Primitiva</td><td class="u">\(F\'=f\)</td></tr><tr><td class="sym">\(\sum f(\xi_i)\Delta x_i\)</td><td>Suma de Riemann</td><td class="u"></td></tr><tr><td class="sym">\(u\,dv\)</td><td>Integración por partes</td><td class="u"></td></tr><tr><td class="sym">\(\frac{A}{x-a}\)</td><td>Fracción simple</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · sumas de Riemann</p><div data-sim="riemann"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
@@ -41,8 +66,50 @@
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>1) \(x^2+2x+2=(x+1)^2+1\); \(x+3=(x+1)+2\): \(\int\frac{(x+1)dx}{\sqrt{(x+1)^2+1}}+2\int\frac{dx}{\sqrt{(x+1)^2+1}}=\sqrt{x^2+2x+2}+2\operatorname{arcsenh}(x+1)+C\).</p>
 <p>2) \(x=t^2\), \(dx=2t\,dt\): \(2\int_0^\pi t\cos t\,dt=2[t\sin t+\cos t]_0^\pi=2(-1-1)=-4\).</p>
 <p>3) \(\frac{x^2-2}{x^3(x^2+1)}=\frac{3}{x}-\frac{2}{x^3}-\frac{3x}{x^2+1}\) ⇒ \(3\ln|x|+\frac1{x^2}-\frac32\ln(x^2+1)+C\).</p></div></details></div>
+<h3 id="t9-ejercicios">Ejercicios resueltos</h3><p class="muted">Intenta cada uno antes de desplegar la solución.</p><div class="prob"><div class="enun"><p class="et">Ejercicio 1 · Tres integrales, una de cada técnica</p><p>Calcula \(\displaystyle\int_0^1 xe^x\,dx\), \(\displaystyle\int_1^e \ln x\,dx\) y \(\displaystyle\int_1^2\frac{dx}{x^2+x}\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>a) Por partes.</b> Por ALPES, la potencia va antes que la exponencial:</p>
+\[u=x\Rightarrow du=dx,\qquad dv=e^xdx\Rightarrow v=e^x\]
+\[\int xe^xdx=xe^x-\int e^xdx=xe^x-e^x=e^x(x-1)\]
+\[\int_0^1xe^xdx=\left[e^x(x-1)\right]_0^1=e(0)-1(-1)=\boxed{1}\]
+<p>Un resultado sorprendentemente limpio. <b>Comprobación:</b> derivando \(e^x(x-1)\) sale \(e^x(x-1)+e^x=xe^x\) ✓</p>
+<p><b>b) El truco del logaritmo.</b> Parece que no hay producto, pero sí: se toma \(dv=dx\).</p>
+\[u=\ln x\Rightarrow du=\frac{dx}{x},\qquad dv=dx\Rightarrow v=x\]
+\[\int\ln x\,dx=x\ln x-\int x\cdot\frac{1}{x}dx=x\ln x-x\]
+\[\int_1^e\ln x\,dx=\left[x\ln x-x\right]_1^e=(e\cdot1-e)-(0-1)=\boxed{1}\]
+<p>Otra vez 1, y no es casualidad: las dos regiones son congruentes por la simetría entre \(e^x\) y \(\ln x\) respecto de la bisectriz.</p>
+<p><b>c) Fracciones simples.</b> Factorizamos el denominador:</p>
+\[\frac{1}{x^2+x}=\frac{1}{x(x+1)}=\frac{A}{x}+\frac{B}{x+1}\]
+<p>Multiplicando por \(x(x+1)\): \(1=A(x+1)+Bx\). Con \(x=0\): \(A=1\). Con \(x=-1\): \(B=-1\).</p>
+\[\int\frac{dx}{x^2+x}=\int\frac{dx}{x}-\int\frac{dx}{x+1}=\ln|x|-\ln|x+1|=\ln\left|\frac{x}{x+1}\right|\]
+\[\int_1^2\frac{dx}{x^2+x}=\left[\ln\frac{x}{x+1}\right]_1^2=\ln\frac23-\ln\frac12=\ln\frac43\approx\boxed{0{,}2877}\]
+<div class="box key"><p><b>El método de los valores que anulan</b> (poner \(x=0\) y \(x=-1\)) es mucho más rápido que identificar coeficientes, y funciona siempre que las raíces del denominador sean simples. Con raíces dobles hay que combinarlo con identificación.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 2 · Área entre curvas y volumen</p><p>Halla el área encerrada entre \(y=2x\) e \(y=x^2\), y el volumen del sólido que se obtiene al girar la región bajo \(y=\sqrt x\) entre 0 y 4 alrededor del eje OX.</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>a) El área.</b></p>
+<p><b>1) Puntos de corte:</b> \(2x=x^2\Rightarrow x(x-2)=0\Rightarrow x=0,\ x=2\).</p>
+<p><b>2) Cuál va arriba.</b> En \(x=1\): la recta da 2 y la parábola 1, así que <b>la recta está por encima</b> en todo el intervalo.</p>
+<p><b>3) Integrar la diferencia.</b></p>
+\[A=\int_0^2(2x-x^2)dx=\left[x^2-\frac{x^3}{3}\right]_0^2=4-\frac83=\boxed{\frac43}\approx1{,}333\]
+<p><b>Comprobación de coherencia:</b> la región cabe dentro del rectángulo \([0,2]\times[0,4]\), de área 8, y es bastante más estrecha que él: 1,33 es un valor razonable. Un resultado negativo o mayor que 8 indicaría un error de orden o de límites.</p>
+<p><b>b) El volumen.</b> Discos de radio \(f(x)=\sqrt x\):</p>
+\[V=\pi\int_0^4\left(\sqrt x\right)^2dx=\pi\int_0^4 x\,dx=\pi\left[\frac{x^2}{2}\right]_0^4=\pi\cdot8=\boxed{8\pi}\approx25{,}13\]
+<p><b>Comprobación geométrica.</b> El sólido está contenido en el cilindro de radio \(\sqrt4=2\) y longitud 4, cuyo volumen es \(\pi\cdot4\cdot4=16\pi\). El nuestro es exactamente la mitad, lo cual es razonable para un perfil que crece como una raíz. ✓</p>
+<div class="box trap"><h4>Los dos errores de este apartado</h4><p><b>Olvidar el cuadrado</b> en la fórmula del volumen, que aquí lo convertiría en \(\pi\int\sqrt x\,dx\) y daría un número distinto. Y <b>restar al revés</b> en el área, lo que da el valor negativo: si te sale negativo, has puesto la de abajo primero.</p></div></div></details></div><div class="prob"><div class="enun"><p class="et">Ejercicio 3 · Una integral impropia</p><p>Estudia la convergencia de \(\displaystyle\int_1^{\infty}\frac{dx}{x^p}\) según el valor de \(p\), y aplícalo a \(\displaystyle\int_1^{\infty}\frac{dx}{x^2}\).</p></div><details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Qué significa impropia.</b> El intervalo es infinito, así que la integral se define como un límite:</p>
+\[\int_1^{\infty}\frac{dx}{x^p}=\lim_{b\to\infty}\int_1^{b}x^{-p}dx\]
+<p><b>2) Caso \(p\ne1\).</b></p>
+\[\int_1^b x^{-p}dx=\left[\frac{x^{1-p}}{1-p}\right]_1^b=\frac{b^{1-p}-1}{1-p}\]
+<p>Al hacer \(b\to\infty\), todo depende del signo del exponente:</p>
+<ul>
+<li>Si \(p>1\), entonces \(1-p<0\) y \(b^{1-p}\to0\). La integral <b>converge</b> y vale \(\dfrac{1}{p-1}\).</li>
+<li>Si \(p<1\), entonces \(1-p>0\) y \(b^{1-p}\to\infty\). <b>Diverge</b>.</li>
+</ul>
+<p><b>3) Caso \(p=1\),</b> que hay que tratar aparte porque la primitiva es otra:</p>
+\[\int_1^b\frac{dx}{x}=\ln b\to\infty\quad\Rightarrow\quad\text{diverge}\]
+<p><b>4) Conclusión.</b></p>
+\[\boxed{\int_1^{\infty}\frac{dx}{x^p}\ \text{converge}\iff p>1}\]
+<p><b>5) El caso pedido.</b> Con \(p=2>1\) converge, y su valor es</p>
+\[\int_1^{\infty}\frac{dx}{x^2}=\frac{1}{2-1}=\boxed{1}\]
+<p>Comprobación directa: \(\left[-\frac1x\right]_1^{\infty}=0-(-1)=1\) ✓</p>
+<div class="box key"><p><b>Por qué este resultado se usa tanto.</b> Es el <b>criterio de comparación</b> por excelencia: para decidir si \(\int_1^\infty f\) converge, se compara \(f\) con \(1/x^p\). Y el mismo umbral \(p>1\) aparece en las series: \(\sum 1/n^p\) converge exactamente cuando \(p>1\). No es coincidencia: es el criterio integral.</p>
+<p>El caso frontera \(p=1\) es el que desconcierta: la función \(1/x\) tiende a cero, pero <b>no lo bastante deprisa</b>. Tender a cero no basta para que el área sea finita.</p></div></div></details></div>
 <h3 id="t9-auto">Autoevaluación</h3>
-<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Septiembre 2013: \(\int_0^\pi\sin x\cos^4x\,dx\).</summary><div class="inner"><p>\(u=\cos x\): \(\left[-\frac{\cos^5x}{5}\right]_0^\pi=\frac25\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Junio 2015: \(\lim_{x\to0}\frac{\int_0^x(\sin t+\cos t-1)dt}{x^2}\).</summary><div class="inner"><p>L'Hôpital con el teorema fundamental: \(\lim\frac{\sin x+\cos x-1}{2x}=\lim\frac{\cos x-\sin x}{2}=\frac12\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Mayo 2014: \(\int\operatorname{cosec}x\,dx\).</summary><div class="inner"><p>\(\ln\left|\tan\frac x2\right|+C\) (equivalente a \(\frac12\ln\frac{1-\cos x}{1+\cos x}\)).</p></div></details>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Septiembre 2013: \(\int_0^\pi\sin x\cos^4x\,dx\).</summary><div class="inner"><p>\(u=\cos x\): \(\left[-\frac{\cos^5x}{5}\right]_0^\pi=\frac25\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Junio 2015: \(\lim_{x\to0}\frac{\int_0^x(\sin t+\cos t-1)dt}{x^2}\).</summary><div class="inner"><p>L'Hôpital con el teorema fundamental: \(\lim\frac{\sin x+\cos x-1}{2x}=\lim\frac{\cos x-\sin x}{2}=\frac12\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Mayo 2014: \(\int\operatorname{cosec}x\,dx\).</summary><div class="inner"><p>\(\ln\left|\tan\frac x2\right|+C\) (equivalente a \(\frac12\ln\frac{1-\cos x}{1+\cos x}\)).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué regla se usa para elegir u en la integración por partes?</summary><div class="inner"><p>ALPES: arcos, logaritmos, potencias, exponenciales, senos y cosenos; se toma como u la que aparezca antes.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cómo se integra \(\ln x\) si no hay producto aparente?</summary><div class="inner"><p>Por partes con \(u=\ln x\) y \(dv=dx\), de donde sale \(x\ln x-x\).</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Para qué valores de p converge \(\int_1^\infty x^{-p}dx\)?</summary><div class="inner"><p>Sólo para \(p>1\). El caso \(p=1\) diverge, porque la primitiva es el logaritmo.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-08.html"><small>← Anterior</small>T8 · Cálculo diferencial de una variable</a><a class="nx" href="tema-10.html"><small>Siguiente →</small>T10 · Topología en ℝⁿ y continuidad de varias variables</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Matemáticas I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
