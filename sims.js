@@ -178,5 +178,53 @@ SIMS.edo=el=>build(el,{selects:[{k:'e',l:'EDO',v:'lin',opts:[['lin',"y' + 2xy = 
     const sol={lin:'y = (x² + C)·e^(−x²)  (lineal: factor integrante e^(x²))',sep:'x² + y² = C  (variables separadas)',hom:'y = x·(1/(ln|x| + C) − 1)  (homogénea: y = u·x)',log:'y = 1/(1 + C·e^(−x))  (Bernoulli / separable)'}[s.e];
     a.html(`Solución general: <b>${sol}</b> · la curva roja es la solución que pasa por (0,5; ${F(s.y0)})<br><span class="hint">El campo de direcciones dibuja la pendiente y' en cada punto; las soluciones son curvas tangentes a él. Cambia la condición inicial y verás la familia uniparamétrica.</span>`);}});
 
+/* ---- Eliminación gaussiana paso a paso (sistema 3×3 con solución x=2, y=1, z=−1) ---- */
+SIMS.gaussPaso=el=>build(el,{w:640,h:370,
+ sliders:[{k:'paso',v:0,min:0,max:7,step:1,l:'paso del método (0 = sistema)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const MS=[
+   [[1,1,1,2],[2,3,1,6],[1,-1,2,-1]],
+   [[1,1,1,2],[0,1,-1,2],[1,-1,2,-1]],
+   [[1,1,1,2],[0,1,-1,2],[0,-2,1,-3]],
+   [[1,1,1,2],[0,1,-1,2],[0,0,-1,1]]];
+  const M=MS[Math.min(p,3)];
+  const fmt=v=>v<0?'−'+String(-v):String(v);
+  const x0=150,y0=70,cw=64,rh=44;
+  const hiRow={1:1,2:2,3:2}[p];
+  const piv={1:[0,0],2:[0,0],3:[1,1]}[p];
+  // marco y barra de la ampliada
+  a.g.strokeStyle=a.st.paso>0?'#9aa3b5':'#9aa3b5';a.g.lineWidth=2;
+  a.g.strokeRect(x0-8,y0-6,4*cw+16,3*rh+12);
+  a.line(x0+3*cw+cw/2-4,y0-6,x0+3*cw+cw/2-4,y0+3*rh+6,C.text,1.5);
+  for(let r=0;r<3;r++){
+    if(hiRow===r){a.g.fillStyle=C.f;a.g.globalAlpha=0.12;a.g.fillRect(x0-8,y0+r*rh,4*cw+16,rh);a.g.globalAlpha=1;}
+    for(let c=0;c<4;c++){
+      const isPiv=piv&&piv[0]===r&&piv[1]===c;
+      if(isPiv){a.g.strokeStyle=C.a;a.g.lineWidth=2.5;a.g.strokeRect(x0+c*cw+6,y0+r*rh+6,cw-12,rh-12);}
+      const v=M[r][c];
+      a.txt(fmt(v),x0+c*cw+cw/2,y0+r*rh+rh/2+5,v===0&&p>0&&c<3?C.muted:C.text,16,'center');
+    }
+  }
+  const op={1:'F₂ ← F₂ − 2·F₁',2:'F₃ ← F₃ − F₁',3:'F₃ ← F₃ + 2·F₂'}[p];
+  if(op){a.txt(op,x0+4*cw+40,y0+hiRow*rh+rh/2+5,C.a,14);}
+  // sustitución hacia atrás
+  const sol=[];
+  if(p>=4) sol.push('z = −1');
+  if(p>=5) sol.push('y = 2 + z = 1');
+  if(p>=6) sol.push('x = 2 − y − z = 2');
+  sol.forEach((s,k)=>a.txt(s,x0,y0+3*rh+50+k*26,C.c,15));
+  const T=[
+   'Sistema 3×3 escrito como matriz ampliada [A | b]. Objetivo: que quede triangular y luego despejar de abajo arriba.',
+   'Pivote 1 (la x de la primera fila). Anulamos el 2 de la columna x en la fila 2: F₂ ← F₂ − 2·F₁ ⇒ [0 1 −1 | 2].',
+   'Anulamos el 1 de la columna x en la fila 3: F₃ ← F₃ − F₁ ⇒ [0 −2 1 | −3].',
+   'Pivote 2 (la y de la fila 2). Anulamos el −2 de la fila 3: F₃ ← F₃ + 2·F₂ ⇒ [0 0 −1 | 1]. Ya es triangular.',
+   'Sustitución hacia atrás: la última fila dice −z = 1, así que z = −1.',
+   'Fila 2: y − z = 2, luego y = 2 + z = 1.',
+   'Fila 1: x + y + z = 2, luego x = 2 − y − z = 2.',
+   'Comprobación en las tres ecuaciones originales: 2 + 1 − 1 = 2 ✓; 2·2 + 3·1 − 1 = 6 ✓; 2 − 1 + 2·(−1) = −1 ✓.'
+  ];
+  a.html(`<div>${T[p]}</div>`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
