@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,10 +86,10 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
 <div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 5</p><h2 id="t5">Diagonalización de matrices</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular valores y vectores propios, decidir si una matriz (o endomorfismo) es diagonalizable, hallar P y D, y usar \(A^n=PD^nP^{-1}\).</p><p>Esquema del curso: polinomio característico \(p(\lambda)=|A-\lambda I|\); valores propios = raíces; multiplicidad algebraica \(m(\lambda_i)\); subespacio propio \(V_{\lambda_i}=\ker(A-\lambda_iI)\) con \(\dim V_{\lambda_i}=n-rg(A-\lambda_iI)\) y siempre \(1\le\dim V_{\lambda_i}\le m(\lambda_i)\).</p>
-<p><b>Caracterización</b>: A es diagonalizable ⇔ todos los valores propios son reales y \(\dim V_{\lambda_i}=m(\lambda_i)\) para cada uno. En particular, n valores propios distintos ⇒ diagonalizable. Entonces \(D=P^{-1}AP\) con D los valores propios (repetidos según multiplicidad) y P las bases de los \(V_{\lambda_i}\) por columnas, <b>en el mismo orden</b>.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Calcular valores y vectores propios, decidir si una matriz (o endomorfismo) es diagonalizable, hallar P y D, y usar \(A^n=PD^nP^{-1}\).</p><p class="lede">Esquema del curso: polinomio característico \(p(\lambda)=|A-\lambda I|\); valores propios = raíces; multiplicidad algebraica \(m(\lambda_i)\); subespacio propio \(V_{\lambda_i}=\ker(A-\lambda_iI)\) con \(\dim V_{\lambda_i}=n-rg(A-\lambda_iI)\) y siempre \(1\le\dim V_{\lambda_i}\le m(\lambda_i)\).</p>
+<p class="run"><b>Caracterización:</b> A es diagonalizable ⇔ todos los valores propios son reales y \(\dim V_{\lambda_i}=m(\lambda_i)\) para cada uno. En particular, n valores propios distintos ⇒ diagonalizable. Entonces \(D=P^{-1}AP\) con D los valores propios (repetidos según multiplicidad) y P las bases de los \(V_{\lambda_i}\) por columnas, <b>en el mismo orden</b>.</p>
 <p>Un endomorfismo es diagonalizable si en alguna base su matriz es diagonal: esa base es la de vectores propios y \(P=M_{B'B}\). Aplicación estrella: \(A^n=PD^nP^{-1}\).</p></div>
-<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué se busca al diagonalizar</p><p>Una matriz representa una aplicación lineal <b>vista desde una base concreta</b>. Cambiando de base, la misma aplicación tiene otra matriz. La pregunta natural es: <b>¿existe una base en la que la matriz sea lo más simple posible?</b> Y lo más simple posible es diagonal.</p>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué se busca al diagonalizar</p><p class="lede">Una matriz representa una aplicación lineal <b>vista desde una base concreta</b>. Cambiando de base, la misma aplicación tiene otra matriz. La pregunta natural es: <b>¿existe una base en la que la matriz sea lo más simple posible?</b> Y lo más simple posible es diagonal.</p>
 <p>¿Por qué interesa tanto? Porque con una matriz diagonal todo es trivial:</p>
 <ul>
 <li>Elevar a una potencia es elevar cada número de la diagonal, en vez de multiplicar matrices n veces.</li>
@@ -58,23 +98,23 @@ details>summary{line-height:1.7;padding-block:.5em}
 </ul>
 <p>Y la base en la que eso ocurre tiene un significado geométrico: son las direcciones que la aplicación <b>no gira</b>, sólo estira o encoge. A esas direcciones se les llama <b>vectores propios</b>, y al factor de estiramiento, <b>valor propio</b>.</p>
 \[A\vec v=\lambda\vec v\]
-<p>Esa ecuación es todo el tema. Léela así: «hay vectores a los que la matriz sólo les cambia la longitud». Si consigues n direcciones así en ℝⁿ, las pones por columnas en una matriz P y obtienes \(D=P^{-1}AP\) diagonal.</p><p class="ft">El procedimiento, sin saltarse pasos</p><p><b>Paso 1 · Valores propios.</b> De \(A\vec v=\lambda\vec v\) se pasa a \((A-\lambda I)\vec v=\vec0\). Para que eso tenga solución distinta de cero, la matriz \(A-\lambda I\) debe ser singular:</p>
+<p>Esa ecuación es todo el tema. Léela así: «hay vectores a los que la matriz sólo les cambia la longitud». Si consigues n direcciones así en ℝⁿ, las pones por columnas en una matriz P y obtienes \(D=P^{-1}AP\) diagonal.</p><p class="ft">El procedimiento, sin saltarse pasos</p><p class="run"><b>Paso 1 · Valores propios.:</b> De \(A\vec v=\lambda\vec v\) se pasa a \((A-\lambda I)\vec v=\vec0\). Para que eso tenga solución distinta de cero, la matriz \(A-\lambda I\) debe ser singular:</p>
 \[p(\lambda)=|A-\lambda I|=0\]
 <p>Las raíces de ese <b>polinomio característico</b> son los valores propios. Consejo práctico: desarrolla por la fila o columna con más ceros y <b>no expandas si puedes factorizar</b>. Un polinomio de grado 3 en forma factorizada se lee; desarrollado, hay que resolverlo con Ruffini.</p>
-<p><b>Paso 2 · Vectores propios.</b> Para cada λ, se resuelve el sistema homogéneo \((A-\lambda I)\vec x=\vec0\). Las soluciones forman el <b>subespacio propio</b> \(V_\lambda\), cuya dimensión es</p>
+<p class="run"><b>Paso 2 · Vectores propios.:</b> Para cada λ, se resuelve el sistema homogéneo \((A-\lambda I)\vec x=\vec0\). Las soluciones forman el <b>subespacio propio</b> \(V_\lambda\), cuya dimensión es</p>
 \[\dim V_\lambda=n-rg(A-\lambda I)\]
-<p><b>Paso 3 · ¿Es diagonalizable?</b> Aquí está la única decisión del problema. Cada valor propio tiene dos números asociados:</p>
+<p class="run"><b>Paso 3 · ¿Es diagonalizable?:</b> Aquí está la única decisión del problema. Cada valor propio tiene dos números asociados:</p>
 <ul>
 <li>La <b>multiplicidad algebraica</b> \(m(\lambda)\): cuántas veces es raíz del polinomio.</li>
 <li>La <b>multiplicidad geométrica</b> \(\dim V_\lambda\): cuántos vectores propios independientes da.</li>
 </ul>
 <p>Siempre se cumple \(1\le\dim V_\lambda\le m(\lambda)\), y la matriz es diagonalizable <b>si y sólo si son iguales para todos los valores propios</b> (y todos son reales, si trabajamos en ℝ).</p>
-<div class="box key"><p><b>Consecuencia que ahorra trabajo:</b> si los n valores propios son <b>distintos</b>, todas las multiplicidades algebraicas valen 1, las geométricas también, y es diagonalizable sin más comprobación. Sólo hay que pararse a calcular dimensiones cuando hay <b>raíces repetidas</b>.</p></div>
-<p><b>Paso 4 · Escribir P y D.</b> P lleva por columnas los vectores propios; D, los valores propios <b>en el mismo orden</b>. Y la comprobación que nunca falla: \(AP=PD\), que evita invertir P.</p><p class="ft">Para qué sirve: potencias y límites</p><p>El uso estrella es calcular \(A^k\). Como \(A=PDP^{-1}\),</p>
+<div class="box key"><p class="run"><b>Consecuencia que ahorra trabajo:</b> si los n valores propios son <b>distintos</b>, todas las multiplicidades algebraicas valen 1, las geométricas también, y es diagonalizable sin más comprobación. Sólo hay que pararse a calcular dimensiones cuando hay <b>raíces repetidas</b>.</p></div>
+<p class="run"><b>Paso 4 · Escribir P y D.:</b> P lleva por columnas los vectores propios; D, los valores propios <b>en el mismo orden</b>. Y la comprobación que nunca falla: \(AP=PD\), que evita invertir P.</p><p class="ft">Para qué sirve: potencias y límites</p><p>El uso estrella es calcular \(A^k\). Como \(A=PDP^{-1}\),</p>
 \[A^2=PDP^{-1}PDP^{-1}=PD^2P^{-1},\qquad\text{y en general}\qquad A^k=PD^kP^{-1}\]
 <p>donde \(D^k\) es trivial: cada elemento de la diagonal elevado a k. Para calcular \(A^{50}\) no hay que multiplicar cincuenta veces, sino una vez por la izquierda y otra por la derecha.</p>
 <p>Esto tiene una lectura que va más allá del examen. Si todos los valores propios cumplen \(|\lambda|<1\), entonces \(A^k\to0\): el sistema se estabiliza. Si alguno tiene \(|\lambda|>1\), \(A^k\) crece sin control: el sistema diverge. Ése es exactamente el criterio de estabilidad que aparece en las asignaturas de control, y el que explica por qué las cadenas de Markov convergen a un estado estacionario.</p>
-<p><b>Dos casos especiales que conviene reconocer:</b></p>
+<p class="run"><b>Dos casos especiales que conviene reconocer:</b> </p>
 <ul>
 <li><b>Matriz simétrica real</b>: siempre es diagonalizable, y además con P <b>ortogonal</b> (los vectores propios son perpendiculares). Es el tema 6.</li>
 <li><b>Matriz triangular</b>: los valores propios están en la diagonal, sin calcular nada. Pero <b>ojo</b>: que sean fáciles de leer no significa que sea diagonalizable.</li>
@@ -83,14 +123,14 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(p(\lambda)=|A-\lambda I|\)</td><td>Polinomio característico</td><td class="u"></td></tr><tr><td class="sym">\(\lambda_i,\ m(\lambda_i)\)</td><td>Valor propio y multiplicidad algebraica</td><td class="u"></td></tr><tr><td class="sym">\(V_{\lambda}\)</td><td>Subespacio propio</td><td class="u">\(\ker(A-\lambda I)\)</td></tr><tr><td class="sym">\(D=P^{-1}AP\)</td><td>Forma diagonal y matriz de paso</td><td class="u"></td></tr><tr><td class="sym">\(\mathrm{tr}\,A\)</td><td>Traza</td><td class="u">suma de valores propios</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · busca los vectores propios girando v</p><div data-sim="autovectores"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
 <!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Qué buscan los valores y vectores propios</h4>
+<h4><span class="hn">1</span>Qué buscan los valores y vectores propios</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un vector propio es una dirección que la matriz <b>no gira</b>: solo la estira o la encoge, por el valor propio \(\lambda\).</div>
 <div class="eqd">\[A\vec v=\lambda\vec v,\quad\vec v\neq0\]</div>
 <p>Si encuentras una base de vectores propios, en esa base la matriz es <b>diagonal</b>. Y con una matriz diagonal todo es fácil: potencias, exponenciales y sistemas de ecuaciones diferenciales.</p>
 <details class="dem"><summary><span class="pn">∴</span>Procedimiento completo</summary><div class="inner"><ol class="pasos"><li><b>Polinomio característico:</b> \(p(\lambda)=\det(A-\lambda I)\). Sus raíces son los valores propios.</li><li>Para cada \(\lambda\): resuelve \((A-\lambda I)\vec v=0\). Esos vectores forman el <b>subespacio propio</b>.</li><li>Compara la <b>multiplicidad algebraica</b> (veces que \(\lambda\) es raíz) con la <b>geométrica</b> (dimensión del subespacio propio). Siempre \(1\le\) geométrica \(\le\) algebraica.</li><li><b>Diagonalizable</b> \(\iff\) para todos los valores propios coinciden ambas multiplicidades.</li></ol>
 <div class="eqd">\[A=PDP^{-1}\quad\Rightarrow\quad A^k=PD^kP^{-1}\]</div>
 <ul><li>\(D\) tiene los \(\lambda\) en la diagonal; las columnas de \(P\) son los vectores propios <b>en el mismo orden</b>.</li><li>Comprobaciones rápidas: \(\operatorname{tr}A=\sum\lambda_i\) y \(\det A=\prod\lambda_i\).</li></ul></div></details>
-<h4>2. Casos que conviene reconocer</h4>
+<h4><span class="hn">2</span>Casos que conviene reconocer</h4>
 <ul><li>Si hay \(n\) valores propios <b>distintos</b>, es diagonalizable seguro.</li><li>Si la matriz es <b>simétrica real</b>, siempre es diagonalizable, con valores propios reales y vectores propios <b>ortogonales</b> (teorema espectral).</li><li>Un ejemplo que no diagonaliza: \(\begin{pmatrix}1&1\\0&1\end{pmatrix}\) (\(\lambda=1\) doble, pero solo una dirección propia).</li></ul>
 </div><!--/deep--><h3 id="t5-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>

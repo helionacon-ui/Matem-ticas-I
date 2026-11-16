@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,28 +86,28 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
 <div class="sh"><span aria-hidden="true" class="badge">10</span><div class="shx"><p class="kick">UD3 Varias variables · Tema 10</p><h2 id="t10">Topología en ℝⁿ y continuidad de varias variables</h2><div class="tags"><span class="tag">UD3 Varias variables</span><span class="tag">Segundo parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Manejar bolas, abiertos, cerrados, frontera y compactos; calcular límites dobles (direccionales, polares) y estudiar la continuidad de funciones de varias variables.</p><p>En ℝⁿ la distancia euclídea define <b>bolas</b>; un conjunto es abierto si todo punto tiene una bola dentro, cerrado si contiene su frontera, acotado si cabe en una bola, <b>compacto</b> si es cerrado y acotado (Weierstrass: una función continua en un compacto alcanza máximo y mínimo; es lo que justifica el problema de la placa de temperatura de septiembre 2015).</p>
-<p><b>Límite doble</b>: debe ser el mismo por cualquier camino. Para probar que <em>no</em> existe: dos direcciones (\(y=mx\), parábolas \(y=mx^2\)) con límites distintos. Para probar que existe: coordenadas <b>polares</b> y acotar \(|f(r\cos\theta,r\sin\theta)-L|\le g(r)\to0\) independientemente de θ. Continua en (0,0) si el límite coincide con f(0,0).</p></div>
-<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué los límites de varias variables son más difíciles</p><p>En una variable, acercarse a un punto se puede hacer sólo de dos maneras: por la izquierda y por la derecha. Si los dos límites laterales coinciden, el límite existe. Se acabó.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Manejar bolas, abiertos, cerrados, frontera y compactos; calcular límites dobles (direccionales, polares) y estudiar la continuidad de funciones de varias variables.</p><p class="lede">En ℝⁿ la distancia euclídea define <b>bolas</b>; un conjunto es abierto si todo punto tiene una bola dentro, cerrado si contiene su frontera, acotado si cabe en una bola, <b>compacto</b> si es cerrado y acotado (Weierstrass: una función continua en un compacto alcanza máximo y mínimo; es lo que justifica el problema de la placa de temperatura de septiembre 2015).</p>
+<p class="run"><b>Límite doble:</b> debe ser el mismo por cualquier camino. Para probar que <em>no</em> existe: dos direcciones (\(y=mx\), parábolas \(y=mx^2\)) con límites distintos. Para probar que existe: coordenadas <b>polares</b> y acotar \(|f(r\cos\theta,r\sin\theta)-L|\le g(r)\to0\) independientemente de θ. Continua en (0,0) si el límite coincide con f(0,0).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué los límites de varias variables son más difíciles</p><p class="lede">En una variable, acercarse a un punto se puede hacer sólo de dos maneras: por la izquierda y por la derecha. Si los dos límites laterales coinciden, el límite existe. Se acabó.</p>
 <p>En dos variables hay <b>infinitas formas de acercarse</b> a un punto: por cualquier recta, por cualquier parábola, en espiral. Y para que el límite exista, el valor tiene que ser <b>el mismo por todos los caminos</b>, sin excepción.</p>
 <p>Eso tiene una consecuencia práctica asimétrica que organiza todo el tema:</p>
-<div class="box key"><p><b>Para demostrar que un límite NO existe</b>, basta encontrar dos caminos que den valores distintos. Es fácil.</p>
-<p><b>Para demostrar que SÍ existe</b>, no sirve de nada probar caminos: aunque pruebes mil, siempre queda el millón uno. Hay que usar coordenadas polares o una acotación.</p></div>
-<p>Por eso la estrategia en un examen es siempre la misma: <b>sospecha primero que no existe</b> y prueba dos o tres caminos. Si todos dan lo mismo, cambia de estrategia e intenta demostrarlo con polares.</p><p class="ft">Los caminos que hay que probar, en orden</p><p><b>1) Límites direccionales</b>, sustituyendo \(y=mx\). Si el resultado <b>depende de m</b>, el límite no existe y has terminado.</p>
+<div class="box key"><p class="run"><b>Para demostrar que un límite NO existe:</b> , basta encontrar dos caminos que den valores distintos. Es fácil.</p>
+<p class="run"><b>Para demostrar que SÍ existe:</b> , no sirve de nada probar caminos: aunque pruebes mil, siempre queda el millón uno. Hay que usar coordenadas polares o una acotación.</p></div>
+<p>Por eso la estrategia en un examen es siempre la misma: <b>sospecha primero que no existe</b> y prueba dos o tres caminos. Si todos dan lo mismo, cambia de estrategia e intenta demostrarlo con polares.</p><p class="ft">Los caminos que hay que probar, en orden</p><p class="run"><b>1) Límites direccionales:</b> , sustituyendo \(y=mx\). Si el resultado <b>depende de m</b>, el límite no existe y has terminado.</p>
 \[\lim_{(x,y)\to(0,0)}\frac{xy}{x^2+y^2}\ \to\ \frac{x\cdot mx}{x^2+m^2x^2}=\frac{m}{1+m^2}\]
 <p>Depende de m: con \(m=0\) da 0 y con \(m=1\) da 1/2. <b>No existe.</b></p>
-<p><b>2) Caminos parabólicos</b>, \(y=mx^2\), cuando los direccionales dan todos lo mismo pero el límite sigue siendo sospechoso. El ejemplo canónico:</p>
+<p class="run"><b>2) Caminos parabólicos:</b> , \(y=mx^2\), cuando los direccionales dan todos lo mismo pero el límite sigue siendo sospechoso. El ejemplo canónico:</p>
 \[f(x,y)=\frac{x^2y}{x^4+y^2}\]
 <p>Por cualquier recta \(y=mx\) el límite da 0. Pero por la parábola \(y=x^2\):</p>
 \[\frac{x^2\cdot x^2}{x^4+x^4}=\frac{1}{2}\]
 <p>Distinto de 0: <b>no existe</b>. Esta función es la prueba de que los direccionales no bastan, y por eso aparece en todos los exámenes.</p>
-<p><b>3) Límites iterados</b>, \(\lim_{x\to0}\lim_{y\to0}f\) y al revés. Si existen y son distintos, el límite doble no existe. Pero cuidado con el recíproco: que los iterados coincidan <b>no</b> garantiza nada.</p><p class="ft">Polares y continuidad</p><p>Cuando se sospecha que el límite <b>sí</b> existe, el método es pasar a <b>polares</b>: \(x=r\cos\theta\), \(y=r\sin\theta\). Acercarse al origen es hacer \(r\to0\), sea cual sea θ.</p>
+<p class="run"><b>3) Límites iterados:</b> , \(\lim_{x\to0}\lim_{y\to0}f\) y al revés. Si existen y son distintos, el límite doble no existe. Pero cuidado con el recíproco: que los iterados coincidan <b>no</b> garantiza nada.</p><p class="ft">Polares y continuidad</p><p>Cuando se sospecha que el límite <b>sí</b> existe, el método es pasar a <b>polares</b>: \(x=r\cos\theta\), \(y=r\sin\theta\). Acercarse al origen es hacer \(r\to0\), sea cual sea θ.</p>
 <p>Si al sustituir queda algo de la forma</p>
 \[f=r^k\cdot g(\theta)\quad\text{con }k>0\text{ y }g\text{ acotada}\]
 <p>entonces el límite es 0, <b>porque el factor \(r^k\) aplasta todo y la dependencia de θ está acotada</b>. Ejemplo:</p>
 \[\frac{x^3}{x^2+y^2}=\frac{r^3\cos^3\theta}{r^2}=r\cos^3\theta\ \xrightarrow{\ r\to0\ }0\]
 <p>La clave es que \(|\cos^3\theta|\le1\) para todo θ, así que \(|f|\le r\to0\) uniformemente.</p>
-<p><b>El error en el que todo el mundo cae:</b> si al pasar a polares queda algo que <b>depende de θ sin factor r</b> delante, el límite <b>no</b> existe. En el primer ejemplo del apartado anterior:</p>
+<p class="run"><b>El error en el que todo el mundo cae:</b> si al pasar a polares queda algo que <b>depende de θ sin factor r</b> delante, el límite <b>no</b> existe. En el primer ejemplo del apartado anterior:</p>
 \[\frac{xy}{x^2+y^2}=\frac{r^2\cos\theta\sin\theta}{r^2}=\cos\theta\sin\theta\]
 <p>La r ha desaparecido: el valor depende sólo de la dirección, que es exactamente el síntoma de no existir.</p>
 <p>Y con eso, la <b>continuidad</b> se define igual que en una variable: \(f\) es continua en \(\vec a\) si \(\lim_{\vec x\to\vec a}f(\vec x)=f(\vec a)\). Las funciones definidas a trozos con un valor especial en el origen son el formato habitual de los ejercicios: todo se reduce a calcular ese límite.</p></div>
@@ -75,15 +115,15 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(B(a,r)\)</td><td>Bola abierta</td><td class="u"></td></tr><tr><td class="sym">\(\partial A,\ \bar A\)</td><td>Frontera y clausura</td><td class="u"></td></tr><tr><td class="sym">Compacto</td><td>Cerrado y acotado</td><td class="u">Weierstrass</td></tr><tr><td class="sym">\(\lim_{(x,y)\to(a,b)}\)</td><td>Límite doble</td><td class="u">mismo valor por todo camino</td></tr><tr><td class="sym">\((r,\theta)\)</td><td>Coordenadas polares</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · curvas de nivel de f(x,y)</p><div data-sim="nivel"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
 <!--deep--><h3 id="t10-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Un poco de topología de \(\mathbb R^n\)</h4>
+<h4><span class="hn">1</span>Un poco de topología de \(\mathbb R^n\)</h4>
 <ul><li><b>Bola abierta</b> \(B(a,r)\): puntos a distancia menor que \(r\) de \(a\).</li><li><b>Abierto:</b> cada punto tiene una bola dentro del conjunto. <b>Cerrado:</b> contiene su frontera.</li><li><b>Acotado:</b> cabe en una bola. Cerrado y acotado se llama <b>compacto</b>.</li></ul>
 <p>Importa por un teorema: <b>una función continua en un compacto alcanza su máximo y su mínimo</b> (Weierstrass).</p>
-<h4>2. Límites en varias variables</h4>
+<h4><span class="hn">2</span>Límites en varias variables</h4>
 <div class="box key deepnote"><b>Idea clave.</b> en una variable hay dos formas de llegar a un punto (izquierda y derecha). En varias hay <b>infinitas</b>, y el límite solo existe si <b>todas</b> dan el mismo valor.</div>
 <ol class="pasos"><li><b>Para ver que NO existe:</b> prueba trayectorias distintas (rectas \(y=mx\), parábolas \(y=x^2\), los ejes). Si dos dan límites diferentes, no existe.</li><li><b>Para ver que existe:</b> si lo sospechas, demuéstralo con la definición, el criterio de acotación (\(|f|\le g\to0\)) o pasando a <b>coordenadas polares</b>.</li></ol>
 <details class="dem"><summary><span class="pn">∴</span>Ejemplo clásico: \(\dfrac{xy}{x^2+y^2}\) en el origen</summary><div class="inner"><ol class="pasos"><li>Por la recta \(y=mx\): \(\dfrac{mx^2}{x^2(1+m^2)}=\dfrac{m}{1+m^2}\).</li><li>El valor depende de la pendiente \(m\): por el eje \(x\) da 0, por \(y=x\) da \(\tfrac12\).</li><li>Distintas trayectorias, distintos límites: <b>no existe</b>.</li></ol>
 <p>En polares \(x=r\cos\theta,\ y=r\sin\theta\), da \(\cos\theta\sin\theta\), que depende del ángulo: se ve a la vez.</p></div></details>
-<h4>3. Continuidad</h4>
+<h4><span class="hn">3</span>Continuidad</h4>
 <ul><li>\(f\) es continua en \(a\) si \(\lim_{x\to a}f(x)=f(a)\).</li><li>Suma, producto y composición de continuas son continuas.</li><li>Cuidado: que existan los <b>límites iterados</b> (primero \(x\), luego \(y\)) no basta para que exista el límite doble.</li></ul>
 </div><!--/deep--><h3 id="t10-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>

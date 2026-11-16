@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,28 +86,28 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
 <div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">UD2 Cálculo de una variable · Tema 8</p><h2 id="t8">Cálculo diferencial de una variable</h2><div class="tags"><span class="tag">UD2 Cálculo de una variable</span><span class="tag">Segundo parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular límites (incluidos los del tipo \(1^\infty\) y con L'Hôpital), estudiar continuidad y derivabilidad, aplicar Bolzano, Rolle y el valor medio, representar funciones y usar Taylor y Newton.</p><p><b>Límites</b>: indeterminaciones \(0/0\), \(\infty/\infty\), \(\infty-\infty\), \(0\cdot\infty\), \(1^\infty\), \(0^0\), \(\infty^0\). Para \(1^\infty\): \(\lim f^g=e^{\lim g(f-1)}\) (sale en el examen de enero 2016 y mayo 2014). Infinitésimos equivalentes: \(\sin x\sim x\), \(1-\cos x\sim x^2/2\), \(\ln(1+x)\sim x\), \(e^x-1\sim x\), \(a^x-1\sim x\ln a\), \((1+x)^n-1\sim nx\).</p>
-<p><b>Continuidad</b>: límite = valor. Teoremas: <b>Bolzano</b> (cambio de signo ⇒ raíz), <b>Weierstrass</b> (continua en [a,b] alcanza máximo y mínimo), valores intermedios. <b>Derivabilidad</b> ⇒ continuidad (no al revés: |x|). Derivadas laterales para funciones a trozos.</p>
-<p><b>Rolle</b> y <b>valor medio de Lagrange</b> (\(f(b)-f(a)=f'(c)(b-a)\)); <b>L'Hôpital</b> para 0/0 e ∞/∞. <b>Representación</b>: dominio, simetrías, asíntotas, monotonía y extremos (f'), curvatura e inflexión (f''). <b>Taylor</b>: \(P_n(x)=\sum\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k\) con resto de Lagrange \(\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}\). <b>Newton</b>: \(x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}\) (práctica 5 con Maxima).</p></div>
-<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La derivada, dos lecturas</p><p>La derivada tiene dos interpretaciones y conviene tener las dos a mano porque los problemas usan una u otra:</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Calcular límites (incluidos los del tipo \(1^\infty\) y con L'Hôpital), estudiar continuidad y derivabilidad, aplicar Bolzano, Rolle y el valor medio, representar funciones y usar Taylor y Newton.</p><p class="run"><b>Límites:</b> indeterminaciones \(0/0\), \(\infty/\infty\), \(\infty-\infty\), \(0\cdot\infty\), \(1^\infty\), \(0^0\), \(\infty^0\). Para \(1^\infty\): \(\lim f^g=e^{\lim g(f-1)}\) (sale en el examen de enero 2016 y mayo 2014). Infinitésimos equivalentes: \(\sin x\sim x\), \(1-\cos x\sim x^2/2\), \(\ln(1+x)\sim x\), \(e^x-1\sim x\), \(a^x-1\sim x\ln a\), \((1+x)^n-1\sim nx\).</p>
+<p class="run"><b>Continuidad:</b> límite = valor. Teoremas: <b>Bolzano</b> (cambio de signo ⇒ raíz), <b>Weierstrass</b> (continua en [a,b] alcanza máximo y mínimo), valores intermedios. <b>Derivabilidad</b> ⇒ continuidad (no al revés: |x|). Derivadas laterales para funciones a trozos.</p>
+<p class="run"><b>Rolle:</b> y <b>valor medio de Lagrange</b> (\(f(b)-f(a)=f'(c)(b-a)\)); <b>L'Hôpital</b> para 0/0 e ∞/∞. <b>Representación</b>: dominio, simetrías, asíntotas, monotonía y extremos (f'), curvatura e inflexión (f''). <b>Taylor</b>: \(P_n(x)=\sum\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k\) con resto de Lagrange \(\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}\). <b>Newton</b>: \(x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}\) (práctica 5 con Maxima).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La derivada, dos lecturas</p><p class="lede">La derivada tiene dos interpretaciones y conviene tener las dos a mano porque los problemas usan una u otra:</p>
 <ul>
 <li><b>Geométrica</b>: \(f'(a)\) es la pendiente de la recta tangente en \(x=a\). De ahí salen crecimiento, máximos y mínimos.</li>
 <li><b>Física</b>: es la <b>tasa de variación instantánea</b>. Si \(f\) es la posición, \(f'\) es la velocidad; si es el coste, \(f'\) es el coste marginal.</li>
 </ul>
 <p>Y la segunda derivada mide cómo cambia la primera: la <b>concavidad</b>. Si \(f''>0\) la curva se abre hacia arriba y la tangente queda por debajo; si \(f''<0\), al revés. Donde \(f''\) cambia de signo hay un <b>punto de inflexión</b>.</p>
-<p><b>El criterio de extremos</b> combina las dos: en un punto con \(f'(a)=0\),</p>
+<p class="run"><b>El criterio de extremos:</b> combina las dos: en un punto con \(f'(a)=0\),</p>
 \[f''(a)>0\Rightarrow\text{mínimo},\qquad f''(a)<0\Rightarrow\text{máximo},\qquad f''(a)=0\Rightarrow\text{hay que mirar más derivadas}\]<p class="ft">Taylor: sustituir una función por un polinomio</p><p>La idea de Taylor es la más rentable del cálculo: <b>cerca de un punto, casi cualquier función se parece a un polinomio</b>, y los polinomios se manejan fácilmente.</p>
 \[f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\dots+\frac{f^{(n)}(a)}{n!}(x-a)^n\]
 <p>El primer término es el valor; con el segundo ya tienes la recta tangente; con el tercero, una parábola que además acierta la curvatura. Cada término nuevo mejora la aproximación <b>cerca de a</b>, y sólo cerca: lejos del punto la aproximación se degrada, a veces catastróficamente.</p>
-<p><b>Los desarrollos que hay que llevar sabidos</b>, porque con ellos y un poco de álgebra se obtienen casi todos los demás:</p>
+<p class="run"><b>Los desarrollos que hay que llevar sabidos:</b> , porque con ellos y un poco de álgebra se obtienen casi todos los demás:</p>
 \[e^x=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\dots\qquad \sin x=x-\frac{x^3}{6}+\dots\qquad \cos x=1-\frac{x^2}{2}+\frac{x^4}{24}-\dots\]
 \[\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\dots\qquad \frac{1}{1-x}=1+x+x^2+x^3+\dots\]
-<p><b>El truco que ahorra todas las derivadas:</b> para desarrollar \(e^x\sin x\) no hay que derivar tres veces el producto. Se multiplican las series y se truncan:</p>
+<p class="run"><b>El truco que ahorra todas las derivadas:</b> para desarrollar \(e^x\sin x\) no hay que derivar tres veces el producto. Se multiplican las series y se truncan:</p>
 \[\left(1+x+\tfrac{x^2}{2}+\dots\right)\left(x-\tfrac{x^3}{6}+\dots\right)=x+x^2+\tfrac{x^3}{3}+\dots\]<p class="ft">Para qué sirve Taylor en un examen: los límites</p><p>La aplicación más rentable es resolver <b>indeterminaciones</b> sin L'Hôpital. Un límite del tipo 0/0 se resuelve sustituyendo numerador y denominador por sus desarrollos y simplificando.</p>
 <p>Ejemplo clásico:</p>
 \[\lim_{x\to0}\frac{\sin x-x}{x^3}=\lim_{x\to0}\frac{\left(x-\frac{x^3}{6}+\dots\right)-x}{x^3}=\lim_{x\to0}\frac{-\frac{x^3}{6}+\dots}{x^3}=-\frac16\]
 <p>Con L'Hôpital harían falta tres derivaciones sucesivas y es fácil equivocarse; con Taylor se ve de un vistazo.</p>
-<div class="box key"><p><b>La regla práctica para no truncar mal:</b> desarrolla hasta el orden del denominador. Si el denominador es \(x^3\), necesitas el numerador hasta \(x^3\). Truncar antes hace que el límite salga mal; desarrollar de más sólo es perder tiempo.</p></div>
+<div class="box key"><p class="run"><b>La regla práctica para no truncar mal:</b> desarrolla hasta el orden del denominador. Si el denominador es \(x^3\), necesitas el numerador hasta \(x^3\). Truncar antes hace que el límite salga mal; desarrollar de más sólo es perder tiempo.</p></div>
 <p>El <b>resto de Lagrange</b> cuantifica el error cometido:</p>
 \[R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}\]
 <p>con \(\xi\) entre a y x. No se conoce \(\xi\), pero sí se puede <b>acotar</b> \(|f^{(n+1)}|\) en el intervalo, y eso basta para garantizar una precisión.</p></div>
@@ -75,18 +115,18 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\lim_{x\to a}f\)</td><td>Límite</td><td class="u"></td></tr><tr><td class="sym">\(f\sim g\)</td><td>Infinitésimos equivalentes</td><td class="u"></td></tr><tr><td class="sym">\(f\'(a)\)</td><td>Derivada</td><td class="u">pendiente de la tangente</td></tr><tr><td class="sym">\(P_n(x)\)</td><td>Polinomio de Taylor</td><td class="u"></td></tr><tr><td class="sym">\(R_n(x)\)</td><td>Resto de Lagrange</td><td class="u"></td></tr><tr><td class="sym">\(x_{k+1}\)</td><td>Iteración de Newton</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · polinomio de Taylor y error</p><div data-sim="taylor"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
 <!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Límite y continuidad: la idea rigurosa</h4>
+<h4><span class="hn">1</span>Límite y continuidad: la idea rigurosa</h4>
 <div class="box key deepnote"><b>Idea clave.</b> \(\lim_{x\to a}f(x)=L\) significa que puedes acercarte a \(L\) tanto como quieras, con solo acercarte lo suficiente a \(a\).</div>
 <ul><li>\(f\) es <b>continua en \(a\)</b> si \(\lim_{x\to a}f(x)=f(a)\). Hay tres cosas que comprobar: que el límite exista, que \(f(a)\) esté definida y que coincidan.</li><li><b>Teorema de Bolzano:</b> si \(f\) es continua en \([a,b]\) y cambia de signo, hay una raíz entre medias. Es la base del método de bisección.</li></ul>
-<h4>2. Derivada: pendiente y aproximación lineal</h4>
+<h4><span class="hn">2</span>Derivada: pendiente y aproximación lineal</h4>
 <div class="eqd">\[f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}\]</div>
 <ul><li>Geométricamente, la pendiente de la <b>tangente</b>.</li><li>Como aproximación: \(f(x)\approx f(a)+f'(a)(x-a)\) cerca de \(a\).</li><li>Derivable \(\Rightarrow\) continua. El recíproco es falso (\(|x|\) en 0).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Teoremas que se usan constantemente</summary><div class="inner"><ul><li><b>Rolle:</b> si \(f(a)=f(b)\), hay un punto con \(f'(c)=0\).</li><li><b>Valor medio de Lagrange:</b> hay un \(c\) con \(f'(c)=\dfrac{f(b)-f(a)}{b-a}\). Dice que en algún momento la derivada instantánea iguala a la media.</li><li><b>Consecuencia:</b> \(f'>0\) en un intervalo implica que \(f\) es creciente en él.</li></ul>
 <p><b>L’Hôpital:</b> para indeterminaciones \(0/0\) o \(\infty/\infty\), \(\lim\frac fg=\lim\frac{f'}{g'}\) si este último existe.</p></div></details>
-<h4>3. Polinomio de Taylor</h4>
+<h4><span class="hn">3</span>Polinomio de Taylor</h4>
 <div class="eqd">\[f(x)\approx\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k\]</div>
 <ul><li>Es el polinomio que mejor imita a \(f\) cerca de \(a\) (coincide con ella y sus \(n\) primeras derivadas).</li><li>Resto de Lagrange: \(R_n=\dfrac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}\), que sirve para <b>acotar el error</b>.</li><li>Desarrollos que hay que saber: \(e^x=\sum\dfrac{x^k}{k!}\), \(\sin x=x-\dfrac{x^3}{3!}+\cdots\), \(\cos x=1-\dfrac{x^2}{2!}+\cdots\), \(\ln(1+x)=x-\dfrac{x^2}{2}+\cdots\).</li></ul>
-<h4>4. Extremos y estudio de funciones</h4>
+<h4><span class="hn">4</span>Extremos y estudio de funciones</h4>
 <ol class="pasos"><li><b>Puntos críticos:</b> resuelve \(f'(x)=0\) (y mira dónde no existe).</li><li><b>Clasifícalos:</b> \(f''>0\) mínimo, \(f''<0\) máximo. Si \(f''=0\), mira la primera derivada que no se anula (par: extremo; impar: punto de inflexión).</li><li>En un intervalo cerrado, compara también los <b>extremos</b>: el máximo absoluto puede estar en el borde.</li></ol>
 </div><!--/deep--><h3 id="t8-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>

@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,10 +86,10 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
 <div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 4</p><h2 id="t4">Aplicaciones lineales</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Determinar aplicaciones lineales, su matriz en distintas bases, núcleo e imagen, clasificarlas y cambiar de base con el esquema de composición.</p><p>f: V → W es lineal si \(f(\alpha u+\beta v)=\alpha f(u)+\beta f(v)\). Queda determinada por las imágenes de una base (<b>teorema de existencia y unicidad</b>). Su <b>matriz</b> \(M_{BB'}(f)\) tiene por columnas las coordenadas en B' de las imágenes de los vectores de B; entonces \(f(v)_{B'}=M_{BB'}(f)\,v_B\).</p>
-<p><b>Núcleo</b> \(\ker f=\{v:f(v)=0\}\) (resolver \(M\vec x=0\)); <b>imagen</b> generada por las columnas de M. \(\dim\ker f+\dim\mathrm{Im}f=\dim V\). Inyectiva (monomorfismo) ⇔ ker = {0}; sobreyectiva (epimorfismo) ⇔ rango = dim W; endomorfismo si V = W; automorfismo si biyectivo.</p>
-<p><b>Cambio de base</b>, el esquema que usan todas las soluciones oficiales: \(V_B\xrightarrow{M_{BC}}V_C\xrightarrow{M_{CC}(f)}W_C\xrightarrow{M_{CB'}}W_{B'}\), es decir \(M_{BB'}(f)=M_{CB'}\,M_{CC}(f)\,M_{BC}=(M_{B'C})^{-1}M_{CC}(f)M_{BC}\). Dos matrices del mismo endomorfismo en bases distintas son <b>semejantes</b>: \(P^{-1}AP\).</p></div>
-<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Una aplicación lineal es una matriz disfrazada</p><p>La idea central del tema, y la que hay que llevarse: <b>toda aplicación lineal entre espacios de dimensión finita es, en el fondo, multiplicar por una matriz</b>. Lo único que hay que decidir es en qué bases.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Determinar aplicaciones lineales, su matriz en distintas bases, núcleo e imagen, clasificarlas y cambiar de base con el esquema de composición.</p><p class="lede">f: V → W es lineal si \(f(\alpha u+\beta v)=\alpha f(u)+\beta f(v)\). Queda determinada por las imágenes de una base (<b>teorema de existencia y unicidad</b>). Su <b>matriz</b> \(M_{BB'}(f)\) tiene por columnas las coordenadas en B' de las imágenes de los vectores de B; entonces \(f(v)_{B'}=M_{BB'}(f)\,v_B\).</p>
+<p class="run"><b>Núcleo:</b> \(\ker f=\{v:f(v)=0\}\) (resolver \(M\vec x=0\)); <b>imagen</b> generada por las columnas de M. \(\dim\ker f+\dim\mathrm{Im}f=\dim V\). Inyectiva (monomorfismo) ⇔ ker = {0}; sobreyectiva (epimorfismo) ⇔ rango = dim W; endomorfismo si V = W; automorfismo si biyectivo.</p>
+<p class="run"><b>Cambio de base:</b> , el esquema que usan todas las soluciones oficiales: \(V_B\xrightarrow{M_{BC}}V_C\xrightarrow{M_{CC}(f)}W_C\xrightarrow{M_{CB'}}W_{B'}\), es decir \(M_{BB'}(f)=M_{CB'}\,M_{CC}(f)\,M_{BC}=(M_{B'C})^{-1}M_{CC}(f)M_{BC}\). Dos matrices del mismo endomorfismo en bases distintas son <b>semejantes</b>: \(P^{-1}AP\).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Una aplicación lineal es una matriz disfrazada</p><p class="lede">La idea central del tema, y la que hay que llevarse: <b>toda aplicación lineal entre espacios de dimensión finita es, en el fondo, multiplicar por una matriz</b>. Lo único que hay que decidir es en qué bases.</p>
 <p>¿Por qué? Porque una aplicación lineal queda <b>completamente determinada por lo que hace a los vectores de una base</b>. Si sabes dónde van \(e_1,e_2,e_3\), ya sabes dónde va cualquier otro vector, porque</p>
 \[f(x,y,z)=f(xe_1+ye_2+ze_3)=x\,f(e_1)+y\,f(e_2)+z\,f(e_3)\]
 <p>Y eso es exactamente multiplicar por la matriz que tiene a \(f(e_1),f(e_2),f(e_3)\) <b>por columnas</b>. De ahí la regla que resuelve la mitad de los ejercicios:</p>
@@ -60,7 +100,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>La relación entre ambos es el <b>teorema de la dimensión</b>, que es pura contabilidad:</p>
 \[\dim\ker f+\dim\operatorname{Im}f=\dim V\]
 <p>Léelo así: las dimensiones del espacio de partida o se destruyen (van al núcleo) o sobreviven (van a la imagen). No hay tercera opción. Por eso, si una aplicación de ℝ³ en ℝ³ tiene núcleo de dimensión 1, su imagen es un plano, y viceversa.</p>
-<p><b>Cómo se calculan.</b> Con la matriz \(M\) delante:</p>
+<p class="run"><b>Cómo se calculan.:</b> Con la matriz \(M\) delante:</p>
 <ul>
 <li>\(\ker f\): resolver el sistema homogéneo \(M\vec x=\vec 0\).</li>
 <li>\(\operatorname{Im}f\): está generada por <b>las columnas</b> de M; se escalonan para quedarse con una base.</li>
@@ -81,22 +121,22 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>y por tanto</p>
 \[M_{BB'}(f)=M_{C'B'}\cdot M_{CC'}(f)\cdot M_{BC}\]
 <p>La forma de no perderse es leerlo <b>de derecha a izquierda</b>, como se aplican las matrices: primero llevo las coordenadas de B a C, luego aplico f, luego paso de C′ a B′.</p>
-<p><b>El caso particular que más cae</b> es el de un endomorfismo con la misma base a ambos lados:</p>
+<p class="run"><b>El caso particular que más cae:</b> es el de un endomorfismo con la misma base a ambos lados:</p>
 \[A'=P^{-1}AP\]
 <p>donde P es la matriz de cambio de base. Dos matrices relacionadas así se llaman <b>semejantes</b> y representan la misma aplicación vista desde dos sitios. Comparten determinante, traza, rango y valores propios: todo lo que no depende del observador. Eso enlaza directamente con el tema siguiente, donde se busca la base en la que la matriz es lo más simple posible.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Qué hace una matriz</div><svg viewBox="0 0 560 262" role="img" aria-label="Transformación del cuadrado unidad" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="22" y1="170" x2="152.8" y2="170" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><polygon points="160,170 152.7,173.3 152.7,166.7" fill="var(--muted)"/><line x1="30" y1="178" x2="30" y2="55.2" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><polygon points="30,48 33.3,55.3 26.7,55.3" fill="var(--muted)"/><polygon points="30,170 92,170 92,108 30,108" fill="var(--muted)" stroke="var(--muted)" stroke-width="2.2" opacity="0.22" stroke-linejoin="round" stroke-linecap="round"/><polygon points="30,170 92,170 92,108 30,108" fill="none" stroke="var(--muted)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="30" y1="170" x2="82.1" y2="170" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="92,170 82,174.5 82,165.5" fill="var(--warn,#b8730c)"/><line x1="30" y1="170" x2="30" y2="117.9" stroke="var(--c2,#3a63c4)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="30,108 34.5,118 25.5,118" fill="var(--c2,#3a63c4)"/><text x="95" y="208" fill="var(--fg)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">identidad</text><line x1="202" y1="170" x2="332.8" y2="170" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><polygon points="340,170 332.7,173.3 332.7,166.7" fill="var(--muted)"/><line x1="210" y1="178" x2="210" y2="55.2" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><polygon points="210,48 213.3,55.3 206.7,55.3" fill="var(--muted)"/><polygon points="210,170 303,151.4 334,77 241,95.6" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="0.22" stroke-linejoin="round" stroke-linecap="round"/><polygon points="210,170 303,151.4 334,77 241,95.6" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="210" y1="170" x2="293.3" y2="153.3" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="303,151.4 294,157.8 292.3,149" fill="var(--warn,#b8730c)"/><line x1="210" y1="170" x2="237.2" y2="104.7" stroke="var(--c2,#3a63c4)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="241,95.6 241.3,106.6 233,103.1" fill="var(--c2,#3a63c4)"/><text x="275" y="208" fill="var(--fg)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">f(x) = A x</text><text x="382" y="70" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="700" opacity="1">Columnas de A =</text><text x="382" y="89" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="700" opacity="1">imágenes de la base:</text><text x="382" y="128" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">A = [f(e₁) | f(e₂)]</text><text x="382" y="176" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">El cuadrado pasa a un</text><text x="382" y="194" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">paralelogramo de área</text><text x="382" y="212" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">|det A| · 1.</text></svg><figcaption>La flecha naranja es f(e₁), la azul f(e₂): son las columnas de A. Una aplicación lineal queda determinada por lo que hace con la base.</figcaption></figure><figure class="ill"><div class="ill-t">Teorema de la dimensión</div><svg viewBox="0 0 560 262" role="img" aria-label="Núcleo e imagen" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="30" y="40" width="200" height="170" rx="12" fill="var(--surface,#fff)" stroke="var(--tc,var(--accent))" stroke-width="1.8" opacity="1"/><rect x="330" y="40" width="200" height="170" rx="12" fill="var(--surface,#fff)" stroke="var(--c2,#3a63c4)" stroke-width="1.8" opacity="1"/><text x="130" y="32" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Dominio V</text><text x="430" y="32" fill="var(--c2,#3a63c4)" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Codominio W</text><ellipse cx="110" cy="130" rx="56" ry="26" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.22"/><text x="110" y="134" fill="var(--c5,#c43d63)" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Ker f</text><ellipse cx="430" cy="130" rx="66" ry="52" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.2"/><text x="430" y="134" fill="var(--c6,#2c8a52)" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Im f</text><circle cx="430" cy="152" r="4.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="440" y="170" fill="var(--muted)" font-size="13" text-anchor="start" opacity="1">0</text><line x1="232" y1="90" x2="317" y2="90" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linecap="round"/><polygon points="326,90 316.9,94.1 316.9,85.9" fill="var(--tc,var(--accent))"/><text x="279" y="80" fill="var(--tc,var(--accent))" font-size="15" text-anchor="middle" font-style="italic" opacity="1">f</text><line x1="165" y1="152" x2="411" y2="150.1" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="420,150 410.9,154.1 410.8,146" fill="var(--c5,#c43d63)"/><text x="280" y="172" fill="var(--c5,#c43d63)" font-size="13.5" text-anchor="middle" font-weight="700" opacity="1">todo Ker f ↦ 0</text><text x="280" y="240" fill="var(--tc,var(--accent))" font-size="15.5" text-anchor="middle" font-weight="700" opacity="1">dim V = dim Ker f + dim Im f</text><text x="130" y="200" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">Ker f = {v : f(v) = 0}</text><text x="430" y="200" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">Im f = {f(v)}</text></svg><figcaption>Lo que el núcleo aplasta en el 0 es dimensión que la imagen pierde: la dimensión del dominio se reparte entre núcleo e imagen.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(M_{BB\'}(f)\)</td><td>Matriz de f en bases B (salida) y B' (llegada)</td><td class="u">columnas: imágenes de B en B'</td></tr><tr><td class="sym">\(\ker f\)</td><td>Núcleo</td><td class="u">\(f(v)=0\)</td></tr><tr><td class="sym">\(\mathrm{Im}\,f\)</td><td>Imagen</td><td class="u">columnas de M</td></tr><tr><td class="sym">\(f\circ g\)</td><td>Composición</td><td class="u">\(M(f)M(g)\)</td></tr><tr><td class="sym">\(\mathrm{End}(V)\)</td><td>Endomorfismos</td><td class="u">\(V\to V\)</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · qué hace una aplicación lineal con el plano: imagen, núcleo y determinante</p><div data-sim="aplicacion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
 <!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Aplicación lineal y su matriz</h4>
+<h4><span class="hn">1</span>Aplicación lineal y su matriz</h4>
 <div class="eqd">\[f(\vec u+\vec v)=f(\vec u)+f(\vec v),\qquad f(k\vec u)=kf(\vec u)\]</div>
 <div class="box key deepnote"><b>Idea clave.</b> una aplicación lineal queda determinada por lo que hace con una <b>base</b>. Las columnas de su matriz son las imágenes de los vectores de la base.</div>
-<h4>2. Núcleo e imagen</h4>
+<h4><span class="hn">2</span>Núcleo e imagen</h4>
 <ul><li><b>Núcleo</b> \(\ker f=\{\vec v: f(\vec v)=0\}\): lo que la aplicación «aplasta» a cero.</li><li><b>Imagen</b> \(\operatorname{Im}f\): todos los vectores que se pueden obtener. Es el espacio columna de la matriz.</li></ul>
 <div class="eqd">\[\dim V=\dim\ker f+\dim\operatorname{Im}f\qquad\text{(teorema de la dimensión)}\]</div>
 <ul><li><b>Inyectiva</b> \(\iff\ker f=\{0\}\).</li><li><b>Sobreyectiva</b> \(\iff\operatorname{Im}f=\) espacio de llegada.</li><li><b>Isomorfismo</b> (biyectiva) \(\iff\) la matriz es cuadrada con \(\det\neq0\).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Cómo se calculan en la práctica</summary><div class="inner"><ol class="pasos"><li>Escribe la matriz \(A\) de \(f\).</li><li><b>Núcleo:</b> resuelve \(A\vec x=0\). Una base del núcleo son los vectores que salen de los parámetros libres.</li><li><b>Imagen:</b> las columnas de \(A\) donde hay pivote forman una base.</li><li>Comprueba con el teorema de la dimensión.</li></ol></div></details>
-<h4>3. Composición y cambio de base</h4>
+<h4><span class="hn">3</span>Composición y cambio de base</h4>
 <ul><li>La matriz de \(g\circ f\) es el producto \(B\,A\) (primero \(A\)).</li><li>Si cambias de base, la matriz de \(f\) pasa a ser \(P^{-1}AP\). Dos matrices así relacionadas son <b>semejantes</b>: representan la misma aplicación en bases distintas, y comparten determinante, traza y valores propios.</li></ul>
 </div><!--/deep--><h3 id="t4-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>

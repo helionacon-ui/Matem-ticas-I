@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,10 +86,10 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 3</p><h2 id="t3">Espacios vectoriales</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Reconocer subespacios, pasar entre generadores, base, ecuaciones paramétricas y cartesianas, calcular dimensión, coordenadas, cambios de base, suma e intersección.</p><p>Un <b>subespacio</b> es un subconjunto cerrado para la suma y el producto por escalares (contiene al 0). En ℝ³ los subespacios son {0}, rectas y planos por el origen, y ℝ³. Un conjunto es <b>linealmente independiente</b> si la única combinación nula es la trivial; es <b>base</b> si es LI y generador; todas las bases tienen el mismo número de vectores: la <b>dimensión</b>.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Reconocer subespacios, pasar entre generadores, base, ecuaciones paramétricas y cartesianas, calcular dimensión, coordenadas, cambios de base, suma e intersección.</p><p class="lede">Un <b>subespacio</b> es un subconjunto cerrado para la suma y el producto por escalares (contiene al 0). En ℝ³ los subespacios son {0}, rectas y planos por el origen, y ℝ³. Un conjunto es <b>linealmente independiente</b> si la única combinación nula es la trivial; es <b>base</b> si es LI y generador; todas las bases tienen el mismo número de vectores: la <b>dimensión</b>.</p>
 <p>El apunte del curso «Formas de dar un subespacio» es la receta de todos los exámenes: <b>generadores → base</b> (escalonar por filas o menores), <b>base → paramétricas → cartesianas</b> (eliminar parámetros o imponer rango) y <b>cartesianas → base</b> (resolver el sistema homogéneo). Número de ecuaciones cartesianas = dim V − dim W.</p>
-<p><b>Fórmula de Grassmann</b>: \(\dim(U+V)=\dim U+\dim V-\dim(U\cap V)\). U+V se genera con la unión de bases; U∩V se obtiene imponiendo las ecuaciones de uno a los vectores genéricos del otro. Suma directa si \(U\cap V=\{0\}\).</p></div>
-<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es un espacio vectorial, en cristiano</p><p>Un espacio vectorial es, simplemente, <b>un sitio donde se puede sumar y multiplicar por números</b> sin salirse. Nada más. Los vectores de ℝ³ cumplen eso, pero también los polinomios de grado ≤ 3, las matrices 2×2 o las funciones continuas: todos son espacios vectoriales, y por eso lo que aprendes aquí sirve para todos ellos a la vez.</p>
+<p class="run"><b>Fórmula de Grassmann:</b> \(\dim(U+V)=\dim U+\dim V-\dim(U\cap V)\). U+V se genera con la unión de bases; U∩V se obtiene imponiendo las ecuaciones de uno a los vectores genéricos del otro. Suma directa si \(U\cap V=\{0\}\).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es un espacio vectorial, en cristiano</p><p class="lede">Un espacio vectorial es, simplemente, <b>un sitio donde se puede sumar y multiplicar por números</b> sin salirse. Nada más. Los vectores de ℝ³ cumplen eso, pero también los polinomios de grado ≤ 3, las matrices 2×2 o las funciones continuas: todos son espacios vectoriales, y por eso lo que aprendes aquí sirve para todos ellos a la vez.</p>
 <p>Un <b>subespacio</b> es un trozo del espacio que sigue siendo un espacio por sí mismo. Para comprobarlo no hace falta repasar los ocho axiomas: basta con tres cosas, y la primera descarta la mitad de los casos.</p>
 <ol>
 <li>¿Contiene al vector <b>cero</b>? Si no, ya no es subespacio y has terminado.</li>
@@ -64,7 +104,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <tr><td><b>Cartesianas</b></td><td>\(x-y+z=0\)</td><td>filtro: le das un vector y dice si está o no</td></tr>
 </table></div>
 <p>Las dos últimas son opuestas en su utilidad: con las <b>paramétricas</b> es fácil <i>generar</i> elementos pero costoso comprobar si uno pertenece; con las <b>cartesianas</b> es inmediato <i>comprobar</i> pero costoso generar. Por eso un ejercicio de intersección se resuelve siempre pasando uno de los dos subespacios a cartesianas.</p>
-<p><b>Los caminos entre ellas:</b></p>
+<p class="run"><b>Los caminos entre ellas:</b> </p>
 <ul>
 <li><b>Generadores → base</b>: escalonar por filas; las filas no nulas son la base.</li>
 <li><b>Base → paramétricas</b>: escribir el vector genérico \(\lambda v_1+\mu v_2\) componente a componente.</li>
@@ -80,22 +120,22 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>La <b>fórmula de Grassmann</b> relaciona las cuatro dimensiones:</p>
 \[\dim(U+V)=\dim U+\dim V-\dim(U\cap V)\]
 <p>Es la misma idea que el principio de inclusión-exclusión con conjuntos: al juntar las dos bases, lo que está en la intersección se cuenta dos veces y hay que restarlo una.</p>
-<p><b>Su uso práctico es como comprobación.</b> Calculas tres de las cuatro dimensiones (las fáciles: dim U, dim V y dim(U+V) escalonando) y la fórmula te da la cuarta. Si luego calculas la intersección a mano y no coincide, hay un error en algún sitio. En los exámenes se usa casi siempre así.</p>
+<p class="run"><b>Su uso práctico es como comprobación.:</b> Calculas tres de las cuatro dimensiones (las fáciles: dim U, dim V y dim(U+V) escalonando) y la fórmula te da la cuarta. Si luego calculas la intersección a mano y no coincide, hay un error en algún sitio. En los exámenes se usa casi siempre así.</p>
 <p>Cuando \(U\cap V=\{0\}\), la suma se llama <b>directa</b> y se escribe \(U\oplus V\): entonces cada vector de la suma se descompone de <b>una única manera</b>.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Una base es un sistema de ejes (no tienen que ser ortogonales)</div><svg viewBox="0 0 560 262" role="img" aria-label="Base y coordenadas" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="24.2" y1="275" x2="118.7" y2="5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="78.2" y1="261.5" x2="172.7" y2="-8.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="132.2" y1="248" x2="226.7" y2="-22" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="186.2" y1="234.5" x2="280.7" y2="-35.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="240.2" y1="221" x2="334.7" y2="-49" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="294.2" y1="207.5" x2="388.7" y2="-62.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="24.2" y1="275" x2="294.2" y2="207.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="43.1" y1="221" x2="313.1" y2="153.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="62" y1="167" x2="332" y2="99.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="80.9" y1="113" x2="350.9" y2="45.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="99.8" y1="59" x2="369.8" y2="-8.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="118.7" y1="5" x2="388.7" y2="-62.5" stroke="var(--line)" stroke-width="1" opacity="1" stroke-linecap="round"/><line x1="170" y1="140" x2="213.5" y2="129.1" stroke="var(--warn,#b8730c)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="224,126.5 214.6,133.9 212.2,124.4" fill="var(--warn,#b8730c)"/><line x1="170" y1="140" x2="185.3" y2="96.2" stroke="var(--c2,#3a63c4)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="188.9,86 189.9,98 180.7,94.7" fill="var(--c2,#3a63c4)"/><text x="230" y="142.5" fill="var(--warn,#b8730c)" font-size="15" text-anchor="start" font-weight="700" opacity="1">b₁</text><text x="170.9" y="82" fill="var(--c2,#3a63c4)" font-size="15" text-anchor="start" font-weight="700" opacity="1">b₂</text><line x1="170" y1="140" x2="297.9" y2="38.7" stroke="var(--tc,var(--accent))" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="306.4,32 300.8,42.6 294.7,35" fill="var(--tc,var(--accent))"/><circle cx="306.4" cy="32" r="4.5" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><line x1="278" y1="113" x2="306.4" y2="32" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><line x1="198.3" y1="59" x2="306.4" y2="32" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><text x="314.4" y="26" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">v = 2b₁ + 1,5 b₂</text><text x="348" y="76" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">Base: independientes y</text><text x="348" y="95" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">generan el espacio.</text><text x="348" y="134" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">Coordenadas de v:</text><text x="348" y="160" fill="var(--tc,var(--accent))" font-size="16" text-anchor="start" font-weight="700" opacity="1">[v]_B = (2 , 1,5)</text><text x="348" y="200" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">nº de vectores de la base</text><text x="348" y="218" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">= dimensión.</text></svg><figcaption>Las coordenadas dicen cuántos pasos dar en cada vector de la base. Cambiar de base cambia las coordenadas, no el vector.</figcaption></figure><figure class="ill"><div class="ill-t">Subespacio: pasa por el origen y es cerrado</div><svg viewBox="0 0 560 262" role="img" aria-label="Subespacios" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><polygon points="25,134 155,92 193,130 63,172" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.2" stroke-linejoin="round" stroke-linecap="round"/><polygon points="25,134 155,92 193,130 63,172" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="109" y1="132" x2="109" y2="75.2" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="109,68 112.3,75.3 105.7,75.3" fill="var(--muted)"/><line x1="109" y1="132" x2="186.1" y2="108.1" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="193,106 187,111.3 185.1,105" fill="var(--muted)"/><line x1="109" y1="132" x2="59.1" y2="164.1" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="53,168 57.4,161.3 60.9,166.8" fill="var(--muted)"/><circle cx="109" cy="132" r="4.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="95" y="198" fill="var(--c6,#2c8a52)" font-size="15" text-anchor="middle" font-weight="700" opacity="1">Subespacio</text><text x="95" y="218" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">contiene el 0 y es cerrado</text><text x="95" y="236" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">para + y para ·λ</text><polygon points="260,74 390,32 428,70 298,112" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.18" stroke-linejoin="round" stroke-linecap="round"/><polygon points="260,74 390,32 428,70 298,112" fill="none" stroke="var(--c5,#c43d63)" stroke-width="2.2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="344" y1="170" x2="344" y2="113.2" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="344,106 347.3,113.3 340.7,113.3" fill="var(--muted)"/><line x1="344" y1="170" x2="421.1" y2="146.1" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="428,144 422,149.3 420.1,143" fill="var(--muted)"/><line x1="344" y1="170" x2="294.1" y2="202.1" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="288,206 292.4,199.3 295.9,204.8" fill="var(--muted)"/><circle cx="344" cy="170" r="4.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="350" y="234" fill="var(--c5,#c43d63)" font-size="15" text-anchor="middle" font-weight="700" opacity="1">NO es subespacio</text><text x="350" y="252" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">no contiene el origen</text><text x="498" y="100" fill="var(--warn,#b8730c)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">¡Trampa!</text><text x="498" y="120" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">x + y + z = 1</text><text x="498" y="140" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">no pasa por 0</text></svg><figcaption>Un plano o una recta es subespacio solo si pasa por el origen. Si la ecuación tiene término independiente (x+y+z = 1), no lo es.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\langle u_1,\dots,u_k\rangle\)</td><td>Subespacio generado</td><td class="u"></td></tr><tr><td class="sym">\(\dim V\)</td><td>Dimensión</td><td class="u">n.º de vectores de una base</td></tr><tr><td class="sym">\(v_B=(\alpha_i)_B\)</td><td>Coordenadas en la base B</td><td class="u"></td></tr><tr><td class="sym">\(M_{BC}\)</td><td>Matriz de cambio de B a C</td><td class="u">columnas: B en C</td></tr><tr><td class="sym">\(U+V,\ U\cap V\)</td><td>Suma e intersección</td><td class="u">Grassmann</td></tr><tr><td class="sym">\(U\oplus V\)</td><td>Suma directa</td><td class="u">\(U\cap V=\{0\}\)</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · una base distinta de la canónica y las coordenadas de un vector</p><div data-sim="bases"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
 <!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Qué es un espacio vectorial</h4>
+<h4><span class="hn">1</span>Qué es un espacio vectorial</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un conjunto donde puedes <b>sumar</b> elementos y <b>multiplicarlos por números</b> sin salirte, con las reglas habituales. No hace falta que sean «flechas»: también lo son los polinomios o las funciones.</div>
 <p>Un <b>subespacio</b> es un subconjunto que sigue siendo espacio vectorial. Para comprobarlo basta ver tres cosas:</p>
 <ol class="pasos"><li>Contiene el vector cero.</li><li>Cerrado para la suma.</li><li>Cerrado para el producto por escalares.</li></ol>
-<h4>2. Independencia lineal, base y dimensión</h4>
+<h4><span class="hn">2</span>Independencia lineal, base y dimensión</h4>
 <ul><li><b>Linealmente independientes:</b> ninguno se puede escribir como combinación de los demás. Equivale a que \(c_1\vec v_1+\cdots+c_k\vec v_k=0\) solo tenga la solución \(c_i=0\).</li><li><b>Base:</b> conjunto independiente que genera todo el espacio. Cada vector se escribe de <b>una única forma</b> con ella (sus coordenadas).</li><li><b>Dimensión:</b> número de vectores de una base. Es el mismo para todas las bases.</li></ul>
 <p>En la práctica se reduce todo a <b>escalonar una matriz</b> y contar pivotes.</p>
 <details class="dem"><summary><span class="pn">∴</span>Método práctico: ¿son independientes? ¿qué dimensión tiene lo que generan?</summary><div class="inner"><ol class="pasos"><li>Pon los vectores como filas (o columnas) de una matriz.</li><li>Escalona.</li><li>El número de filas no nulas es el <b>rango</b> = dimensión del subespacio generado.</li><li>Si el rango es igual al número de vectores, son independientes.</li></ol>
 <div class="box trap deepnote"><b>Cuidado.</b> Al escalonar por filas, la base del espacio <b>fila</b> son las filas no nulas del resultado; la base del espacio <b>columna</b> son las columnas <i>originales</i> en las que hay pivote.</div></div></details>
-<h4>3. Cambio de base</h4>
+<h4><span class="hn">3</span>Cambio de base</h4>
 <div class="eqd">\[[\vec x]_{B}=P^{-1}\,[\vec x]_{B'},\qquad P=\text{matriz con los vectores de }B'\text{ escritos en }B\]</div>
 <p>Las coordenadas cambian, pero el vector es el mismo. Es un cálculo muy habitual en examen, y se resuelve de forma mecánica con Gauss.</p>
 <details class="dem"><summary><span class="pn">∴</span>Fórmula de Grassmann</summary><div class="inner"><p>Para dos subespacios \(U\) y \(W\):</p>

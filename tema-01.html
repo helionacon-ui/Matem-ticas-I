@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,10 +86,10 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 1</p><h2 id="t1">Conceptos básicos y números complejos</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Manejar lógica elemental, conjuntos, aplicaciones (inyectiva, sobreyectiva, biyectiva), inducción y los números complejos en forma binómica y polar.</p><p>El tema empieza con el lenguaje: <b>proposiciones</b>, conectores (¬, ∧, ∨, →, ↔), tautologías (modus ponens, modus tollens, leyes de Morgan) y los <b>métodos de demostración</b>: directo, reducción al absurdo e <b>inducción</b> (probar P(1) y que P(n) ⇒ P(n+1)). En clase se demuestran así \(1+2+\dots+n=\frac{n(n+1)}2\) y \((1+\dots+n)^2=1^3+\dots+n^3\).</p>
-<p><b>Aplicaciones</b>: f: A → B asigna a cada elemento de A una única imagen. Inyectiva si imágenes distintas vienen de elementos distintos; sobreyectiva si Im f = B; biyectiva si ambas (y entonces existe \(f^{-1}\)). La composición no es conmutativa. <b>Estructuras</b>: grupo, cuerpo (ℝ y ℂ lo son; ℤ no), ley de composición externa (la que define un espacio vectorial).</p>
-<p><b>Números complejos</b>: \(z=a+bi\) con \(i^2=-1\); conjugado \(\bar z=a-bi\); módulo \(|z|=\sqrt{a^2+b^2}\); argumento principal en \((-\pi,\pi]\), cuidando el cuadrante al usar la arcotangente. El <b>Teorema fundamental del álgebra</b>: todo polinomio de grado n en ℂ tiene n raíces (contadas con multiplicidad).</p></div>
-<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es demostrar algo</p><p>En el instituto, «demostrar» era comprobar que una fórmula funciona con varios números. En la universidad significa otra cosa: convencer a cualquiera, con razonamientos encadenados, de que algo es cierto <b>para todos los casos</b>, que normalmente son infinitos.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Manejar lógica elemental, conjuntos, aplicaciones (inyectiva, sobreyectiva, biyectiva), inducción y los números complejos en forma binómica y polar.</p><p class="lede">El tema empieza con el lenguaje: <b>proposiciones</b>, conectores (¬, ∧, ∨, →, ↔), tautologías (modus ponens, modus tollens, leyes de Morgan) y los <b>métodos de demostración</b>: directo, reducción al absurdo e <b>inducción</b> (probar P(1) y que P(n) ⇒ P(n+1)). En clase se demuestran así \(1+2+\dots+n=\frac{n(n+1)}2\) y \((1+\dots+n)^2=1^3+\dots+n^3\).</p>
+<p class="run"><b>Aplicaciones:</b> f: A → B asigna a cada elemento de A una única imagen. Inyectiva si imágenes distintas vienen de elementos distintos; sobreyectiva si Im f = B; biyectiva si ambas (y entonces existe \(f^{-1}\)). La composición no es conmutativa. <b>Estructuras</b>: grupo, cuerpo (ℝ y ℂ lo son; ℤ no), ley de composición externa (la que define un espacio vectorial).</p>
+<p class="run"><b>Números complejos:</b> \(z=a+bi\) con \(i^2=-1\); conjugado \(\bar z=a-bi\); módulo \(|z|=\sqrt{a^2+b^2}\); argumento principal en \((-\pi,\pi]\), cuidando el cuadrante al usar la arcotangente. El <b>Teorema fundamental del álgebra</b>: todo polinomio de grado n en ℂ tiene n raíces (contadas con multiplicidad).</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es demostrar algo</p><p class="lede">En el instituto, «demostrar» era comprobar que una fórmula funciona con varios números. En la universidad significa otra cosa: convencer a cualquiera, con razonamientos encadenados, de que algo es cierto <b>para todos los casos</b>, que normalmente son infinitos.</p>
 <p>Hay tres formas de hacerlo y conviene saber cuál usar:</p>
 <ul>
 <li><b>Demostración directa</b>: partes de la hipótesis y llegas a la conclusión. «Si n es par, n² es par»: n = 2k, luego n² = 4k² = 2(2k²), que es par. Listo.</li>
@@ -57,7 +97,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <li><b>Inducción</b>: para afirmaciones que dependen de un número natural n. Se prueban <b>dos cosas</b>: que se cumple para n = 1, y que <b>si</b> se cumple para n <b>entonces</b> se cumple para n+1.</li>
 </ul>
 <p>La inducción es la que más cuesta al principio, y conviene entender la imagen mental: es una fila infinita de fichas de dominó. Probar P(1) es tirar la primera. Probar que P(n) ⇒ P(n+1) es garantizar que cada ficha tira a la siguiente. Con esas dos cosas, caen todas, aunque sean infinitas.</p>
-<p><b>Dónde está la trampa.</b> En el paso inductivo <b>no</b> tienes que demostrar P(n+1) desde cero: tienes derecho a <b>usar</b> P(n), que es la hipótesis de inducción. Si no la usas en ningún momento, casi seguro que algo va mal.</p><p class="ft">Los complejos sin misterio</p><p>Los números complejos aparecen porque \(x^2+1=0\) no tiene solución entre los reales. En vez de resignarse, se inventa un símbolo \(i\) con la propiedad \(i^2=-1\) y se construye un conjunto nuevo. No hay nada más místico que eso: es la misma operación mental que inventar los negativos para poder restar 3 − 5, o las fracciones para dividir 1 entre 3.</p>
+<p class="run"><b>Dónde está la trampa.:</b> En el paso inductivo <b>no</b> tienes que demostrar P(n+1) desde cero: tienes derecho a <b>usar</b> P(n), que es la hipótesis de inducción. Si no la usas en ningún momento, casi seguro que algo va mal.</p><p class="ft">Los complejos sin misterio</p><p>Los números complejos aparecen porque \(x^2+1=0\) no tiene solución entre los reales. En vez de resignarse, se inventa un símbolo \(i\) con la propiedad \(i^2=-1\) y se construye un conjunto nuevo. No hay nada más místico que eso: es la misma operación mental que inventar los negativos para poder restar 3 − 5, o las fracciones para dividir 1 entre 3.</p>
 <p>Un complejo se puede mirar de <b>tres maneras</b>, y todo el tema consiste en saber pasar de una a otra:</p>
 <div class="tw"><table><tr><th>Forma</th><th>Aspecto</th><th>Para qué es buena</th></tr>
 <tr><td><b>Binómica</b></td><td>\(z=a+bi\)</td><td>sumar y restar</td></tr>
@@ -65,30 +105,30 @@ details>summary{line-height:1.7;padding-block:.5em}
 <tr><td><b>Exponencial</b></td><td>\(z=re^{i\theta}\)</td><td>lo mismo que la polar, pero se opera como con potencias</td></tr>
 </table></div>
 <p>El puente entre ellas es el dibujo: un complejo es un <b>punto del plano</b>, con \(a\) en el eje horizontal y \(b\) en el vertical. Entonces \(r=|z|=\sqrt{a^2+b^2}\) es la distancia al origen y \(\theta\) el ángulo con el eje positivo.</p>
-<p><b>El error que comete todo el mundo con el argumento.</b> La calculadora, al hacer \(\arctan(b/a)\), siempre devuelve un ángulo entre −90° y 90°, así que te manda al primer o cuarto cuadrante. Si el punto está a la izquierda (\(a<0\)), hay que <b>sumar 180°</b>. Por eso la regla práctica es: <i>dibuja el punto antes de dar el ángulo</i>. Para \(z=-1+i\), la arcotangente da −45°, pero el punto está arriba a la izquierda: el argumento es 135°.</p><p class="ft">Por qué la forma polar lo resuelve todo</p><p>Multiplicar en binómica es engorroso. En polar es trivial: <b>los módulos se multiplican y los argumentos se suman</b>. Y por tanto elevar a una potencia es elevar el módulo y multiplicar el ángulo, que es la fórmula de De Moivre.</p>
+<p class="run"><b>El error que comete todo el mundo con el argumento.:</b> La calculadora, al hacer \(\arctan(b/a)\), siempre devuelve un ángulo entre −90° y 90°, así que te manda al primer o cuarto cuadrante. Si el punto está a la izquierda (\(a<0\)), hay que <b>sumar 180°</b>. Por eso la regla práctica es: <i>dibuja el punto antes de dar el ángulo</i>. Para \(z=-1+i\), la arcotangente da −45°, pero el punto está arriba a la izquierda: el argumento es 135°.</p><p class="ft">Por qué la forma polar lo resuelve todo</p><p>Multiplicar en binómica es engorroso. En polar es trivial: <b>los módulos se multiplican y los argumentos se suman</b>. Y por tanto elevar a una potencia es elevar el módulo y multiplicar el ángulo, que es la fórmula de De Moivre.</p>
 <p>Un ejemplo que enseña el truco entero. Para calcular \((1+i)^{10}\), nadie debería desarrollar el binomio. Se pasa a polar:</p>
 \[|1+i|=\sqrt2,\qquad \arg(1+i)=45^\circ\quad\Rightarrow\quad 1+i=\sqrt2_{\,45^\circ}\]
 \[(1+i)^{10}=(\sqrt2)^{10}_{\ 450^\circ}=32_{\,450^\circ}=32_{\,90^\circ}=32i\]
 <p>Tres líneas en lugar de media página. Fíjate en el detalle de restar 360° al final: los ángulos se dan siempre reducidos.</p>
-<p><b>Las raíces n-ésimas</b> son el mismo truco al revés, y son lo que más cae. Un número complejo tiene <b>exactamente n raíces n-ésimas</b>, no una. Se obtienen con</p>
+<p class="run"><b>Las raíces n-ésimas:</b> son el mismo truco al revés, y son lo que más cae. Un número complejo tiene <b>exactamente n raíces n-ésimas</b>, no una. Se obtienen con</p>
 \[\sqrt[n]{z}=\sqrt[n]{r}_{\ \frac{\theta+360^\circ k}{n}},\qquad k=0,1,\dots,n-1\]
 <p>y están repartidas <b>uniformemente sobre una circunferencia</b> de radio \(\sqrt[n]{r}\), separadas 360°/n. Esa imagen es la comprobación más rápida: si te salen dos raíces juntas o una fuera de la circunferencia, hay un error.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El número complejo como punto del plano</div><svg viewBox="0 0 560 262" role="img" aria-label="Plano de Argand y forma polar" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="20" y1="140" x2="272.8" y2="140" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><polygon points="280,140 272.7,143.3 272.7,136.7" fill="var(--muted)"/><line x1="150" y1="250" x2="150" y2="27.2" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><polygon points="150,20 153.3,27.3 146.7,27.3" fill="var(--muted)"/><text x="280" y="158" fill="var(--muted)" font-size="13.5" text-anchor="end" opacity="1">Re</text><text x="158" y="28" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Im</text><line x1="150" y1="140" x2="231.4" y2="63.7" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="239.3,56.3 234.6,67.4 227.9,60.2" fill="var(--tc,var(--accent))"/><line x1="239.3" y1="56.3" x2="239.3" y2="140" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><line x1="239.3" y1="56.3" x2="150" y2="56.3" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><circle cx="150" cy="140" r="122.1" fill="none" stroke="var(--line)" stroke-width="1.3" opacity="1" stroke-dasharray="5 5"/><path d="M184,140 A34,34 0 0 0 174.8,116.7" fill="none" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="190" y="132" fill="var(--warn,#b8730c)" font-size="15" text-anchor="start" font-style="italic" opacity="1">θ</text><text x="248.3" y="70.3" fill="var(--tc,var(--accent))" font-size="17" text-anchor="start" font-weight="700" opacity="1">z</text><text x="168.6" y="90.2" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">|z|</text><text x="239.3" y="157" fill="var(--muted)" font-size="14" text-anchor="middle" opacity="1">a</text><text x="140" y="61.3" fill="var(--muted)" font-size="14" text-anchor="end" opacity="1">b</text><text x="312" y="64" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">Forma binómica: a + bi</text><text x="312" y="98" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">Módulo: |z| = √(a² + b²)</text><text x="312" y="132" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">Argumento: θ = arctg(b/a)</text><text x="312" y="150" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">(¡mira el cuadrante!)</text><text x="312" y="190" fill="var(--tc,var(--accent))" font-size="16.5" text-anchor="start" font-weight="700" opacity="1">Polar: z = r·e^{iθ}</text><text x="312" y="214" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Producto: se multiplican</text><text x="312" y="232" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">módulos y se SUMAN ángulos.</text></svg><figcaption>El módulo es la distancia al origen y el argumento el ángulo con el eje real. Multiplicar por z equivale a escalar por |z| y girar θ.</figcaption></figure><figure class="ill"><div class="ill-t">Las n raíces forman un polígono regular</div><svg viewBox="0 0 560 262" role="img" aria-label="Raíces n-ésimas" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><circle cx="170" cy="130" r="98" fill="none" stroke="var(--line)" stroke-width="1.4" opacity="1"/><line x1="58" y1="130" x2="276.8" y2="130" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><polygon points="284,130 276.7,133.3 276.7,126.7" fill="var(--muted)"/><line x1="170" y1="240" x2="170" y2="25.2" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><polygon points="170,18 173.3,25.3 166.7,25.3" fill="var(--muted)"/><polygon points="264.7,104.6 195.4,35.3 100.7,60.7 75.3,155.4 144.6,224.7 239.3,199.3" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.18" stroke-linejoin="round" stroke-linecap="round"/><polygon points="264.7,104.6 195.4,35.3 100.7,60.7 75.3,155.4 144.6,224.7 239.3,199.3" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><circle cx="264.7" cy="104.6" r="5.5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><text x="274.7" y="96.6" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">z₀</text><circle cx="195.4" cy="35.3" r="5.5" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><text x="205.4" y="27.3" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">z₁</text><circle cx="100.7" cy="60.7" r="5.5" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><text x="90.7" y="52.7" fill="var(--tc,var(--accent))" font-size="14" text-anchor="end" font-weight="700" opacity="1">z₂</text><circle cx="75.3" cy="155.4" r="5.5" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><text x="65.3" y="171.4" fill="var(--tc,var(--accent))" font-size="14" text-anchor="end" font-weight="700" opacity="1">z₃</text><circle cx="144.6" cy="224.7" r="5.5" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><text x="134.6" y="240.7" fill="var(--tc,var(--accent))" font-size="14" text-anchor="end" font-weight="700" opacity="1">z₄</text><circle cx="239.3" cy="199.3" r="5.5" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><text x="249.3" y="215.3" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">z₅</text><line x1="170" y1="130" x2="264.7" y2="104.6" stroke="var(--warn,#b8730c)" stroke-width="1.6" stroke-dasharray="5 4" opacity="1" stroke-linecap="round"/><path d="M208,130 A38,38 0 0 0 206.7,120.2" fill="none" stroke="var(--warn,#b8730c)" stroke-width="1.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="322" y="64" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">Las n raíces de w:</text><text x="322" y="90" fill="var(--tc,var(--accent))" font-size="15" text-anchor="start" font-weight="700" opacity="1">z_k = <tspan font-size="10.2" dy="-5.7">n</tspan><tspan dy="5.7"></tspan>√|w| ·</text><text x="322" y="110" fill="var(--tc,var(--accent))" font-size="15" text-anchor="start" font-weight="700" opacity="1">e^{i(φ+2πk)/n}</text><text x="322" y="140" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">k = 0, 1, …, n−1</text><text x="322" y="166" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">Todas sobre la misma</text><text x="322" y="185" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">circunferencia de radio <tspan font-size="9.9" dy="-5.5">n</tspan><tspan dy="5.5"></tspan>√|w|,</text><text x="322" y="204" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">separadas 2π/n.</text><text x="322" y="238" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">Forman un polígono regular.</text></svg><figcaption>Aquí n = 6: seis raíces equiespaciadas 60°. El primer vértice está en φ/n, el argumento de w dividido entre n.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\bar z,\ |z|,\ \arg z\)</td><td>Conjugado, módulo y argumento</td><td class="u">\(|z|=\sqrt{a^2+b^2}\)</td></tr><tr><td class="sym">\(|z|_\alpha\)</td><td>Forma polar</td><td class="u">módulo y argumento</td></tr><tr><td class="sym">\(e^{i\alpha}\)</td><td>Exponencial compleja (Euler)</td><td class="u">\(\cos\alpha+i\sin\alpha\)</td></tr><tr><td class="sym">\(f:A\to B\)</td><td>Aplicación</td><td class="u">inyectiva / sobreyectiva / biyectiva</td></tr><tr><td class="sym">\(\Rightarrow,\ \Leftrightarrow\)</td><td>Implicación y equivalencia</td><td class="u">lógica</td></tr><tr><td class="sym">\(P(n)\)</td><td>Proposición dependiente de n</td><td class="u">inducción</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · complejos en el plano: módulo, argumento, potencias y raíces</p><div data-sim="complejos"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
 <!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Los números complejos como puntos del plano</h4>
+<h4><span class="hn">1</span>Los números complejos como puntos del plano</h4>
 <div class="box key deepnote"><b>Idea clave.</b> \(z=a+bi\) con \(i^2=-1\). Se dibuja como el punto \((a,b)\): <b>sumar</b> es sumar vectores y <b>multiplicar</b> es girar y escalar.</div>
 <div class="eqd">\[z=a+bi=r\,(\cos\theta+i\sin\theta)=r\,e^{i\theta},\qquad r=|z|=\sqrt{a^2+b^2}\]</div>
 <ul><li><b>Conjugado:</b> \(\bar z=a-bi\). Cumple \(z\bar z=|z|^2\), y sirve para dividir: \(\dfrac{w}{z}=\dfrac{w\bar z}{|z|^2}\).</li><li><b>Argumento \(\theta\):</b> cuidado con el cuadrante. \(\arctan(b/a)\) da el mismo valor en dos cuadrantes opuestos; mira siempre los signos de \(a\) y \(b\).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Por qué \(e^{i\theta}=\cos\theta+i\sin\theta\) (fórmula de Euler)</summary><div class="inner"><ol class="pasos"><li>Desarrolla \(e^{x}=1+x+\dfrac{x^2}{2!}+\dfrac{x^3}{3!}+\cdots\) y sustituye \(x=i\theta\).</li><li>Como \(i^2=-1\), \(i^3=-i\), \(i^4=1\)…, los términos pares dan \(1-\dfrac{\theta^2}{2!}+\dfrac{\theta^4}{4!}-\cdots=\cos\theta\).</li><li>Los impares dan \(i\left(\theta-\dfrac{\theta^3}{3!}+\cdots\right)=i\sin\theta\).</li></ol>
 <p>Consecuencia famosa: \(e^{i\pi}+1=0\).</p></div></details>
-<h4>2. Multiplicar, potencias y raíces</h4>
+<h4><span class="hn">2</span>Multiplicar, potencias y raíces</h4>
 <div class="eqd">\[z_1z_2=r_1r_2\,e^{i(\theta_1+\theta_2)},\qquad z^n=r^n\,e^{in\theta}\]</div>
 <ul><li>En forma polar, multiplicar es <b>multiplicar módulos y sumar ángulos</b>.</li><li><b>Raíces n-ésimas:</b> un número no nulo tiene <b>exactamente n</b> raíces, igualmente repartidas en una circunferencia.</li></ul>
 <div class="eqd">\[\sqrt[n]{z}=\sqrt[n]{r}\,e^{\,i(\theta+2\pi k)/n},\qquad k=0,1,\dots,n-1\]</div>
 <div class="box trap deepnote"><b>Cuidado.</b> Si olvidas el \(2\pi k\) pierdes todas las raíces menos una. Las raíces son los vértices de un polígono regular de n lados.</div>
-<h4>3. Por qué los complejos son necesarios</h4>
+<h4><span class="hn">3</span>Por qué los complejos son necesarios</h4>
 <p>Toda ecuación polinómica de grado n tiene <b>n raíces complejas</b> contando multiplicidades (teorema fundamental del álgebra). En un polinomio con coeficientes reales, las raíces complejas aparecen en <b>parejas conjugadas</b>. Esto es lo que usarás en ecuaciones diferenciales, circuitos con corriente alterna y estabilidad de sistemas.</p>
 </div><!--/deep--><h3 id="t1-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>

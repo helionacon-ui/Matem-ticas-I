@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec" style="--tc:var(--c7);--tcs:var(--c7s)">
 <div class="sh"><span aria-hidden="true" class="badge">wx</span><div class="shx"><p class="kick">Practicar</p><h2 id="lab">Prácticas con Maxima</h2><div class="tags"><span class="tag">10 % de la nota</span><span class="tag w">wxMaxima</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p>Las prácticas se hacen con <b>wxMaxima</b> (software libre). El cuaderno de prácticas 2019/20 y el manual del profesor recorren la asignatura entera: complejos, matrices, espacios vectoriales, diagonalización, euclídeo, límites y derivadas, integrales, varias variables y EDO. Lo que se evalúa es saber traducir cada problema a los comandos adecuados y <b>leer la salida</b> (por ejemplo, la estructura de <code>eigenvectors</code>).</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="lede">Las prácticas se hacen con <b>wxMaxima</b> (software libre). El cuaderno de prácticas 2019/20 y el manual del profesor recorren la asignatura entera: complejos, matrices, espacios vectoriales, diagonalización, euclídeo, límites y derivadas, integrales, varias variables y EDO. Lo que se evalúa es saber traducir cada problema a los comandos adecuados y <b>leer la salida</b> (por ejemplo, la estructura de <code>eigenvectors</code>).</p></div>
 <div class="box key"><p><b>Reglas de sintaxis que fallan siempre:</b> cada orden termina en <code>;</code> (o <code>$</code> para no mostrar); <code>:</code> asigna, <code>:=</code> define funciones, <code>=</code> es una ecuación; el producto de matrices es <code>.</code> y la potencia matricial <code>^^</code>; <code>%</code> es el último resultado, <code>%i</code> la unidad imaginaria, <code>%e</code> y <code>%pi</code> las constantes; <code>float(…)</code> da decimales; <code>'diff</code> (con apóstrofo) es la derivada sin evaluar que necesita <code>ode2</code>.</p></div>
 <h3>Resumen de las prácticas</h3><details class="paso"><summary><span class="pn">1</span>Práctica 1 · Introducción</summary><div class="inner"><p>Operar: <code>2^10; sqrt(2); float(%); ratsimp(expr); expand((x+1)^3); factor(x^2-1); solve(x^2-3*x+2=0,x);</code>. Funciones: <code>f(x):=x^2+1; f(3);</code>. Asignación con <code>:</code>, definición con <code>:=</code>. <code>%</code> es el último resultado.</p></div></details><details class="paso"><summary><span class="pn">2</span>Práctica 2 · Números complejos</summary><div class="inner"><p><code>z:3+4*%i; abs(z); carg(z); conjugate(z); rectform(z^5); polarform(z); solve(x^3+8=0,x);</code> — <code>rectform</code> pasa a binómica, <code>polarform</code> a polar; <code>realpart</code>, <code>imagpart</code>.</p></div></details><details class="paso"><summary><span class="pn">3</span>Práctica 3 · Matrices y sistemas</summary><div class="inner"><p><code>A:matrix([1,2],[3,4]); determinant(A); invert(A); rank(A); transpose(A); A.B</code> (producto con punto; <code>A*B</code> es elemento a elemento); <code>echelon(A); triangularize(A); linsolve([x+y=2, x-y=0],[x,y]); algsys(...)</code>. Para discutir con parámetro: <code>determinant(A)</code> y <code>solve(%=0,k)</code>.</p></div></details><details class="paso"><summary><span class="pn">4</span>Práctica 4 · Espacios vectoriales y aplicaciones lineales</summary><div class="inner"><p>Rango de un sistema de vectores: <code>rank(matrix(v1,v2,v3))</code>. Núcleo: <code>nullspace(A)</code>; imagen: <code>columnspace(A)</code>. Coordenadas: <code>invert(P).v</code>. Cambio de base: <code>invert(MB2C).MB1C</code>.</p></div></details><details class="paso"><summary><span class="pn">5</span>Práctica 5 · Diagonalización</summary><div class="inner"><p><code>charpoly(A,x); eigenvalues(A); eigenvectors(A);</code> (devuelve [[valores],[multiplicidades]],[vectores]). Comprobar: <code>P: transpose(matrix(v1,v2,v3)); invert(P).A.P;</code>. Potencias: <code>P.D^^10.invert(P)</code> (<code>^^</code> es potencia matricial).</p></div></details><details class="paso"><summary><span class="pn">6</span>Práctica 6 · Euclídeo</summary><div class="inner"><p><code>load(eigen); innerproduct(u,v); gramschmidt([u,v,w]); unitvector(u);</code>. Norma: <code>sqrt(u.u)</code>. Proyección: <code>(v.w)/(w.w)*w</code>.</p></div></details><details class="paso"><summary><span class="pn">7</span>Práctica 7 · Límites, derivadas y Taylor</summary><div class="inner"><p><code>limit(f(x),x,0); limit(f(x),x,inf); limit(f(x),x,0,plus); diff(f(x),x); diff(f(x),x,2); taylor(f(x),x,0,5); plot2d([f(x),taylor(...)],[x,-2,2]);</code>. Newton: <code>load(newton1); newton(f(x),x,1.0,1e-8);</code>.</p></div></details><details class="paso"><summary><span class="pn">8</span>Práctica 8 · Integrales</summary><div class="inner"><p><code>integrate(f(x),x); integrate(f(x),x,0,1); romberg(f(x),x,0,1);</code> (numérica); <code>changevar</code> para cambios; <code>partfrac(expr,x)</code> para fracciones simples.</p></div></details><details class="paso"><summary><span class="pn">9</span>Práctica 9 · Varias variables</summary><div class="inner"><p><code>diff(f(x,y),x); diff(f(x,y),x,1,y,1); gradient: [diff(f,x),diff(f,y)]; hessian(f(x,y),[x,y]); solve([diff(f,x)=0,diff(f,y)=0],[x,y]); plot3d(f(x,y),[x,-2,2],[y,-2,2]); contour_plot(...)</code>. Integral doble: <code>integrate(integrate(f(x,y),y,0,x),x,0,1)</code>.</p></div></details><details class="paso"><summary><span class="pn">10</span>Práctica 10 · EDO</summary><div class="inner"><p><code>ode2(\'diff(y,x)+2*x*y=2*x*exp(-x^2), y, x); ic1(%, x=0, y=1);</code> (condición inicial de primer orden); <code>ic2</code> para segundo orden; <code>plotdf</code> (paquete) dibuja el campo de direcciones.</p></div></details>
 <div class="box trap"><h4>Trampas típicas</h4><ul><li>Usar <code>*</code> para multiplicar matrices (lo hace elemento a elemento).</li><li>Olvidar <code>load(eigen)</code> antes de <code>gramschmidt</code>.</li><li>Leer mal <code>eigenvectors</code>: devuelve [[valores propios],[multiplicidades]] y luego la lista de vectores de cada valor.</li><li><code>solve</code> devuelve una lista de ecuaciones: extrae con <code>rhs(%[1])</code>.</li></ul></div>

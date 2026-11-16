@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,10 +86,10 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
 <div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">UD1 Álgebra · Tema 2</p><h2 id="t2">Matrices, determinantes y sistemas</h2><div class="tags"><span class="tag">UD1 Álgebra</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Operar con matrices, calcular rango, determinantes e inversas (Gauss-Jordan, adjunta), factorizar LU y discutir y resolver sistemas con Rouché-Frobenius y Cramer.</p><p>Las <b>transformaciones elementales</b> por filas (intercambiar, multiplicar por un escalar no nulo, sumar un múltiplo de otra) no cambian el rango: dos matrices son equivalentes si y solo si tienen el mismo rango. Una matriz cuadrada es <b>regular</b> (rango n) ⇔ invertible ⇔ \(|A|\ne0\).</p>
-<p><b>Gauss-Jordan</b>: \((A|I)\to(I|A^{-1})\). <b>Factorización LU</b> (apunte del curso): si Gauss no necesita intercambios, \(A=LU\) con U la escalonada y L triangular inferior con unos y los multiplicadores cambiados de signo; luego \(AX=B\) se resuelve con \(LY=B\) y \(UX=Y\).</p>
-<p><b>Rouché-Frobenius</b>: incompatible si \(rg(A)\ne rg(A|B)\); compatible determinado si \(rg(A)=rg(A|B)=n\); indeterminado con \(n-rg\) parámetros si \(rg<n\). Los sistemas homogéneos siempre son compatibles.</p></div>
-<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es realmente el rango</p><p>El rango se define de varias maneras equivalentes y conviene tener claro que todas dicen lo mismo:</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Operar con matrices, calcular rango, determinantes e inversas (Gauss-Jordan, adjunta), factorizar LU y discutir y resolver sistemas con Rouché-Frobenius y Cramer.</p><p class="lede">Las <b>transformaciones elementales</b> por filas (intercambiar, multiplicar por un escalar no nulo, sumar un múltiplo de otra) no cambian el rango: dos matrices son equivalentes si y solo si tienen el mismo rango. Una matriz cuadrada es <b>regular</b> (rango n) ⇔ invertible ⇔ \(|A|\ne0\).</p>
+<p class="run"><b>Gauss-Jordan:</b> \((A|I)\to(I|A^{-1})\). <b>Factorización LU</b> (apunte del curso): si Gauss no necesita intercambios, \(A=LU\) con U la escalonada y L triangular inferior con unos y los multiplicadores cambiados de signo; luego \(AX=B\) se resuelve con \(LY=B\) y \(UX=Y\).</p>
+<p class="run"><b>Rouché-Frobenius:</b> incompatible si \(rg(A)\ne rg(A|B)\); compatible determinado si \(rg(A)=rg(A|B)=n\); indeterminado con \(n-rg\) parámetros si \(rg<n\). Los sistemas homogéneos siempre son compatibles.</p></div>
+<div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es realmente el rango</p><p class="lede">El rango se define de varias maneras equivalentes y conviene tener claro que todas dicen lo mismo:</p>
 <ul>
 <li>El número de <b>filas no nulas</b> que quedan al escalonar.</li>
 <li>El número máximo de <b>filas linealmente independientes</b> (y, lo que sorprende, coincide con el de columnas).</li>
@@ -62,7 +102,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <tr><td>\(rg(A)=rg(A|B)=n\)</td><td>compatible determinado</td><td>una sola</td></tr>
 <tr><td>\(rg(A)=rg(A|B)<n\)</td><td>compatible indeterminado</td><td>infinitas, con \(n-rg\) parámetros</td></tr>
 </table></div>
-<p><b>La receta que funciona siempre:</b></p>
+<p class="run"><b>La receta que funciona siempre:</b> </p>
 <ol>
 <li>Calcula \(|A|\) y <b>factorízalo</b>, no lo desarrolles en un polinomio feo. Los valores que lo anulan son los únicos casos conflictivos.</li>
 <li>Para todos los demás valores del parámetro, el sistema es <b>compatible determinado</b> y se resuelve por Cramer o por inversa. Eso se despacha en una línea.</li>
@@ -72,22 +112,22 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>La idea de LU es <b>hacer el trabajo caro una sola vez</b>. Se descompone \(A=LU\), con L triangular inferior y U triangular superior. Después, cada sistema nuevo se resuelve en dos pasos baratos:</p>
 \[AX=B\ \Longrightarrow\ LUX=B\ \Longrightarrow\ \begin{cases}LY=B & \text{(hacia abajo, sustitución progresiva)}\\ UX=Y & \text{(hacia arriba, sustitución regresiva)}\end{cases}\]
 <p>Cada uno de esos dos sistemas es triangular, y un sistema triangular se resuelve despejando de arriba abajo sin ninguna eliminación: cuesta \(n^2/2\), unas cien veces menos para un sistema mediano.</p>
-<p><b>Cómo se construyen L y U en la práctica.</b> U es la escalonada que sale de Gauss. Y L se va rellenando <b>con los multiplicadores que has usado</b>, cambiados de signo respecto a como los restas: si para hacer cero el elemento (2,1) has hecho \(F_2-2F_1\), entonces \(L_{21}=2\). La diagonal de L son unos. No hay que calcular nada aparte: L se escribe sobre la marcha mientras haces Gauss.</p>
-<p><b>La limitación:</b> si en algún momento aparece un cero en la diagonal y hay que intercambiar filas, la descomposición es \(PA=LU\) con P una matriz de permutación. En los ejercicios de clase los pivotes salen no nulos y P no hace falta.</p></div>
+<p class="run"><b>Cómo se construyen L y U en la práctica.:</b> U es la escalonada que sale de Gauss. Y L se va rellenando <b>con los multiplicadores que has usado</b>, cambiados de signo respecto a como los restas: si para hacer cero el elemento (2,1) has hecho \(F_2-2F_1\), entonces \(L_{21}=2\). La diagonal de L son unos. No hay que calcular nada aparte: L se escribe sobre la marcha mientras haces Gauss.</p>
+<p class="run"><b>La limitación:</b> si en algún momento aparece un cero en la diagonal y hay que intercambiar filas, la descomposición es \(PA=LU\) con P una matriz de permutación. En los ejercicios de clase los pivotes salen no nulos y P no hace falta.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Determinante y tipos de sistema</div><svg viewBox="0 0 560 262" role="img" aria-label="Determinante como área y sistemas como rectas" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="40" y1="200" x2="222.8" y2="200" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="230,200 222.7,203.3 222.7,196.7" fill="var(--muted)"/><line x1="40" y1="200" x2="40" y2="37.2" stroke="var(--muted)" stroke-width="1.3" opacity="1" stroke-linecap="round"/><polygon points="40,30 43.3,37.3 36.7,37.3" fill="var(--muted)"/><polygon points="40,200 180.4,162.2 229,43.4 88.6,81.2" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="0.22" stroke-linejoin="round" stroke-linecap="round"/><polygon points="40,200 180.4,162.2 229,43.4 88.6,81.2" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="40" y1="200" x2="170" y2="165" stroke="var(--warn,#b8730c)" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="180.4,162.2 171.1,169.8 168.5,160.3" fill="var(--warn,#b8730c)"/><line x1="40" y1="200" x2="84.5" y2="91.2" stroke="var(--c2,#3a63c4)" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="88.6,81.2 89,93.2 79.9,89.5" fill="var(--c2,#3a63c4)"/><text x="186.4" y="166.2" fill="var(--warn,#b8730c)" font-size="15" text-anchor="start" font-weight="700" opacity="1">v₁</text><text x="84.6" y="73.2" fill="var(--c2,#3a63c4)" font-size="15" text-anchor="start" font-weight="700" opacity="1">v₂</text><text x="135" y="115" fill="var(--tc,var(--accent))" font-size="16" text-anchor="middle" font-weight="700" opacity="1">|det|</text><text x="135" y="236" fill="var(--fg)" font-size="14" text-anchor="middle" font-weight="600" opacity="1">área = |det[v₁ v₂]|</text><rect x="300" y="36" width="232" height="64" rx="10" fill="var(--surface,#fff)" stroke="var(--tc,var(--accent))" stroke-width="1.8" opacity="1"/><line x1="314" y1="86" x2="366" y2="50" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="1" stroke-linecap="round"/><line x1="314" y1="52" x2="366" y2="84" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="1" stroke-linecap="round"/><circle cx="340" cy="68" r="3.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="376" y="62" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Determinado</text><text x="376" y="82" fill="var(--muted)" font-size="12.5" text-anchor="start" opacity="1">rg A = rg A* = n</text><rect x="300" y="110" width="232" height="64" rx="10" fill="var(--surface,#fff)" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="1"/><line x1="314" y1="154" x2="366" y2="130" stroke="var(--c5,#c43d63)" stroke-width="2.2" opacity="1" stroke-linecap="round"/><line x1="314" y1="166" x2="366" y2="142" stroke="var(--c5,#c43d63)" stroke-width="2.2" opacity="1" stroke-linecap="round"/><text x="376" y="136" fill="var(--c5,#c43d63)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Incompatible</text><text x="376" y="156" fill="var(--muted)" font-size="12.5" text-anchor="start" opacity="1">rg A &lt; rg A*</text><rect x="300" y="184" width="232" height="64" rx="10" fill="var(--surface,#fff)" stroke="var(--c6,#2c8a52)" stroke-width="1.8" opacity="1"/><line x1="314" y1="234" x2="366" y2="198" stroke="var(--c6,#2c8a52)" stroke-width="3.6" opacity="1" stroke-linecap="round"/><text x="376" y="210" fill="var(--c6,#2c8a52)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Indeterminado</text><text x="376" y="230" fill="var(--muted)" font-size="12.5" text-anchor="start" opacity="1">rg A = rg A* &lt; n</text></svg><figcaption>El determinante mide cuánto escala las áreas (si es 0, el paralelogramo se aplasta en una recta). Un sistema 2×2 son dos rectas: se cortan, son paralelas o coinciden (Rouché-Frobenius).</figcaption></figure><figure class="ill"><div class="ill-t">Gauss: escalonar para leer el rango</div><svg viewBox="0 0 560 262" role="img" aria-label="Operaciones elementales y escalonada" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><text x="62" y="78" fill="var(--warn,#b8730c)" font-size="22" text-anchor="middle" font-weight="700" opacity="1">■</text><text x="106" y="78" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><text x="150" y="78" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><text x="194" y="78" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><text x="238" y="78" fill="var(--muted)" font-size="26" text-anchor="middle" opacity="1">|</text><text x="282" y="78" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><text x="62" y="122" fill="var(--muted)" font-size="22" text-anchor="middle" opacity="1">0</text><text x="106" y="122" fill="var(--warn,#b8730c)" font-size="22" text-anchor="middle" font-weight="700" opacity="1">■</text><text x="150" y="122" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><text x="194" y="122" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><text x="238" y="122" fill="var(--muted)" font-size="26" text-anchor="middle" opacity="1">|</text><text x="282" y="122" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><text x="62" y="166" fill="var(--muted)" font-size="22" text-anchor="middle" opacity="1">0</text><text x="106" y="166" fill="var(--muted)" font-size="22" text-anchor="middle" opacity="1">0</text><text x="150" y="166" fill="var(--muted)" font-size="22" text-anchor="middle" opacity="1">0</text><text x="194" y="166" fill="var(--warn,#b8730c)" font-size="22" text-anchor="middle" font-weight="700" opacity="1">■</text><text x="238" y="166" fill="var(--muted)" font-size="26" text-anchor="middle" opacity="1">|</text><text x="282" y="166" fill="var(--fg)" font-size="22" text-anchor="middle" opacity="1">*</text><rect x="34" y="50" width="184" height="132" rx="8" fill="none" stroke="var(--tc,var(--accent))" stroke-width="1.8" opacity="1"/><rect x="254" y="50" width="54" height="132" rx="8" fill="none" stroke="var(--c2,#3a63c4)" stroke-width="1.8" opacity="1"/><text x="128" y="40" fill="var(--tc,var(--accent))" font-size="13" text-anchor="middle" font-weight="700" opacity="1">matriz de coeficientes</text><text x="276" y="40" fill="var(--c2,#3a63c4)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">términos</text><text x="172" y="208" fill="var(--warn,#b8730c)" font-size="13.5" text-anchor="middle" font-weight="700" opacity="1">■ = pivote: el rango es el nº de pivotes</text><text x="330" y="60" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">Operaciones permitidas:</text><text x="330" y="92" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">•  Fᵢ ↔ Fⱼ  (intercambiar)</text><text x="330" y="118" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">•  Fᵢ → λFᵢ  (λ ≠ 0)</text><text x="330" y="144" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">•  Fᵢ → Fᵢ + λFⱼ</text><text x="330" y="186" fill="var(--c6,#2c8a52)" font-size="14" text-anchor="start" font-weight="700" opacity="1">No cambian soluciones</text><text x="330" y="204" fill="var(--c6,#2c8a52)" font-size="14" text-anchor="start" font-weight="700" opacity="1">ni rango.</text><text x="330" y="228" fill="var(--muted)" font-size="12" text-anchor="start" opacity="1">El det cambia si escalas o permutas.</text></svg><figcaption>Cada fila no nula tiene un pivote; el número de pivotes es el rango. Compara rg A con rg de la ampliada para clasificar el sistema.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(A^t,\ A^{-1}\)</td><td>Traspuesta e inversa</td><td class="u"></td></tr><tr><td class="sym">\(|A|,\ \det A\)</td><td>Determinante</td><td class="u">escalar</td></tr><tr><td class="sym">\(rg(A)\)</td><td>Rango</td><td class="u">número de filas LI</td></tr><tr><td class="sym">\(\mathrm{Adj}\,A\)</td><td>Matriz adjunta</td><td class="u">cofactores</td></tr><tr><td class="sym">\(A=LU\)</td><td>Factorización LU</td><td class="u">L inferior, U superior</td></tr><tr><td class="sym">\((A|B)\)</td><td>Matriz ampliada del sistema</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · sistema 2×2: rectas, determinante y Rouché-Frobenius</p><div data-sim="sistemas"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano.</figcaption></figure>
 <!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Matrices: qué representan</h4>
+<h4><span class="hn">1</span>Matrices: qué representan</h4>
 <div class="box key deepnote"><b>Idea clave.</b> una matriz es una <b>transformación lineal</b> escrita en números. Multiplicar \(A\vec x\) es aplicarla al vector \(\vec x\).</div>
 <ul><li>El producto \(AB\) es «primero \(B\), luego \(A\)». Por eso <b>no es conmutativo</b>: \(AB\neq BA\) en general.</li><li>\((AB)^{T}=B^{T}A^{T}\) y \((AB)^{-1}=B^{-1}A^{-1}\): el orden se invierte.</li><li>Dimensiones: \((m\times n)\cdot(n\times p)=(m\times p)\). Si no encajan, el producto no existe.</li></ul>
-<h4>2. El determinante</h4>
+<h4><span class="hn">2</span>El determinante</h4>
 <ul><li>Geométricamente, \(|\det A|\) es el <b>factor por el que la transformación multiplica áreas o volúmenes</b>.</li><li>Si \(\det A=0\), la transformación aplasta el espacio (pierde una dimensión) y <b>no tiene inversa</b>.</li><li>\(\det(AB)=\det A\cdot\det B\), \(\det A^{T}=\det A\) y \(\det(kA)=k^n\det A\) para \(n\times n\).</li></ul>
 <p>Operaciones por filas:</p>
 <ul><li>Intercambiar dos filas <b>cambia el signo</b>.</li><li>Multiplicar una fila por \(k\) multiplica el determinante por \(k\).</li><li>Sumar a una fila un múltiplo de otra <b>no lo cambia</b>. Es la operación que más se usa para hacer ceros.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Calcular la inversa con Gauss-Jordan</summary><div class="inner"><ol class="pasos"><li>Escribe la matriz ampliada \((A\,|\,I)\).</li><li>Con operaciones por filas, transforma \(A\) en \(I\).</li><li>Lo que aparece a la derecha es \(A^{-1}\): \((I\,|\,A^{-1})\).</li></ol>
 <p>Si en algún paso no puedes obtener un pivote en cada columna, \(A\) no es invertible (\(\det A=0\)).</p></div></details>
-<h4>3. Sistemas de ecuaciones: Rouché-Frobenius</h4>
+<h4><span class="hn">3</span>Sistemas de ecuaciones: Rouché-Frobenius</h4>
 <div class="eqd">\[A\vec x=\vec b\qquad\text{con }n\text{ incógnitas}\]</div>
 <ul><li>Si \(\operatorname{rg}A\ne\operatorname{rg}(A|b)\): <b>incompatible</b> (no hay solución).</li><li>Si \(\operatorname{rg}A=\operatorname{rg}(A|b)=n\): <b>compatible determinado</b> (solución única).</li><li>Si \(\operatorname{rg}A=\operatorname{rg}(A|b)<n\): <b>compatible indeterminado</b>, con \(n-\operatorname{rg}A\) parámetros libres.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> En un sistema homogéneo (\(\vec b=0\)) siempre existe la solución trivial \(\vec x=0\). Solo hay más soluciones si el rango es menor que \(n\), es decir, si \(\det A=0\).</div>
