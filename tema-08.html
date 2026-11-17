@@ -147,6 +147,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <ul><li>Geométricamente, la pendiente de la <b>tangente</b>.</li><li>Como aproximación: \(f(x)\approx f(a)+f'(a)(x-a)\) cerca de \(a\).</li><li>Derivable \(\Rightarrow\) continua. El recíproco es falso (\(|x|\) en 0).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Teoremas que se usan constantemente</summary><div class="inner"><ul><li><b>Rolle:</b> si \(f(a)=f(b)\), hay un punto con \(f'(c)=0\).</li><li><b>Valor medio de Lagrange:</b> hay un \(c\) con \(f'(c)=\dfrac{f(b)-f(a)}{b-a}\). Dice que en algún momento la derivada instantánea iguala a la media.</li><li><b>Consecuencia:</b> \(f'>0\) en un intervalo implica que \(f\) es creciente en él.</li></ul>
 <p><b>L’Hôpital:</b> para indeterminaciones \(0/0\) o \(\infty/\infty\), \(\lim\frac fg=\lim\frac{f'}{g'}\) si este último existe.</p></div></details>
+<!--manim:mat1-t8b--><figure class="fig manim-fig" id="anim-mat1-t8b"><p class="ft">Animación · Polinomio de Taylor de sen x</p><div class="manim" data-anim="mat1-t8b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro.</figcaption></figure><!--/manim-->
 <h4><span class="hn">3</span>Polinomio de Taylor</h4>
 <div class="eqd">\[f(x)\approx\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k\]</div>
 <ul><li>Es el polinomio que mejor imita a \(f\) cerca de \(a\) (coincide con ella y sus \(n\) primeras derivadas).</li><li>Resto de Lagrange: \(R_n=\dfrac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}\), que sirve para <b>acotar el error</b>.</li><li>Desarrollos que hay que saber: \(e^x=\sum\dfrac{x^k}{k!}\), \(\sin x=x-\dfrac{x^3}{3!}+\cdots\), \(\cos x=1-\dfrac{x^2}{2!}+\cdots\), \(\ln(1+x)=x-\dfrac{x^2}{2}+\cdots\).</li></ul>
@@ -217,7 +218,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
-<script src="anim-manim.js?v=26804" defer></script>
-<script src="anim-temas.js?v=26804" defer></script>
+<script src="anim-manim.js?v=28284" defer></script>
+<script src="anim-temas.js?v=28284" defer></script>
 </body>
 </html>

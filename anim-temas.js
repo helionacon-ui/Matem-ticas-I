@@ -116,4 +116,8 @@ M.reg('mat1-t13',M.campo({title:'Campo de direcciones: y′ = y(1 − y)',H:540,
  extra:function(D,A){[0.05,0.2,1.6].forEach(function(y0){U.plotf(D,A,function(x){return 1/(1+(1/y0-1)*Math.exp(-x));},C.hl,2,0.8);});D.line(A.X(0),A.Y(1),A.X(6),A.Y(1),C.ok,2,[6,4]);D.line(A.X(0),A.Y(0),A.X(6),A.Y(0),C.bad,2,[6,4]);},
  read:function(){return ['soluciones: y = 1/(1 + C·e^{−x})'];},
  caps:[[7,'En cada punto, la flecha tiene la pendiente que marca la ecuación: <i>y′ = y(1 − y)</i>. Las partículas siguen esas pendientes.'],[14,'Las soluciones (amarillo) son curvas tangentes a las flechas en todos sus puntos. Una condición inicial elige una de ellas.'],[99,'<i>y = 1</i> es un equilibrio estable (verde): las soluciones cercanas se acercan. <i>y = 0</i> es inestable (rojo): se alejan de él.']]}));
+M.reg('mat1-t8b',M.base({title:'Polinomio de Taylor: aproximar sen x',H:560,dur:18,caps:[[6,'El polinomio de Taylor de grado n en x = 0 copia el valor y las n primeras derivadas de la función en ese punto.'],[12,'Para sen x solo aparecen potencias impares: <i>x − x³/3! + x⁵/5! − …</i>. Cada término nuevo amplía la zona donde la aproximación es buena.'],[99,'Lejos del centro el polinomio se separa siempre: el error de Lagrange crece con |x|<sup>n+1</sup>.']]},
+ function(D,t){var n=1+2*Math.min(5,Math.floor(U.pp(t,18)*6)),A=U.axes(D,{xr:[-7,7],yr:[-2.2,2.2],xt:[-6,-3,3,6],yt:[-2,-1,1,2],xd:0,yd:0,xl:'x',yl:'y'},{x:80,y:96,w:480,h:300,grid:true});
+  var T=function(x){var s=0,term=x;for(var k=1;k<=n;k+=2){s+=term;term*=-x*x/((k+1)*(k+2));}return s;};U.plotf(D,A,Math.sin,C.f,3);U.clipA(D,A,function(){U.plotf(D,A,T,C.m,2.6);});
+  U.readout(D,['grado n = '+n+'    T_{'+n+'}(2) = '+nf(T(2),4)+'    sen 2 = '+nf(Math.sin(2),4)],468);}));
 })();
